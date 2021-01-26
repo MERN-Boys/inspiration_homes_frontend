@@ -1,4 +1,4 @@
-import {Switch, Link, Route} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
   return (
@@ -24,12 +24,6 @@ function Navbar() {
           </ul>
         </div>
       </nav>
-      <Switch>
-        <Route exact path="/gallery" render={() => <h1>gallery</h1>} />
-        <Route exact path="/about" render={() => <h1>about</h1>} />
-        <Route exact path="/contact" render={() => <h1>contact</h1>} />
-        <Route exact path="/" render={() => <h1>home</h1>} />
-      </Switch>
     </>
   );
 };

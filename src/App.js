@@ -9,10 +9,13 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      {/* <Route exact path="/" component={HomePage} />
-      <Route exact path="/gallery" component={GalleryPage} />
-      <Route exact path="/about" component={AboutPage} />
-      <Route exact path="/contact" component={ContactPage} /> */}
+      
+      <Switch>
+        <Route exact path="/gallery" render={() => <h1>gallery</h1>} />
+        <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/contact" render={() => <h1>contact</h1>} />
+        <Route exact path="/" component={HomePage} />
+    </Switch>
     </BrowserRouter>
   );
 }
