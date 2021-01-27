@@ -1,4 +1,4 @@
-import Navbar from "./components/navbar"
+import SiteNav from "./components/navbar"
 import Footer from './components/footer'
 import './style.css'
 import {BrowserRouter, Switch, Route, Link} from "react-router-dom"
@@ -10,7 +10,7 @@ import ContactPage from './pages/ContactPage'
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <SiteNav/>
       
       <Switch>
         <Route exact path="/gallery" render={() => <GalleryPage/>} />
