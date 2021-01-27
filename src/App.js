@@ -18,7 +18,7 @@ function App() {
         <Route exact path="/contact" render={() => <ContactPage/>} />
         <Route exact path="/" render={() => <HomePage/>} />
     </Switch>
-
+    <Footer />
     </BrowserRouter>
   );
 }
