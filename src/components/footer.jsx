@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
-        <> 
-            <h1></h1>
-        </>
+        <div className="footer" style={{"text-align": "center"}}>
+            <h1>im a footer</h1>
+        </div>
     )
 }
