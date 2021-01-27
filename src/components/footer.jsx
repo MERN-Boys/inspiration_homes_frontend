@@ -1,7 +1,11 @@
+import { Navbar, Container } from "react-bootstrap";
+
 export default function Footer() {
-    return (
-        <div className="footer" style={{"text-align": "center"}}>
-            <h1>im a footer</h1>
-        </div>
-    )
+  return (
+    <Container style={{ "height": "7vh", "min-height": "55px", "margin": "0"}}>
+      <Navbar expand="lg" variant="light" bg="light">
+        <Navbar.Brand href="#">inspiration homes</Navbar.Brand>
+      </Navbar>
+    </Container>
+  );
 }
