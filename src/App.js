@@ -11,10 +11,10 @@ function App() {
       <Navbar />
       
       <Switch>
-        <Route exact path="/gallery" render={() => <h1>gallery</h1>} />
-        <Route exact path="/about" component={AboutPage} />
-        <Route exact path="/contact" render={() => <h1>contact</h1>} />
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/gallery" render={() => <GalleryPage/>} />
+        <Route exact path="/about" render={() => <AboutPage/>} />
+        <Route exact path="/contact" render={() => <ContactPage/>} />
+        <Route exact path="/" render={() => <HomePage/>} />
     </Switch>
     </BrowserRouter>
   );
