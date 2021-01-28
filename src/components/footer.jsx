@@ -16,10 +16,10 @@ export default function Footer() {
       }}
     >
       <div style={{ "width": "50vw", "display":"flex", "align-items":"center" }}>
-        <Navbar.Brand href="#">inspiration homes</Navbar.Brand>
+        <Navbar.Brand style={{"margin-left":"3vw"}} href="#">inspiration homes</Navbar.Brand>
       </div>
       <div style={{ "width": "50vw" }}>
-        <Button style={{ "float": "right", "margin-right": "5px" }}>Login</Button>
+        <Button style={{ "float": "right", "margin-right": "3vw" }}>Login</Button>
         <Button style={{ "float": "right", "margin-right": "5px" }}>
           Sign Up
         </Button>

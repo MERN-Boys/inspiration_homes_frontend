@@ -1,9 +1,11 @@
 import Jumbotron from "react-bootstrap/jumbotron";
 import Button from "react-bootstrap/button";
 
+
+// if user !logged in
 function ContactPage() {
   return (
-    // if user !logged in
+    
     <Jumbotron
       fluid
       style={{
@@ -24,8 +26,6 @@ function ContactPage() {
         <Button variant="primary">Email Us</Button>
       </p>
     </Jumbotron>
-
-    // if user logged in
   );
 }
 
