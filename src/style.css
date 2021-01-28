@@ -1,0 +1,38 @@
+#homebody {
+    background-color: #78797A;
+}
+
+.homeTitle{
+    color: white;
+}
+.homeText {
+    color: white;
+}
+#navbarContainer {
+    background-color: #17425B;
+}
+.nav-link {
+    color: white !important;
+    
+}
+.navbar-brand {
+    color: white !important;
+}
+#AboutImageContainer {
+    width: 50%;
+}
+#AboutContentContainer {
+    text-align: center;
+    width: 50%;
+    margin: 0;
+}
+
+/* phone styling  */
+@media only screen and (max-width: 600px) {
+    .container {
+        display: inline !important;
+    }
+    #AboutImageContainer {
+        width: 100%;
+    }
+}

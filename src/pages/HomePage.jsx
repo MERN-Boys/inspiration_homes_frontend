@@ -6,10 +6,11 @@ function HomePage() {
       <Jumbotron
         fluid
         style={{ height: "86vh", "text-align": "center", "margin-bottom": "0" }}
+        id="homebody"
       >
         <Container>
-          <h1>Inspiration Homes</h1>
-          <p>SHAKE n BAKE BABY</p>
+          <h1 className="homeTitle">Inspiration Homes</h1>
+          <p className="homeText">SHAKE n BAKE BABY</p>
         </Container>
       </Jumbotron>
     );
