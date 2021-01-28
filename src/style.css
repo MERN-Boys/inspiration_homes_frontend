@@ -40,13 +40,14 @@
         /* display: inline !important; */
         flex-direction: column;
         height: 100%;
-        flex: wrap;
-        overflow:inherit;
+        overflow: scroll;
     }
     #AboutImageContainer {
         width: 100%;
+        height: 50%;
     }
     #AboutContentContainer {
         width: 100%;
+        height: 50%;
     }
 }
