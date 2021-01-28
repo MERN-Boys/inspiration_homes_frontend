@@ -3,13 +3,20 @@ import Jumbotron from 'react-bootstrap/jumbotron';
 function AboutPage() {
   return (
     <>
-      <Jumbotron
-        id="AboutContainer"
-        style={{ padding: "1%", height: "86vh", "margin-bottom": "0", "overflow": "scroll"}}
+      <Jumbotron id="AboutContainer"
+        // style={{ padding: "1%", height: "86vh", "margin-bottom": "0" }}
+        style={{
+          "height": "86vh",
+          "text-align": "center",
+          "margin-bottom": "0",
+          "display": "flex",
+          "justify-content": "center",
+          "align-items": "center",
+        }}
       >
         <div
           className="container"
-          style={{ display: "flex", justifyContent: "space-around", margin: "0", width: "100vw"}}
+          style={{ display: "flex", justifyContent: "space-around", margin: "0"}}
         >
           <div id="AboutImageContainer">
             <img

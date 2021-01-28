@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box !important;
+}
+
 #homebody {
     background-color: #78797A;
 }
@@ -26,13 +30,23 @@
     width: 50%;
     margin: 0;
 }
+#AboutContainer {
+    overflow: scroll;
+}
 
 /* phone styling  */
 @media only screen and (max-width: 600px) {
     .container {
-        display: inline !important;
+        /* display: inline !important; */
+        flex-direction: column;
+        height: 100%;
+        flex: wrap;
+        overflow:inherit;
     }
     #AboutImageContainer {
+        width: 100%;
+    }
+    #AboutContentContainer {
         width: 100%;
     }
 }
