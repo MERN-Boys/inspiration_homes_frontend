@@ -15,7 +15,7 @@ export default function Footer() {
         "display": "flex",
       }}
     >
-      <div style={{ "width": "50vw" }}>
+      <div style={{ "width": "50vw", "display":"flex", "align-items":"center" }}>
         <Navbar.Brand href="#">inspiration homes</Navbar.Brand>
       </div>
       <div style={{ "width": "50vw" }}>
