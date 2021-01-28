@@ -8,19 +8,19 @@ export default function Footer() {
       variant="light"
       bg="dark"
       style={{
-        "align-items": "center",
+        "alignItems": "center",
         "height": "7vh",
-        "min-height": "55px",
-        "min-width": "100",
+        "minHeight": "55px",
+        "minWidth": "100",
         "display": "flex",
       }}
     >
-      <div style={{ width: "50vw" }}>
-        <p className="navbar-brand">inspiration homes</p>
+      <div style={{ "width": "50vw", "display":"flex", "alignItems":"center" }}>
+        <Navbar.Brand style={{"marginLeft":"3vw"}} href="#">inspiration homes</Navbar.Brand>
       </div>
       <div style={{ "width": "50vw" }}>
-        <Button style={{ "float": "right", "margin-right": "5px" }}>Login</Button>
-        <Button style={{ "float": "right", "margin-right": "5px" }}>
+        <Button style={{ "float": "right", "marginRight": "3vw" }}>Login</Button>
+        <Button style={{ "float": "right", "marginRight": "5px" }}>
           Sign Up
         </Button>
       </div>

@@ -1,19 +1,21 @@
 import Jumbotron from "react-bootstrap/jumbotron";
 import Button from "react-bootstrap/button";
 
+
+// if user !logged in
 function ContactPage() {
   return (
-    // if user !logged in
+    
     <Jumbotron
       fluid
       style={{
         "height": "86vh",
-        "text-align": "center",
-        "margin-bottom": "0",
+        "textAlign": "center",
+        "marginBottom": "0",
         "display": "flex",
-        "flex-direction": "column",
-        "justify-content": "center",
-        "align-items": "center",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "alignItems": "center",
       }}
     >
       <h1>Contact Inspiration Homes!</h1>
@@ -24,8 +26,6 @@ function ContactPage() {
         <Button variant="primary">Email Us</Button>
       </p>
     </Jumbotron>
-
-    // if user logged in
   );
 }
 
