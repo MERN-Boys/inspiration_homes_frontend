@@ -43,7 +43,7 @@ function AboutPage() {
               building process – We believe communication is key, especially for
               clients building for the first time.
             </p>
-            <p className="lead" style={{ color: "black" }}>
+            <p className="lead" style={{ "color": "black" }}>
               <em>
                 At Inspiration Homes , we do much more than build high qaulity
                 homes. We understand our clients’ “inspirations”, and we bring

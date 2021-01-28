@@ -9,7 +9,7 @@ function SiteNav() {
       <Navbar bg="dark" expand="lg" style={{"height": "7vh", "minHeight": "55px"}} >
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto" style={{"width": "100%", "justifyContent": "spaceAround"}}>
+          <Nav id="dropDownNavBox" className="mr-auto" style={{"width": "25%", "justifyContent": "spaceAround"}}>
             <Link to="/" className="nav-link" >Home</Link>
             <Link to="/gallery" className="nav-link" >Gallery</Link>
             <Link to="/about" className="nav-link" >About</Link>
