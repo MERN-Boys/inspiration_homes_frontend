@@ -6,7 +6,7 @@ import Nav from "react-bootstrap/Nav";
 function SiteNav() {
   return (
     <>
-      <Navbar bg="light" expand="lg" style={{"height": "7vh", "min-height": "55px", "z-index":"999"}}>
+      <Navbar bg="dark" expand="lg" style={{"height": "7vh", "min-height": "55px"}} >
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto" style={{"width": "100%", "justifyContent": "space-around"}}>

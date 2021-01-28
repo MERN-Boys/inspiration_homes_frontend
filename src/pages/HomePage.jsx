@@ -6,10 +6,10 @@ function HomePage() {
       <Jumbotron
         fluid
         style={{
-          height: "86vh",
+          "height": "86vh",
           "text-align": "center",
           "margin-bottom": "0",
-          display: "flex",
+          "display": "flex",
           "justify-content": "center",
           "align-items": "center",
         }}

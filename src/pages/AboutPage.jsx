@@ -3,7 +3,7 @@ import Jumbotron from 'react-bootstrap/jumbotron';
 function AboutPage() {
   return (
     <>
-      <Jumbotron
+      <Jumbotron id="AboutContainer"
         // style={{ padding: "1%", height: "86vh", "margin-bottom": "0" }}
         style={{
           "height": "86vh",
@@ -16,9 +16,9 @@ function AboutPage() {
       >
         <div
           className="container"
-          style={{ display: "flex", justifyContent: "space-around" }}
+          style={{ display: "flex", justifyContent: "space-around", margin: "0"}}
         >
-          <div style={{ width: "50%" }}>
+          <div id="AboutImageContainer">
             <img
               style={{ width: "100%", height: "100%", "margin-right": "15px" }}
               alt="placeholder"
@@ -26,13 +26,7 @@ function AboutPage() {
               href=""
             />
           </div>
-          <div
-            style={{
-              "text-align": "center",
-              width: "50%",
-              "margin-left": "15px",
-            }}
-          >
+          <div id="AboutContentContainer">
             <h1 className="display-4">Inspiration Homes</h1>
             <p className="lead">
               <strong>OUR COMMITMENT</strong> For us here At Inspiration Homes,

@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box !important;
+}
+
+#homebody {
+    background-color: #78797A;
+}
+
+.homeTitle{
+    color: white;
+}
+.homeText {
+    color: white;
+}
+#navbarContainer {
+    background-color: #17425B;
+}
+.nav-link {
+    color: white !important;
+    
+}
+.navbar-brand {
+    color: white !important;
+}
+#AboutImageContainer {
+    width: 50%;
+}
+#AboutContentContainer {
+    text-align: center;
+    width: 50%;
+    margin: 0;
+}
+#AboutContainer {
+    overflow: scroll;
+}
+
+/* phone styling  */
+@media only screen and (max-width: 600px) {
+    .container {
+        /* display: inline !important; */
+        flex-direction: column;
+        height: 100%;
+        overflow: scroll;
+    }
+    #AboutImageContainer {
+        width: 100%;
+        height: 50%;
+    }
+    #AboutContentContainer {
+        width: 100%;
+        height: 50%;
+    }
+}
