@@ -10,12 +10,12 @@ function ContactPage() {
       fluid
       style={{
         "height": "86vh",
-        "text-align": "center",
-        "margin-bottom": "0",
+        "textAlign": "center",
+        "marginBottom": "0",
         "display": "flex",
-        "flex-direction": "column",
-        "justify-content": "center",
-        "align-items": "center",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "alignItems": "center",
       }}
     >
       <h1>Contact Inspiration Homes!</h1>
