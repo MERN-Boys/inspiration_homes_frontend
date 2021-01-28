@@ -4,7 +4,15 @@ function AboutPage() {
   return (
     <>
       <Jumbotron
-        style={{ padding: "1%", height: "86vh", "margin-bottom": "0" }}
+        // style={{ padding: "1%", height: "86vh", "margin-bottom": "0" }}
+        style={{
+          "height": "86vh",
+          "text-align": "center",
+          "margin-bottom": "0",
+          "display": "flex",
+          "justify-content": "center",
+          "align-items": "center",
+        }}
       >
         <div
           className="container"

@@ -5,7 +5,12 @@ function HomePage() {
     return (
       <Jumbotron
         fluid
-        style={{ height: "86vh", "text-align": "center", "margin-bottom": "0" }}
+        style={{ "height": "86vh", 
+        "text-align": "center", 
+        "margin-bottom": "0", 
+        "display":"flex",
+        "justify-content": "center",
+        "align-items": "center"}}
       >
         <Container>
           <h1>Inspiration Homes</h1>
