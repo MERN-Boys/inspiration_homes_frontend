@@ -6,10 +6,10 @@ import Nav from "react-bootstrap/Nav";
 function SiteNav() {
   return (
     <>
-      <Navbar bg="dark" expand="lg" style={{"height": "7vh", "min-height": "55px"}} >
+      <Navbar bg="dark" expand="lg" style={{"height": "7vh", "minHeight": "55px"}} >
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto" style={{"width": "100%", "justifyContent": "space-around"}}>
+          <Nav id="dropDownNavBox" className="mr-auto" style={{"width": "20%", "justifyContent": "spaceAround", "padding": "5px", "backgroundColor": "#343a40"}}>
             <Link to="/" className="nav-link" >Home</Link>
             <Link to="/gallery" className="nav-link" >Gallery</Link>
             <Link to="/about" className="nav-link" >About</Link>

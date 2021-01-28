@@ -15,9 +15,13 @@
 #navbarContainer {
     background-color: #17425B;
 }
+#dropDownNavBox {
+    border-radius: 5%;
+    opacity: 50%;
+}
 .nav-link {
     color: white !important;
-    
+    opacity: 1 !important;
 }
 .navbar-brand {
     color: white !important;
