@@ -9,10 +9,15 @@ export default function Footer() {
       bg="light"
       style={{
         "align-items": "center",
-        "height": "7vh",
-        "min-height": "55px",
-        "min-width": "100",
+        // "height": "7vh",
+        // "min-height": "55px",
+        // "min-width": "100",
         "display": "flex",
+        "position": "fixed",
+        "left": "0",
+        "bottom": "0",
+        "width": "100%",
+        "height": "56px"
       }}
     >
       <div style={{ "width": "50vw", "display":"flex", "align-items":"center" }}>

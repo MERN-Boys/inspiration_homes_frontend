@@ -6,7 +6,7 @@ function AboutPage() {
       <Jumbotron
         // style={{ padding: "1%", height: "86vh", "margin-bottom": "0" }}
         style={{
-          "height": "86vh",
+          "height": "100vh - 112px",
           "text-align": "center",
           "margin-bottom": "0",
           "display": "flex",
