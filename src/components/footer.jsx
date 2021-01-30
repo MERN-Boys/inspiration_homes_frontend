@@ -1,4 +1,4 @@
-import { Navbar, Container } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 
@@ -6,12 +6,12 @@ export default function Footer() {
   return (
     <Navbar
       variant="light"
-      bg="light"
+      bg="dark"
       style={{
-        "align-items": "center",
-        // "height": "7vh",
-        // "min-height": "55px",
-        // "min-width": "100",
+        "alignItems": "center",
+        "height": "7vh",
+        "minHeight": "55px",
+        "minWidth": "100",
         "display": "flex",
         "position": "fixed",
         "left": "0",
@@ -20,12 +20,12 @@ export default function Footer() {
         "height": "56px"
       }}
     >
-      <div style={{ "width": "50vw", "display":"flex", "align-items":"center" }}>
-        <Navbar.Brand href="#">inspiration homes</Navbar.Brand>
+      <div style={{ "width": "50vw", "display":"flex", "alignItems":"center" }}>
+        <Navbar.Brand style={{"marginLeft":"3vw"}} href="#">inspiration homes</Navbar.Brand>
       </div>
       <div style={{ "width": "50vw" }}>
-        <Button style={{ "float": "right", "margin-right": "5px" }}>Login</Button>
-        <Button style={{ "float": "right", "margin-right": "5px" }}>
+        <Button style={{ "float": "right", "marginRight": "3vw" }}>Login</Button>
+        <Button style={{ "float": "right", "marginRight": "5px" }}>
           Sign Up
         </Button>
       </div>
