@@ -5,6 +5,8 @@ function SignUpPage(props) {
     const loggedInUser = props.loggedInUser
     const setLoggedInUser = props.setLoggedInUser
 
+    const [flashErr, setFlashError] = useState(false)
+
   const handleSignup = (e, form) => {
     e.preventDefault()
     fetch("http://localhost:5000/users/register", {
@@ -17,16 +19,26 @@ function SignUpPage(props) {
     })
     .then(data => data.json())
     .then(user => {
-        if (user) {
+        if (user.user) {
           setLoggedInUser(user.user)
           props.history.push("/") 
         }
+        else{
+          setFlashError("Invalid Email or Password")
+        }
     })
+    .catch(() => setFlashError("401 Bad Request"))
     // Send Data
   }
 
   return (
     <>
+    {flashErr != false ? 
+    <div>
+      <h2>{flashErr}</h2>
+    </div>
+    : <></>
+    } 
     {!loggedInUser
     || loggedInUser == false 
     || loggedInUser.user == null  ? (

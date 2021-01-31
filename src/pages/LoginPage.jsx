@@ -5,6 +5,8 @@ function LoginPage(props) {
     const loggedInUser = props.loggedInUser
     const setLoggedInUser = props.setLoggedInUser
 
+    const [flashErr, setFlashError] = useState(false)
+
   const handleLogin = (e, form) => {
     e.preventDefault()
     fetch("http://localhost:5000/users/login", {
@@ -22,11 +24,19 @@ function LoginPage(props) {
           props.history.push("/") 
         }
     })
+    .catch(() => setFlashError("Invalid Email or Password"))
     // Send Data
   }
 
   return (
     <>
+    {flashErr != false ? 
+    <div>
+      <h2>{flashErr}</h2>
+    </div>
+    : <></>
+    } 
+
     {!loggedInUser
     || loggedInUser == false 
     || loggedInUser.user == null ? (
