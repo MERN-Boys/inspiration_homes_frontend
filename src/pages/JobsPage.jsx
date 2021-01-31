@@ -7,14 +7,15 @@ function JobsPage() {
 
     useEffect(() => {
         let isMounted = true; // note this flag denote mount status
-        fetch(`https://inspo-homes-api.herokuapp.com/jobs`)
+        // fetch(`https://inspo-homes-api.herokuapp.com/jobs`)
+        fetch(`http://localhost:5000/jobs`)
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            if (isMounted === true) setJobs(data)
+            if (isMounted == true) setJobs(data)
         })
         return () => { isMounted = false }; // use effect cleanup to set flag false, if unmounted
-    });
+    }, [])
 
     return (
         <>
