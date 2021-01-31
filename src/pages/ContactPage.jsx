@@ -45,21 +45,27 @@ function ContactPage() {
         alignItems: "center",
       }}
     >
-      <h1>Contact us with your idea</h1><h1> and take your project to the next stage</h1>
-      
-        
-      
-      <form style={{"display":"flex"}}>
-          <div>
+      <h1>Contact us with your idea</h1>
+      <h1> and take your project to the next stage</h1>
 
-          </div>
-          <div>
-
-          </div>
-
+      <form
+        style={{
+          display: "flex",
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div style={{ width: "30%" }}>
+          <p>
+            Project Name:<input type="string"></input>
+          </p>
+          <p>
+            Project Details:<input type="text"></input>
+          </p>
+        </div>
+        <div style={{ width: "30%" }}>images</div>
       </form>
-
-      
     </Jumbotron>
   );
 }
