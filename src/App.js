@@ -53,7 +53,7 @@ function App() {
             <SignUpPage loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} 
           />
           
-          <Route exact path="/" render={() => <HomePage />} />
+          <Route exact path="/" render={() => <HomePage loggedInUser={loggedInUser} />} />
         </Switch>
         <Footer loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/>
       </BrowserRouter>
