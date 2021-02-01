@@ -1,10 +1,17 @@
 import Jumbotron from "react-bootstrap/jumbotron";
 import Container from "react-bootstrap/container";
+import JobsPage from "./JobsPage.jsx"
 
-function HomePage() {
-    return (
-        
-      <Jumbotron
+
+function HomePage({loggedInUser}) {
+  return (
+    <>
+      {!loggedInUser
+      || loggedInUser == false 
+      || loggedInUser.user == null ? (
+        <JobsPage /> 
+      ): (
+        <Jumbotron
         fluid
         style={{
           "height": "86vh",
@@ -25,7 +32,9 @@ function HomePage() {
           <h1>NEW HOMES | RENOVATIONS | DECKS | BATHROOMS</h1>
         </Container>
       </Jumbotron>
-    );
+      )}
+    </>
+  )     
 }
 
 export default HomePage
