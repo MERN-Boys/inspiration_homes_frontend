@@ -1,37 +1,20 @@
 import Jumbotron from "react-bootstrap/jumbotron";
 import Button from "react-bootstrap/button";
+import {useState} from "react"
 
+function ContactPage({loggedInUser}) {
 
-// if user not logged in
-// function ContactPage() {
-//   return (
-    
-//     <Jumbotron
-//       fluid
-//       style={{
-//         "height": "86vh",
-//         "textAlign": "center",
-//         "marginBottom": "0",
-//         "display": "flex",
-//         "flexDirection": "column",
-//         "justifyContent": "center",
-//         "alignItems": "center",
-//       }}
-//     >
-//       <h1>Contact Inspiration Homes!</h1>
-//       <p>
-//         Create an account to start a project, or contact us via the link below.
-//       </p>
-//       <p>
-//         <Button variant="primary">Email Us</Button>
-//       </p>
-//     </Jumbotron>
-//   );
-// }
+  const [formData, setFormData] = useState();
 
+  const handleChange = (e) => {
+    console.log(e.target.name);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-// if user logged in
-function ContactPage() {
+  const handleSubmit = (e) => {};
+  
+if (loggedInUser) {
+
   return (
     <Jumbotron
       fluid
@@ -55,20 +38,70 @@ function ContactPage() {
           alignItems: "center",
           justifyContent: "center",
         }}
+        onSubmit={(event) => handleSubmit(event, formData)}
       >
         <div style={{ width: "30%" }}>
-          <p>
-            Project Name:<input type="string"></input>
-          </p>
-          <p>
-            Project Details:<input type="text"></input>
-          </p>
+          <div>
+            <label htmlFor="jobTitle">Job Title</label>
+            <input name="jobTitle" onChange={handleChange} />
+          </div>
+
+          <div>
+            <label htmlFor="jobAddress">Job Address</label>
+            <input name="jobAddress" onChange={handleChange} />
+          </div>
         </div>
-        <div style={{ width: "30%" }}>images</div>
+        <div style={{ width: "30%" }}>
+          <div>
+            <label htmlFor="designDocs.comment">Comments</label>
+            <input name="designDocs.comment" onChange={handleChange} />
+          </div>
+          <div>
+            <label htmlFor="designDocs.description">Comments</label>
+            <input name="designDocs.description" onChange={handleChange} />
+          </div>
+        </div>
       </form>
+
+      {/* <form onSubmit={(event) => handleSubmit(event, formData)}>
+        {formFields.map((field, index) => (
+          <div key={index}>
+            <label htmlFor={field}>{field}</label>
+            <input
+              name={field}
+              onChange={handleChange}
+              value={formData[field]}
+            />
+          </div>
+        ))}
+        <button>{title}</button>
+      </form> */}
     </Jumbotron>
   );
 }
-
+else {
+  return (
+  <Jumbotron
+      fluid
+      style={{
+        "height": "86vh",
+        "textAlign": "center",
+        "marginBottom": "0",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "alignItems": "center",
+      }}
+    >
+      <h1>Contact Inspiration Homes!</h1>
+      <p>
+        Create an account to start a project, or contact us via the link below.
+      </p>
+      <p>
+        <Button variant="primary">Email Us</Button>
+      </p>
+    </Jumbotron>)
+}
+}
 
 export default ContactPage;
