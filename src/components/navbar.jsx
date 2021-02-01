@@ -11,7 +11,6 @@ function SiteNav() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav id="dropDownNavBox" className="mr-auto" style={{ "justifyContent": "spaceAround"}}>
             <Link to="/" className="nav-link" >Home</Link>
-            <Link to="/jobs" className="nav-link" >Jobs</Link>
             <Link to="/gallery" className="nav-link" >Gallery</Link>
             <Link to="/about" className="nav-link" >About</Link>
             <Link to="/contact" className="nav-link" >Contact</Link>

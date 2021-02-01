@@ -2,10 +2,10 @@ import {useState, useEffect} from "react"
 import {withRouter} from "react-router-dom"
 import Form from './Form'
 function LoginPage(props) {
-    const loggedInUser = props.loggedInUser
-    const setLoggedInUser = props.setLoggedInUser
+  const loggedInUser = props.loggedInUser
+  const setLoggedInUser = props.setLoggedInUser
 
-    const [flashErr, setFlashError] = useState(false)
+  const [flashErr, setFlashError] = useState(false)
 
   const handleLogin = (e, form) => {
     e.preventDefault()
