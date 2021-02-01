@@ -23,7 +23,7 @@ function ContactPage() {
         Create an account to start a project, or contact us via the link below.
       </p>
       <p>
-        <Button variant="primary">Email Us</Button>
+        <Button variant="primary" onClick={() => window.open('mailto:inspirationhomesqld@gmail.com?subject=Project%20Inquiry')}>Email Us</Button>
       </p>
     </Jumbotron>
   );
