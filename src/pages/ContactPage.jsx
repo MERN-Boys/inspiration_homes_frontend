@@ -62,20 +62,6 @@ if (loggedInUser) {
           </div>
         </div>
       </form>
-
-      {/* <form onSubmit={(event) => handleSubmit(event, formData)}>
-        {formFields.map((field, index) => (
-          <div key={index}>
-            <label htmlFor={field}>{field}</label>
-            <input
-              name={field}
-              onChange={handleChange}
-              value={formData[field]}
-            />
-          </div>
-        ))}
-        <button>{title}</button>
-      </form> */}
     </Jumbotron>
   );
 }
