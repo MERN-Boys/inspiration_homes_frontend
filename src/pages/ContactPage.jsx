@@ -28,39 +28,40 @@ if (loggedInUser) {
         alignItems: "center",
       }}
     >
-      <h1>Contact us with your idea</h1>
-      <h1> and take your project to the next stage</h1>
+      <h1>Contact us with your idea and take your project to the next stage</h1>
 
       <form
         style={{
           display: "flex",
+          flexDirection: "column",
           width: "100%",
           alignItems: "center",
           justifyContent: "center",
         }}
         onSubmit={(event) => handleSubmit(event, formData)}
       >
-        <div style={{ width: "30%" }}>
+        <section>
           <div>
             <label htmlFor="jobTitle">Job Title</label>
+          </div>
+          <div>
             <input name="jobTitle" onChange={handleChange} />
           </div>
-
           <div>
             <label htmlFor="jobAddress">Job Address</label>
+          </div>
+          <div>
             <input name="jobAddress" onChange={handleChange} />
           </div>
-        </div>
-        <div style={{ width: "30%" }}>
+        </section>
+        <section>
           <div>
-            <label htmlFor="designDocs.comment">Comments</label>
-            <input name="designDocs.comment" onChange={handleChange} />
+            <label>Job Description:</label>
           </div>
           <div>
-            <label htmlFor="designDocs.description">Comments</label>
-            <input name="designDocs.description" onChange={handleChange} />
+            <textarea onChange={handleChange} />
           </div>
-        </div>
+        </section>
       </form>
     </Jumbotron>
   );
@@ -70,7 +71,6 @@ else {
   <Jumbotron
       fluid
       style={{
-        "height": "86vh",
         "textAlign": "center",
         "marginBottom": "0",
         "display": "flex",
@@ -84,7 +84,7 @@ else {
         Create an account to start a project, or contact us via the link below.
       </p>
       <p>
-        <Button variant="primary">Email Us</Button>
+        <Button variant="primary" onClick={() => window.open('mailto:inspirationhomesqld@gmail.com?subject=Project%20Inquiry')}>Email Us</Button>
       </p>
     </Jumbotron>)
 }

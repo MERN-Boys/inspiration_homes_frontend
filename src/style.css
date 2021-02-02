@@ -1,7 +1,11 @@
 * {
     box-sizing: border-box !important;
 }
-
+.wrapper {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
 #homebody {
     background-color: #78797A;
 }
@@ -19,7 +23,6 @@
     width: 100%;
     justify-content: space-around;
     border-radius: 5%;
-    opacity: 50%;
     background-color: #343a40;
     padding: 5px;
 }
@@ -38,8 +41,25 @@
     width: 50%;
     margin: 0;
 }
-#AboutContainer {
-    overflow: scroll;
+
+
+/* footer */
+#footerContainer {
+    align-items: center;
+    display: flex;
+    background-color: #343a40;
+    color: white;
+    justify-content: space-between;
+}
+#footerLogo {
+    display: flex;
+}
+#footerGreeting {
+    display: flex;
+    align-items: center;
+}
+h6 {
+    margin: 0;
 }
 
 /* phone styling  */
@@ -47,8 +67,7 @@
     .container {
         /* display: inline !important; */
         flex-direction: column;
-        height: 100%;
-        overflow: scroll;
+        /* height: 100%; */
     }
     #AboutImageContainer {
         width: 100%;
@@ -60,7 +79,6 @@
     }
     #dropDownNavBox {
         border-radius: 5%;
-        opacity: 50%;
         background-color: #343a40;
         padding: 5px;
     }
@@ -70,7 +88,6 @@
 @media only screen and (max-width: 990px) {
     #dropDownNavBox {
         border-radius: 5%;
-        opacity: 50%;
         background-color: #343a40;
         padding: 5px;
         width: 20%;
