@@ -42,7 +42,7 @@ function LoginPage(props) {
     || loggedInUser.user == null ? (
       <div>
       <h2>Login</h2>
-      <Form handleSubmit={handleLogin} formFields={["email", "password"]} title="Log In!" />
+      <Form handleSubmit={handleLogin} formFields={["email", "password"]} formTypes={["text", "password"]} title="Log In!" />
       </div>
     ) : (
       <h2>You are logged in</h2>
