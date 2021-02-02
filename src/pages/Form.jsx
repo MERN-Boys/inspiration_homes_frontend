@@ -1,6 +1,7 @@
 import {useState} from "react"
 
-export default function Form({handleSubmit, formFields, formTypes, title}) {
+export default function Form({handleSubmit, formFields, formTypes, multiple, refers, title}) {
+    console.log(refers)
     const generateFormFields = () => {
         let newFormData = {}
         formFields.forEach(field => {
@@ -20,7 +21,15 @@ export default function Form({handleSubmit, formFields, formTypes, title}) {
         {formFields.map((field, index) => (
             <div key={index}>
                 <label htmlFor={field}>{field}</label>
-                <input name={field} type={formTypes[index]} onChange={handleChange} value={formData[field]} />
+                
+                <input 
+                    name={field} 
+                    type={formTypes[index]} 
+                    multiple={multiple[index]} 
+                    ref={refers[index]}  
+                    onChange={handleChange} 
+                    value={formData[field]} 
+                />
             </div>
         ))}
         <button>{title}</button>

@@ -1,7 +1,9 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
+import Form from './Form'
 
-function JobsPage() {
+function JobsPage(props) {
+    const loggedInUser = props.loggedInUser
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
@@ -16,46 +18,68 @@ function JobsPage() {
         return () => { isMounted = false }; // use effect cleanup to set flag false, if unmounted
     }, [])
 
-    const fileInput = React.useRef();
+    // const jobInput = React.useRef();
+    // const addressInput = React.useRef();
+    // const fileInput = React.useRef();
 
-    const handleClick = (event) => {
-        event.preventDefault();
-        handleUpload(fileInput.current.files);
-    };
+    // const handleClick = (event) => {
+    //     event.preventDefault();
+    //     handleUpload(fileInput.current.files);
+    // };
 
     //idea here is to upload the files to the backend, wait for response from backend, 
     // retrieve the locations from the backend after upload,
     // then upload the job object with the recently retrieved locations
     
-    const handleUpload = (files) => {
-        let form = new FormData()
-        for (let i = 0; i < fileInput.current.files.length; i++) {
-            form.append(fileInput.current.files[i].name, fileInput.current.files[i])
-        }
-        
-        fetch("http://localhost:5000/jobs/upload", {
-            method: "POST",
-            body: form,
-            credentials: 'include'
-        })
-        .then(data => data.json())
-        .then(data => {
-            //comes back as an array
-            console.log(data.locations)
-        })
-        .catch((error) => console.log(error))
-    };
+    // const handleUpload = (files) => {
+    //     let form = new FormData()
+    //     for (let i = 0; i < fileInput.current.files.length; i++) {
+    //         form.append(fileInput.current.files[i].name, fileInput.current.files[i])
+    //     }
+    //     console.log(loggedInUser)
+    //     fetch("http://localhost:5000/jobs/upload", {
+    //         method: "POST",
+    //         body: form,
+    //         credentials: 'include'
+    //     })
+    //     .then(data => data.json())
+    //     .then(data => {
+    //         console.log(data.locations)
+    //         //comes back as an array
+    //         const payload = {
+    //             "client": loggedInUser._id,
+    //             "jobTitle": jobInput.current.defaultValue,
+    //             "buildAddress": addressInput.current.defaultValue,
+    //             "designDocs": data.locations
+    //         }
+
+    //         console.log(payload)
+            
+    //         return fetch("http://localhost:5000/jobs/", {
+    //             body: JSON.stringify(payload),
+    //             method: "POST",
+    //             headers: {
+    //                 'Content-Type': "application/json"
+    //             },
+    //             credentials: 'include'
+    //         })
+    //     })
+    //     .then(data => data.json())
+    //     .then(job => {
+    //         console.log(job)
+    //     })
+    //     .catch((error) => console.log(error))
+    // };
 
     return (
         <>
-            <form className='upload-steps' onSubmit={handleClick}>
-            <label>
-            Upload file: 
-            <input type='file' multiple ref={fileInput} />
-            </label>
-            <br />
-            <button type='submit'>Upload</button>
-            </form>
+            {/* <Form handleSubmit={handleClick} 
+                formFields={["jobTitle", "buildAddress", "designDocs"]} 
+                formTypes={["text", "text", "file"]} 
+                multiple={[false, false, true]} 
+                refers={[jobInput, addressInput, fileInput]}  
+                title="Create Job!" 
+            />  */}
 
             <h1>Your Jobs</h1>
 
@@ -75,8 +99,7 @@ function JobsPage() {
                                 {job.designDocs.map(
                                     doc => (
                                         <li>
-                                            <p>{doc.link}</p>
-                                            <p>{doc.description}</p>
+                                            <img src={doc.link}></img>
                                         </li>
                                     )
                                 )}
