@@ -17,18 +17,10 @@ function JobsPage() {
     }, [])
 
     const fileInput = React.useRef();
-    const reader = new FileReader();
 
     const handleClick = (event) => {
         event.preventDefault();
-        let newArr = []
-        for (let i = 0; i < fileInput.current.files.length; i++) {
-            newArr.push(fileInput.current.files[i])
-        }
-        console.log(fileInput.current.files[0])
         handleUpload(fileInput.current.files);
-        // current.file = file;
-        // reader.readAsBinaryString(file);
     };
 
     //idea here is to upload the files to the backend, wait for response from backend, 
@@ -52,7 +44,6 @@ function JobsPage() {
             console.log(data.locations)
         })
         .catch((error) => console.log(error))
-        // Send Data
     };
 
     return (
