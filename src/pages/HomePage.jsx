@@ -12,7 +12,6 @@ function HomePage(props) {
           <Jumbotron
           fluid
           style={{
-            "height": "86vh",
             "textAlign": "center",
             "marginBottom": "0",
             "display": "flex",

@@ -40,10 +40,10 @@ function LoginPage(props) {
     {!loggedInUser
     || loggedInUser == false 
     || loggedInUser.user == null ? (
-      <>
+      <div>
       <h2>Login</h2>
       <Form handleSubmit={handleLogin} formFields={["email", "password"]} title="Log In!" />
-      </>
+      </div>
     ) : (
       <h2>You are logged in</h2>
     )}

@@ -1,7 +1,11 @@
 * {
     box-sizing: border-box !important;
 }
-
+.wrapper {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
 #homebody {
     background-color: #78797A;
 }
@@ -37,8 +41,25 @@
     width: 50%;
     margin: 0;
 }
-#AboutContainer {
-    overflow: scroll;
+
+
+/* footer */
+#footerContainer {
+    align-items: center;
+    display: flex;
+    background-color: #343a40;
+    color: white;
+    justify-content: space-between;
+}
+#footerLogo {
+    display: flex;
+}
+#footerGreeting {
+    display: flex;
+    align-items: center;
+}
+h6 {
+    margin: 0;
 }
 
 /* phone styling  */
@@ -46,8 +67,7 @@
     .container {
         /* display: inline !important; */
         flex-direction: column;
-        height: 100%;
-        overflow: scroll;
+        /* height: 100%; */
     }
     #AboutImageContainer {
         width: 100%;
