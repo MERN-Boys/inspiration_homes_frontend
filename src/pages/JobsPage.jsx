@@ -1,5 +1,4 @@
 import React from 'react'
-import {Route, BrowserRouter, Link} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 
 function JobsPage() {
@@ -17,8 +16,31 @@ function JobsPage() {
         return () => { isMounted = false }; // use effect cleanup to set flag false, if unmounted
     }, [])
 
+    const fileInput = React.useRef();
+
+    const handleClick = (event) => {
+        event.preventDefault();
+        let newArr = fileInput.current.files;
+        for (let i = 0; i < newArr.length; i++) {
+        handleUpload(newArr[i]);
+        }
+    };
+    
+    const handleUpload = (file) => {
+        //send files to backend
+    };
+
     return (
         <>
+            <form className='upload-steps' onSubmit={handleClick}>
+            <label>
+            Upload file:
+            <input type='file' multiple ref={fileInput} />
+            </label>
+            <br />
+            <button type='submit'>Upload</button>
+            </form>
+
             <h1>Your Jobs</h1>
 
             {

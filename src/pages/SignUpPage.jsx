@@ -44,7 +44,7 @@ function SignUpPage(props) {
     || loggedInUser.user == null  ? (
       <>
       <h2>Register</h2>
-      <Form handleSubmit={handleSignup} formFields={["name", "email", "password", "confirm"]} title="Register!" />
+      <Form handleSubmit={handleSignup} formFields={["name", "email", "password", "confirm"]} formTypes={["text", "text", "password", "password"]}title="Register!" />
       </>
     ) : (
       <h2>You are logged in</h2>
