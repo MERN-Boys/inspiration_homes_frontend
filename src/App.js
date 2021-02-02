@@ -38,7 +38,7 @@ function App() {
           <Route exact path="/jobs" render={() => <JobsPage />} />
           <Route exact path="/gallery" render={() => <GalleryPage />} />
           <Route exact path="/about" render={() => <AboutPage />} />
-          <Route exact path="/contact" render={() => <ContactPage />} />
+          <Route exact path="/contact" render={() => <ContactPage loggedInUser={loggedInUser} />} />
 
           <Route
             exact path="/users/login" render={() => 
