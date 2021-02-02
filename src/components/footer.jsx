@@ -27,7 +27,7 @@ export default function Footer(props) {
       bg="dark"
       style={{
         "alignItems": "center",
-        "height": "7vh",
+        // "height": "7vh",
         "minHeight": "55px",
         "minWidth": "100",
         "display": "flex",
@@ -42,7 +42,7 @@ export default function Footer(props) {
         <Navbar.Brand style={{"marginLeft":"3vw"}} href="#">inspiration homes</Navbar.Brand>
       </div>
       <div style={{ "width": "50vw" }}>
-        {loggedInUser == false || loggedInUser == null
+        {loggedInUser === false || loggedInUser === null
         ? 
         <>
           <Button style={{ "float": "right", "marginRight": "3vw" }}>
