@@ -35,7 +35,7 @@ function App() {
         <SiteNav />
 
         <Switch>
-          <Route exact path="/jobs" render={() => <JobsPage />} />
+          <Route exact path="/jobs" render={() => <JobsPage/>} />
           <Route exact path="/gallery" render={() => <GalleryPage />} />
           <Route exact path="/about" render={() => <AboutPage />} />
           <Route exact path="/contact" render={() => <ContactPage loggedInUser={loggedInUser} />} />

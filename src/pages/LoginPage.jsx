@@ -1,9 +1,12 @@
+import React from 'react'
 import {useState, useEffect} from "react"
 import {withRouter} from "react-router-dom"
 import Form from './Form'
 function LoginPage(props) {
   const loggedInUser = props.loggedInUser
   const setLoggedInUser = props.setLoggedInUser
+
+  const dummyRef = React.useRef()
 
   const [flashErr, setFlashError] = useState(false)
 
@@ -42,7 +45,12 @@ function LoginPage(props) {
     || loggedInUser.user == null ? (
       <div>
       <h2>Login</h2>
-      <Form handleSubmit={handleLogin} formFields={["email", "password"]} formTypes={["text", "password"]} title="Log In!" />
+      <Form handleSubmit={handleLogin} 
+        multiple={[false, false]} 
+        refers={[dummyRef, dummyRef]}  
+        formFields={["email", "password"]} 
+        formTypes={["text", "password"]} 
+        title="Log In!" />
       </div>
     ) : (
       <h2>You are logged in</h2>

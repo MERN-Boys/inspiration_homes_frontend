@@ -30,7 +30,7 @@ function HomePage(props) {
           </Container>
         </Jumbotron>
         )
-        : <JobsPage /> }
+        : <JobsPage loggedInUser={loggedInUser}/> }
     </>
   )     
 }

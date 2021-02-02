@@ -1,17 +1,74 @@
-import Jumbotron from "react-bootstrap/jumbotron";
-import Button from "react-bootstrap/button";
+import React from 'react'
+import Jumbotron from "react-bootstrap/jumbotron"
+import Button from "react-bootstrap/button"
 import {useState} from "react"
+import {withRouter} from "react-router-dom"
+import Form from './Form'
 
-function ContactPage({loggedInUser}) {
+function ContactPage({loggedInUser, history}) {
 
-  const [formData, setFormData] = useState();
+  // const [formData, setFormData] = useState();
 
-  const handleChange = (e) => {
-    console.log(e.target.name);
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  // const handleChange = (e) => {
+  //   console.log(e.target.name);
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
+
+  // const handleSubmit = (e) => {};
+
+  const jobInput = React.useRef();
+  const addressInput = React.useRef();
+  const fileInput = React.useRef();
+
+  const handleClick = (event) => {
+      event.preventDefault();
+      handleUpload(fileInput.current.files);
   };
 
-  const handleSubmit = (e) => {};
+    //idea here is to upload the files to the backend, wait for response from backend, 
+    // retrieve the locations from the backend after upload,
+    // then upload the job object with the recently retrieved locations
+    
+  const handleUpload = (files) => {
+    let form = new FormData()
+    for (let i = 0; i < fileInput.current.files.length; i++) {
+        form.append(fileInput.current.files[i].name, fileInput.current.files[i])
+    }
+    console.log(loggedInUser)
+    fetch("http://localhost:5000/jobs/upload", {
+        method: "POST",
+        body: form,
+        credentials: 'include'
+    })
+    .then(data => data.json())
+    .then(data => {
+        console.log(data.locations)
+        //comes back as an array
+        const payload = {
+            "client": loggedInUser._id,
+            "jobTitle": jobInput.current.defaultValue,
+            "buildAddress": addressInput.current.defaultValue,
+            "designDocs": data.locations
+        }
+
+        console.log(payload)
+        
+        return fetch("http://localhost:5000/jobs/", {
+            body: JSON.stringify(payload),
+            method: "POST",
+            headers: {
+                'Content-Type': "application/json"
+            },
+            credentials: 'include'
+        })
+    })
+    .then(data => data.json())
+    .then(job => {
+      console.log(job)
+      history.push("/") 
+    })
+    .catch((error) => console.log(error))
+  };
   
 if (loggedInUser) {
 
@@ -30,7 +87,15 @@ if (loggedInUser) {
     >
       <h1>Contact us with your idea and take your project to the next stage</h1>
 
-      <form
+
+      <Form handleSubmit={handleClick} 
+        formFields={["jobTitle", "buildAddress", "designDocs"]} 
+        formTypes={["text", "text", "file"]} 
+        multiple={[false, false, true]} 
+        refers={[jobInput, addressInput, fileInput]}  
+        title="Create Job!" 
+      /> 
+      {/* <form
         style={{
           display: "flex",
           flexDirection: "column",
@@ -62,7 +127,7 @@ if (loggedInUser) {
             <textarea onChange={handleChange} />
           </div>
         </section>
-      </form>
+      </form> */}
     </Jumbotron>
   );
 }
@@ -87,7 +152,7 @@ else {
         <Button variant="primary" onClick={() => window.open('mailto:inspirationhomesqld@gmail.com?subject=Project%20Inquiry')}>Email Us</Button>
       </p>
     </Jumbotron>)
-}
+  }
 }
 
-export default ContactPage;
+export default withRouter(ContactPage);
