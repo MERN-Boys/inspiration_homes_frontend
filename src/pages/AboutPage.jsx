@@ -3,10 +3,9 @@ import Jumbotron from 'react-bootstrap/jumbotron';
 function AboutPage() {
   return (
     <>
-      <Jumbotron id="AboutContainer"
+      <Jumbotron id="AboutContainer" 
         // style={{ padding: "1%", height: "86vh", "margin-bottom": "0" }}
         style={{
-          "height": "86vh",
           "textAlign": "center",
           "marginBottom": "0",
           "display": "flex",
@@ -26,7 +25,7 @@ function AboutPage() {
               href=""
             />
           </div>
-          <div id="AboutContentContainer">
+          <div id="AboutContentContainer" className="page-body">
             <h1 className="display-4">Inspiration Homes</h1>
             <p className="lead">
               <strong>OUR COMMITMENT</strong> For us here At Inspiration Homes,
@@ -35,7 +34,7 @@ function AboutPage() {
               and with our clients happy to refer us to their friends and
               family!
             </p>
-            <p className="lead">
+            <p className="lead page-body">
               <strong>WHY BUILD WITH US </strong>
               We understand the privilege of building your new home, and make
               every effort to exceed your expectations. Our team provides
@@ -43,7 +42,7 @@ function AboutPage() {
               building process – We believe communication is key, especially for
               clients building for the first time.
             </p>
-            <p className="lead" style={{ "color": "black" }}>
+            <p className="lead page-body" style={{ "color": "black" }}>
               <em>
                 At Inspiration Homes , we do much more than build high qaulity
                 homes. We understand our clients’ “inspirations”, and we bring

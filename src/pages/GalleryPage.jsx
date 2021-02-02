@@ -2,7 +2,7 @@ import Carousel from "react-bootstrap/Carousel";
 
 function GalleryPage() {
   return (
-    <Carousel style={{"height":"86vh", "display":"flex", "alignItems":"center"}}>
+    <Carousel style={{"display":"flex", "alignItems":"center"}}>
       <Carousel.Item style={{"minHeight":"60%", "overflow":"hidden"}} >
         <img
           className="d-block w-100"
