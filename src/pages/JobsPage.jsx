@@ -20,21 +20,37 @@ function JobsPage() {
 
     const handleClick = (event) => {
         event.preventDefault();
-        let newArr = fileInput.current.files;
-        for (let i = 0; i < newArr.length; i++) {
-        handleUpload(newArr[i]);
-        }
+        handleUpload(fileInput.current.files);
     };
+
+    //idea here is to upload the files to the backend, wait for response from backend, 
+    // retrieve the locations from the backend after upload,
+    // then upload the job object with the recently retrieved locations
     
-    const handleUpload = (file) => {
-        //send files to backend
+    const handleUpload = (files) => {
+        let form = new FormData()
+        for (let i = 0; i < fileInput.current.files.length; i++) {
+            form.append(fileInput.current.files[i].name, fileInput.current.files[i])
+        }
+        
+        fetch("http://localhost:5000/jobs/upload", {
+            method: "POST",
+            body: form,
+            credentials: 'include'
+        })
+        .then(data => data.json())
+        .then(data => {
+            //comes back as an array
+            console.log(data.locations)
+        })
+        .catch((error) => console.log(error))
     };
 
     return (
         <>
             <form className='upload-steps' onSubmit={handleClick}>
             <label>
-            Upload file:
+            Upload file: 
             <input type='file' multiple ref={fileInput} />
             </label>
             <br />
