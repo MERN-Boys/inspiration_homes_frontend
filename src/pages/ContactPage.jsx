@@ -36,7 +36,6 @@ function ContactPage({loggedInUser, history}) {
     for (let i = 0; i < fileInput.current.files.length; i++) {
         form.append(fileInput.current.files[i].name, fileInput.current.files[i])
     }
-    console.log(loggedInUser)
     fetch("http://localhost:5000/jobs/upload", {
         method: "POST",
         body: form,
@@ -53,7 +52,6 @@ function ContactPage({loggedInUser, history}) {
             "designDocs": data.locations
         }
 
-        console.log(payload)
         
         return fetch("http://localhost:5000/jobs/", {
             body: JSON.stringify(payload),
@@ -66,7 +64,6 @@ function ContactPage({loggedInUser, history}) {
     })
     .then(data => data.json())
     .then(job => {
-      console.log(job)
       history.push("/") 
     })
     .catch((error) => console.log(error))
