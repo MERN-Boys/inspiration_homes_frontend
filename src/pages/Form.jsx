@@ -1,6 +1,13 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 
-export default function Form({handleSubmit, formFields, formTypes, multiple, refers, title}) {
+export default function Form({handleSubmit, formFields, formTypes, multiple, refers, title, defaultValue}) {
+
+    // useEffect(() => {
+    //     for (let index = 0; index < defaultValue.length;){
+    //         defaultValue[index] = null
+    //     }
+    // }, [])
+
     console.log(refers)
     const generateFormFields = () => {
         let newFormData = {}
@@ -16,6 +23,9 @@ export default function Form({handleSubmit, formFields, formTypes, multiple, ref
     const handleChange = (e) => {
         console.log(e.target.name)
         setFormData({...formData, [e.target.name]: e.target.value})
+        for (let index = 0; index < defaultValue.length;){
+            defaultValue[index] = null
+        }
     }
 
     return (
@@ -32,7 +42,7 @@ export default function Form({handleSubmit, formFields, formTypes, multiple, ref
                         multiple={multiple[index]} 
                         ref={refers[index]}  
                         onChange={handleChange} 
-                        value={formData[field]} 
+                        value={formData[field] || defaultValue[index] || ""} 
                     />
                 </div>
             </>
