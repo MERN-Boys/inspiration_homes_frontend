@@ -10,6 +10,8 @@ export default function Form({handleSubmit, formFields, formTypes, multiple, ref
         return newFormData
     }
     const [formData, setFormData] = useState(generateFormFields)
+    let CustomInput = "";
+
 
     const handleChange = (e) => {
         console.log(e.target.name)
@@ -19,18 +21,21 @@ export default function Form({handleSubmit, formFields, formTypes, multiple, ref
     return (
     <form onSubmit={(event) => handleSubmit(event, formData)}>
         {formFields.map((field, index) => (
-            <div key={index}>
-                <label htmlFor={field}>{field}</label>
-                
-                <input 
-                    name={field} 
-                    type={formTypes[index]} 
-                    multiple={multiple[index]} 
-                    ref={refers[index]}  
-                    onChange={handleChange} 
-                    value={formData[field]} 
-                />
-            </div>
+            <>
+                <div hidden>{CustomInput = formTypes[index] == "textarea" ? "textarea" : "input"}</div>
+                <div key={index}>
+                    <label htmlFor={field}>{field}</label>
+                    
+                    <CustomInput 
+                        name={field} 
+                        type={formTypes[index]} 
+                        multiple={multiple[index]} 
+                        ref={refers[index]}  
+                        onChange={handleChange} 
+                        value={formData[field]} 
+                    />
+                </div>
+            </>
         ))}
         <button>{title}</button>
     </form>

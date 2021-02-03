@@ -20,6 +20,8 @@ function ContactPage({loggedInUser, history}) {
   const addressInput = React.useRef();
   const fileInput = React.useRef();
 
+  
+
   const handleClick = (event) => {
       event.preventDefault();
       handleUpload(fileInput.current.files);
@@ -88,12 +90,13 @@ if (loggedInUser) {
 
 
       <Form handleSubmit={handleClick} 
-        formFields={["buildAddress","description", "designDocs"]} 
-        formTypes={["text", "text-area", "file"]} 
+        formFields={["Build Address:","Description:", "Design Documents:"]} 
+        formTypes={["text", "textarea", "file"]} 
         multiple={[false, false, true]} 
         refers={[addressInput, descriptionInput, fileInput]}  
         title="Create Job!" 
-      /> 
+      />
+      
       {/* <form
         style={{
           display: "flex",
