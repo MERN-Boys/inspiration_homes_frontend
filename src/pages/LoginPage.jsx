@@ -49,7 +49,8 @@ function LoginPage(props) {
         multiple={[false, false]} 
         refers={[dummyRef, dummyRef]}  
         formFields={["email", "password"]} 
-        formTypes={["text", "password"]} 
+        formTypes={["text", "password"]}
+        defaultValue={[null, null]}
         title="Log In!" />
       </div>
     ) : (

@@ -1,13 +1,30 @@
 import React from 'react'
 import Jumbotron from "react-bootstrap/jumbotron"
 import Button from "react-bootstrap/button"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import {withRouter} from "react-router-dom"
 import Form from './Form'
 
-function ContactPage({loggedInUser, history}) {
+function EditJobPage({loggedInUser, history, match}) {
+  const [jobObj, setJobObj] = useState({
+    buildAddress: "",
+    description: ""
+  });
 
-  // const [formData, setFormData] = useState();
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/jobs/${match.params.id}`, {
+      credentials: 'include'
+    })
+    .then(data => data.json())
+    .then(job => {
+      if (job) {
+        console.log(job)
+        setJobObj(job)
+      }
+    })
+    .catch(error => console.log(error))
+  }, [])
 
   // const handleChange = (e) => {
   //   console.log(e.target.name);
@@ -37,9 +54,10 @@ function ContactPage({loggedInUser, history}) {
         form.append(fileInput.current.files[i].name, fileInput.current.files[i])
     }
     console.log(loggedInUser)
-    console.log(Object.entries(form).length)
+    // console.log(Object.entries(form).length)
+
     //if docs
-    if (Object.entries(form).length > 0){
+    if (fileInput.current.files.length > 0){
       fetch("http://localhost:5000/jobs/upload", {
         method: "POST",
         body: form,
@@ -50,17 +68,16 @@ function ContactPage({loggedInUser, history}) {
           console.log(data.locations)
           //comes back as an array
           const payload = {
-              "client": loggedInUser._id,
-              "description": descriptionInput.current.defaultValue,
-              "buildAddress": addressInput.current.defaultValue,
-              "designDocs": data.locations
+            "description": descriptionInput.current.defaultValue,
+            "buildAddress": addressInput.current.defaultValue,
+            "designDocs": data.locations
           }
 
           console.log(payload)
           
-          return fetch("http://localhost:5000/jobs/", {
+          return fetch(`http://localhost:5000/jobs/${match.params.id}`, {
               body: JSON.stringify(payload),
-              method: "POST",
+              method: "PATCH",
               headers: {
                   'Content-Type': "application/json"
               },
@@ -78,15 +95,14 @@ function ContactPage({loggedInUser, history}) {
     //if no docs
     else {
       const payload = {
-        "client": loggedInUser._id,
         "description": descriptionInput.current.defaultValue,
         "buildAddress": addressInput.current.defaultValue,
         "designDocs": []
       }
 
-      fetch("http://localhost:5000/jobs/", {
+      fetch(`http://localhost:5000/jobs/${match.params.id}`, {
             body: JSON.stringify(payload),
-            method: "POST",
+            method: "PATCH",
             headers: {
                 'Content-Type': "application/json"
             },
@@ -115,16 +131,16 @@ if (loggedInUser) {
         "alignItems": "center",
       }}
     >
-      <h1>Contact us with your idea and take your project to the next stage</h1>
+      <h1>Edit your Job!</h1>
 
 
       <Form handleSubmit={handleClick} 
         formFields={["Build Address:","Description:", "Design Documents:"]} 
         formTypes={["text", "textarea", "file"]} 
         multiple={[false, false, true]} 
-        refers={[addressInput, descriptionInput, fileInput]} 
-        defaultValue={[null, null, null]} 
-        title="Create Job!" 
+        refers={[addressInput, descriptionInput, fileInput]}  
+        defaultValue={[jobObj.buildAddress, jobObj.description, null]}
+        title="Edit Job!" 
       />
       
       {/* <form
@@ -187,4 +203,4 @@ else {
   }
 }
 
-export default withRouter(ContactPage);
+export default withRouter(EditJobPage);
