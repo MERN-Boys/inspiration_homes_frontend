@@ -13,8 +13,6 @@ function EditJobPage({loggedInUser, history, match}) {
 
 
   useEffect(() => {
-    console.log("Happening?")
-    console.log(match.params.id)
     fetch(`http://localhost:5000/jobs/${match.params.id}`, {
       credentials: 'include'
     })
@@ -56,10 +54,10 @@ function EditJobPage({loggedInUser, history, match}) {
         form.append(fileInput.current.files[i].name, fileInput.current.files[i])
     }
     console.log(loggedInUser)
-    console.log(Object.entries(form).length)
+    // console.log(Object.entries(form).length)
 
     //if docs
-    if (Object.entries(form).length > 0){
+    if (fileInput.current.files.length > 0){
       fetch("http://localhost:5000/jobs/upload", {
         method: "POST",
         body: form,
