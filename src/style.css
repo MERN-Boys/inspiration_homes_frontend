@@ -9,13 +9,16 @@
 #homebody {
     background-color: #78797A;
 }
-
 .homeTitle{
     color: white;
 }
 .homeText {
     color: white;
 }
+
+
+
+/* nav bar */
 #navbarContainer {
     background-color: #17425B;
 }
@@ -33,6 +36,20 @@
 .navbar-brand {
     color: white !important;
 }
+
+
+
+/* Jobs Page */
+.jobContainer {
+    background-color: gray;
+    margin: 15px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+
+/* about page */
 #AboutImageContainer {
     width: 50%;
 }
@@ -81,15 +98,5 @@ h6 {
         border-radius: 5%;
         background-color: #343a40;
         padding: 5px;
-    }
-}
-
-/* for the drop down nav bar  */
-@media only screen and (max-width: 990px) {
-    #dropDownNavBox {
-        border-radius: 5%;
-        background-color: #343a40;
-        padding: 5px;
-        width: 20%;
     }
 }

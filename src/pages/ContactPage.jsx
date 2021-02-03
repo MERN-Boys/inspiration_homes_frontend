@@ -16,7 +16,7 @@ function ContactPage({loggedInUser, history}) {
 
   // const handleSubmit = (e) => {};
 
-  const jobInput = React.useRef();
+  const descriptionInput = React.useRef();
   const addressInput = React.useRef();
   const fileInput = React.useRef();
 
@@ -46,7 +46,7 @@ function ContactPage({loggedInUser, history}) {
         //comes back as an array
         const payload = {
             "client": loggedInUser._id,
-            "jobTitle": jobInput.current.defaultValue,
+            "description": descriptionInput.current.defaultValue,
             "buildAddress": addressInput.current.defaultValue,
             "designDocs": data.locations
         }
@@ -76,23 +76,22 @@ if (loggedInUser) {
     <Jumbotron
       fluid
       style={{
-        height: "86vh",
-        textAlign: "center",
-        marginBottom: "0",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        "textAlign": "center",
+        "marginBottom": "0",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "alignItems": "center",
       }}
     >
       <h1>Contact us with your idea and take your project to the next stage</h1>
 
 
       <Form handleSubmit={handleClick} 
-        formFields={["jobTitle", "buildAddress", "designDocs"]} 
-        formTypes={["text", "text", "file"]} 
+        formFields={["buildAddress","description", "designDocs"]} 
+        formTypes={["text", "text-area", "file"]} 
         multiple={[false, false, true]} 
-        refers={[jobInput, addressInput, fileInput]}  
+        refers={[addressInput, descriptionInput, fileInput]}  
         title="Create Job!" 
       /> 
       {/* <form
