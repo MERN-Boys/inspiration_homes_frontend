@@ -140,7 +140,7 @@ if (loggedInUser) {
         multiple={[false, false, true]} 
         refers={[addressInput, descriptionInput, fileInput]}  
         defaultValue={[jobObj.buildAddress, jobObj.description, null]}
-        title="Create Job!" 
+        title="Edit Job!" 
       />
       
       {/* <form
