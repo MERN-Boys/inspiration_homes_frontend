@@ -5,6 +5,7 @@ import JobsPage from "./JobsPage.jsx"
 
 function HomePage(props) {
   const loggedInUser = props.loggedInUser
+  const setLoggedInUser = props.setLoggedInUser
   return (
     <>
       {loggedInUser === false || loggedInUser === null ? 
@@ -30,7 +31,7 @@ function HomePage(props) {
           </Container>
         </Jumbotron>
         )
-        : <JobsPage loggedInUser={loggedInUser}/> }
+        : <JobsPage loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/> }
     </>
   )     
 }
