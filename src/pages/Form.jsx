@@ -1,10 +1,18 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 
-export default function Form({handleSubmit, formFields, formTypes, multiple, refers, title}) {
-    console.log(refers)
+export default function Form({handleSubmit, formFields, formTypes, multiple, refers, title, defaultValue}) {
+
+    useEffect(() => {
+        let newFormData = {}
+        formFields.forEach((field, index) => {
+            newFormData[field] = defaultValue[index] == null ? "" : defaultValue[index]
+        })
+        setFormData(newFormData)
+    }, [defaultValue])
+
     const generateFormFields = () => {
         let newFormData = {}
-        formFields.forEach(field => {
+        formFields.forEach((field, index) => {
             newFormData[field] = ""
         })
         return newFormData
@@ -12,9 +20,9 @@ export default function Form({handleSubmit, formFields, formTypes, multiple, ref
     const [formData, setFormData] = useState(generateFormFields)
     let CustomInput = "";
 
-
     const handleChange = (e) => {
         setFormData({...formData, [e.target.name]: e.target.value})
+        
     }
 
     return (

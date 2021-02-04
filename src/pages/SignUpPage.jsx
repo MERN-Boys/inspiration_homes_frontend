@@ -51,7 +51,8 @@ function SignUpPage(props) {
         formFields={["name", "email", "password", "confirm"]} 
         formTypes={["text", "text", "password", "password"]}
         multiple={[false, false, false, false]} 
-        refers={[dummyRef, dummyRef, dummyRef, dummyRef]}  
+        refers={[dummyRef, dummyRef, dummyRef, dummyRef]}
+        defaultValue={[null, null, null, null]}   
         title="Register!" />
       </>
     ) : (

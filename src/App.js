@@ -6,6 +6,7 @@ import {useState, useEffect} from "react"
 // npm install react-router-dom 
 import HomePage from './pages/HomePage'
 import JobsPage from './pages/JobsPage'
+import EditJobPage from './pages/EditJobPage'
 import GalleryPage from './pages/GalleryPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
@@ -35,7 +36,8 @@ function App() {
         <SiteNav />
 
         <Switch>
-          <Route exact path="/jobs" render={() => <JobsPage/>} />
+          {/* <Route exact path="/jobs" render={() => <JobsPage/>} /> */}
+          <Route exact path="/jobs/:id" render={(props) => <EditJobPage {...props} loggedInUser={loggedInUser}/>} />
           <Route exact path="/gallery" render={() => <GalleryPage />} />
           <Route exact path="/about" render={() => <AboutPage />} />
           <Route exact path="/contact" render={() => <ContactPage loggedInUser={loggedInUser} />} />

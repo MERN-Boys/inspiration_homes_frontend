@@ -103,7 +103,7 @@ function JobsPage(props) {
             <Accordion.Collapse eventKey="1">
                 <Card.Body>
                 <>
-                    <p>Job Title: {job.jobTitle}</p>
+                    <p>Job Description: {job.description}</p>
                     <p>Job Client: {job.client}</p>
                     <p>Job Address: {job.buildAddress}</p>
 
@@ -116,6 +116,9 @@ function JobsPage(props) {
                     ))}
                     </ul>
 
+                    <Button >
+                        <Link to={`/jobs/${job._id}`} className="nav-link" >Edit Job</Link>
+                    </Button>
                     <p>Build Stages:</p>
                     <ul>
                     {job.stages
