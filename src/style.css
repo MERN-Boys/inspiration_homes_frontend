@@ -70,6 +70,7 @@
 }
 #footerLogo {
     display: flex;
+    margin-left: 5px;
 }
 #footerGreeting {
     display: flex;

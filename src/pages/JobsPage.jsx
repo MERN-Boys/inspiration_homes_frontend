@@ -4,7 +4,8 @@ import Form from "./Form";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { Link } from 'react-router-dom'
+import {Link} from "react-router-dom"
+
 
 function JobsPage(props) {
   const loggedInUser = props.loggedInUser;
@@ -42,7 +43,7 @@ function JobsPage(props) {
   //     for (let i = 0; i < fileInput.current.files.length; i++) {
   //         form.append(fileInput.current.files[i].name, fileInput.current.files[i])
   //     }
-  //     console.log(loggedInUser)
+  //     (loggedInUser)
   //     fetch("http://localhost:5000/jobs/upload", {
   //         method: "POST",
   //         body: form,
@@ -50,7 +51,7 @@ function JobsPage(props) {
   //     })
   //     .then(data => data.json())
   //     .then(data => {
-  //         console.log(data.locations)
+  //         (data.locations)
   //         //comes back as an array
   //         const payload = {
   //             "client": loggedInUser._id,
@@ -59,7 +60,7 @@ function JobsPage(props) {
   //             "designDocs": data.locations
   //         }
 
-  //         console.log(payload)
+  //         (payload)
 
   //         return fetch("http://localhost:5000/jobs/", {
   //             body: JSON.stringify(payload),
@@ -72,22 +73,11 @@ function JobsPage(props) {
   //     })
   //     .then(data => data.json())
   //     .then(job => {
-  //         console.log(job)
+  //         (job)
   //     })
-  //     .catch((error) => console.log(error))
+  //     .catch((error) => (error))
   // };
 
-  //     <Accordion defaultActiveKey="0">
-  //   <Card>
-  //     <Card.Header>
-  //       <Accordion.Toggle as={Button} variant="link" eventKey="0">
-  //         Click me!
-  //       </Accordion.Toggle>
-  //     </Card.Header>
-  //     <Accordion.Collapse eventKey="0">
-  //       <Card.Body>Hello! I'm the body</Card.Body>
-  //     </Accordion.Collapse>
-  //   </Card>
 
   return (
     <div className="page-body">
@@ -103,14 +93,14 @@ function JobsPage(props) {
 
       {typeof jobs !== undefined ? (
           jobs.map((job, index) => (
-            <Accordion defaultActiveKey="0" className="page-body">
+            <Accordion defaultActiveKey="0" >
             <Card key={job.id}>
             <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                <Accordion.Toggle as={Button} variant="link" eventKey="1">
                 {job.buildAddress}
                 </Accordion.Toggle>
             </Card.Header>
-            <Accordion.Collapse eventKey="0">
+            <Accordion.Collapse eventKey="1">
                 <Card.Body>
                 <>
                     <p>Job Description: {job.description}</p>
@@ -125,10 +115,6 @@ function JobsPage(props) {
                         </li>
                     ))}
                     </ul>
-
-                    <Button >
-                        <Link to={`/jobs/${job._id}`} className="nav-link" >Edit Job</Link>
-                    </Button>
                     <p>Build Stages:</p>
                     <ul>
                     {job.stages
@@ -165,6 +151,11 @@ function JobsPage(props) {
                         )
                         )}
                     </ul>
+                    {loggedInUser.role == "Builder" ? (
+                      <Button> 
+                        <Link to={`/jobs/${job._id}`} className="nav-link">Edit Job</Link>
+                      </Button>
+                    ) : (<></>)}
                 </>
                 </Card.Body>
             </Accordion.Collapse>
