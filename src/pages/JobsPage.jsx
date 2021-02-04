@@ -13,16 +13,23 @@ function JobsPage(props) {
   useEffect(() => {
     let isMounted = true; // note this flag denote mount status
     // fetch(`https://inspo-homes-api.herokuapp.com/jobs`)
-    fetch(`http://localhost:5000/jobs`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (isMounted == true) setJobs(data);
-      });
+    fetch(`http://localhost:5000/jobs/get`, {
+      body: JSON.stringify({user: loggedInUser}),
+      method: "POST",
+      headers: {
+        'Content-Type': "application/json"
+      },
+      credentials: 'include'
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if (isMounted == true) setJobs(data);
+    });
     return () => {
       isMounted = false;
     }; // use effect cleanup to set flag false, if unmounted
-  }, []);
+  }, [loggedInUser]);
 
   // const jobInput = React.useRef();
   // const addressInput = React.useRef();
