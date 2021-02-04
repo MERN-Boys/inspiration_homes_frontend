@@ -14,6 +14,7 @@ import SignUpPage from './pages/SignUpPage'
 import LoginPage from './pages/LoginPage'
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(false) 
+
   // console.log(withRouter)
   // let history = useHistory()
 
@@ -55,7 +56,7 @@ function App() {
             <SignUpPage loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} 
           />
           
-          <Route exact path="/" render={() => <HomePage loggedInUser={loggedInUser} />} />
+          <Route exact path="/" render={() => <HomePage loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
         </Switch>
         <Footer loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/>
       </BrowserRouter>
