@@ -21,7 +21,6 @@ export default function Form({handleSubmit, formFields, formTypes, multiple, ref
     let CustomInput = "";
 
     const handleChange = (e) => {
-        console.log(e.target.name)
         setFormData({...formData, [e.target.name]: e.target.value})
         
     }
@@ -40,7 +39,7 @@ export default function Form({handleSubmit, formFields, formTypes, multiple, ref
                         multiple={multiple[index]} 
                         ref={refers[index]}  
                         onChange={handleChange} 
-                        value={formData[field]} 
+                        value={formData[field]}
                     />
                 </div>
             </>
