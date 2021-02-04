@@ -110,6 +110,7 @@ function JobsPage(props) {
             />  */}
 
       <h1>Your Jobs</h1>
+      {jobs.length === 0 ? (<div id="emptyJobsMsg"><h1>Go to the contact page to start a job today!</h1></div>) : (<></>)}
 
       {typeof jobs !== undefined ? (
           jobs.map((job, index) => (
