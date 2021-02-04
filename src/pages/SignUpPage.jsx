@@ -45,7 +45,7 @@ function SignUpPage(props) {
     {!loggedInUser
     || loggedInUser == false 
     || loggedInUser.user == null  ? (
-      <>
+      <div>
       <h2>Register</h2>
       <Form handleSubmit={handleSignup} 
         formFields={["name", "email", "password", "confirm"]} 
@@ -54,7 +54,7 @@ function SignUpPage(props) {
         refers={[dummyRef, dummyRef, dummyRef, dummyRef]}
         defaultValue={[null, null, null, null]}   
         title="Register!" />
-      </>
+      </div>
     ) : (
       <h2>You are logged in</h2>
     )}
