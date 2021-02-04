@@ -36,7 +36,7 @@ function ContactPage({ loggedInUser, history }) {
     console.log(loggedInUser);
     console.log(Object.entries(form).length);
     //if docs
-    if (Object.entries(form).length > 0) {
+    if (fileInput.current.files.length > 0) {
       fetch("http://localhost:5000/jobs/upload", {
         method: "POST",
         body: form,
@@ -96,35 +96,36 @@ function ContactPage({ loggedInUser, history }) {
         })
         .catch((error) => console.log(error));
     }
+  };
 
-    if (loggedInUser) {
-      return (
-        <Jumbotron
-          fluid
-          style={{
-            textAlign: "center",
-            marginBottom: "0",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <h1>
-            Contact us with your idea and take your project to the next stage
-          </h1>
+  if (loggedInUser) {
+    return (
+      <Jumbotron
+        fluid
+        style={{
+          textAlign: "center",
+          marginBottom: "0",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h1>
+          Contact us with your idea and take your project to the next stage
+        </h1>
 
-          <Form
-            handleSubmit={handleClick}
-            formFields={["Build Address:", "Description:", "Design Documents:"]}
-            formTypes={["text", "textarea", "file"]}
-            multiple={[false, false, true]}
-            refers={[addressInput, descriptionInput, fileInput]}
-            defaultValue={[null, null, null]}
-            title="Create Job!"
-          />
+        <Form
+          handleSubmit={handleClick}
+          formFields={["Build Address:", "Description:", "Design Documents:"]}
+          formTypes={["text", "textarea", "file"]}
+          multiple={[false, false, true]}
+          refers={[addressInput, descriptionInput, fileInput]}
+          defaultValue={[null, null, null]}
+          title="Create Job!"
+        />
 
-          {/* <form
+        {/* <form
         style={{
           display: "flex",
           flexDirection: "column",
@@ -157,42 +158,41 @@ function ContactPage({ loggedInUser, history }) {
           </div>
         </section>
       </form> */}
-        </Jumbotron>
-      );
-    } else {
-      return (
-        <Jumbotron
-          fluid
-          style={{
-            textAlign: "center",
-            marginBottom: "0",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <h1>Contact Inspiration Homes!</h1>
-          <p>
-            Create an account to start a project, or contact us via the link
-            below.
-          </p>
-          <p>
-            <Button
-              variant="primary"
-              onClick={() =>
-                window.open(
-                  "mailto:inspirationhomesqld@gmail.com?subject=Project%20Inquiry"
-                )
-              }
-            >
-              Email Us
-            </Button>
-          </p>
-        </Jumbotron>
-      );
-    }
-  };
+      </Jumbotron>
+    );
+  } else {
+    return (
+      <Jumbotron
+        fluid
+        style={{
+          textAlign: "center",
+          marginBottom: "0",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h1>Contact Inspiration Homes!</h1>
+        <p>
+          Create an account to start a project, or contact us via the link
+          below.
+        </p>
+        <p>
+          <Button
+            variant="primary"
+            onClick={() =>
+              window.open(
+                "mailto:inspirationhomesqld@gmail.com?subject=Project%20Inquiry"
+              )
+            }
+          >
+            Email Us
+          </Button>
+        </p>
+      </Jumbotron>
+    );
+  }
 }
 
 export default withRouter(ContactPage);
