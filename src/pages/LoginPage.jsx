@@ -32,7 +32,7 @@ function LoginPage(props) {
   }
 
   return (
-    <>
+    <div>
     {flashErr != false ? 
     <div>
       <h2>{flashErr}</h2>
@@ -58,7 +58,7 @@ function LoginPage(props) {
     ) : (
       <h2>You are logged in</h2>
     )}
-    </>
+    </div>
   )
 }
 
