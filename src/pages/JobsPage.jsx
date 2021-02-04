@@ -115,10 +115,6 @@ function JobsPage(props) {
                         </li>
                     ))}
                     </ul>
-
-                    <Button >
-                        <Link to={`/jobs/${job._id}`} className="nav-link" >Edit Job</Link>
-                    </Button>
                     <p>Build Stages:</p>
                     <ul>
                     {job.stages
@@ -157,7 +153,7 @@ function JobsPage(props) {
                     </ul>
                     {loggedInUser.role == "Builder" ? (
                       <Button> 
-                        <Link to="" className="nav-link">Edit Job</Link>
+                        <Link to={`/jobs/${job._id}`} className="nav-link">Edit Job</Link>
                       </Button>
                     ) : (<></>)}
                 </>
