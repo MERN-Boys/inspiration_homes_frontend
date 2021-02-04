@@ -80,6 +80,16 @@ h6 {
     margin: 0;
 }
 
+
+/* login page */
+#loginDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
 /* phone styling  */
 @media only screen and (max-width: 600px) {
     .container {

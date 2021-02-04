@@ -43,15 +43,17 @@ function LoginPage(props) {
     {!loggedInUser
     || loggedInUser == false 
     || loggedInUser.user == null ? (
-      <div>
-      <h2>Login</h2>
-      <Form handleSubmit={handleLogin} 
-        multiple={[false, false]} 
-        refers={[dummyRef, dummyRef]}  
-        formFields={["email", "password"]} 
-        formTypes={["text", "password"]}
-        defaultValue={[null, null]}
-        title="Log In!" />
+      <div id="loginDiv">
+        <div>
+          <h2>Login</h2>
+        </div>
+        <Form handleSubmit={handleLogin} 
+          multiple={[false, false]} 
+          refers={[dummyRef, dummyRef]}  
+          formFields={["email", "password"]} 
+          formTypes={["text", "password"]}
+          defaultValue={[null, null]}
+          title="Log In!" />
       </div>
     ) : (
       <h2>You are logged in</h2>
