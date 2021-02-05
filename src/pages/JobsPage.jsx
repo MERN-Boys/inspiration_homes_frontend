@@ -142,47 +142,43 @@ function JobsPage(props) {
   //idea here is to upload the files to the backend, wait for response from backend,
   // retrieve the locations from the backend after upload,
   // then upload the job object with the recently retrieved locations
+  const fileInput = React.useRef();
+  const handleUpload = (event, form) => {
+    event.preventDefault();
+    console.log(fileInput.current.files);
+    let uploadform = new FormData()
+    for (let i = 0; i < fileInput.current.files.length; i++) {
+        uploadform.append(fileInput.current.files[i].name, fileInput.current.files[i])
+    }
 
-  const handleUpload = (files) => {
-        // console.log(tickboxRef.current.defaultValue)
-        // console.log(owedRef.current.defaultValue)
-  //     let form = new FormData()
-  //     for (let i = 0; i < fileInput.current.files.length; i++) {
-  //         form.append(fileInput.current.files[i].name, fileInput.current.files[i])
-  //     }
-  //     (loggedInUser)
-  //     fetch("http://localhost:5000/jobs/upload", {
-  //         method: "POST",
-  //         body: form,
-  //         credentials: 'include'
-  //     })
-  //     .then(data => data.json())
-  //     .then(data => {
-  //         (data.locations)
-  //         //comes back as an array
-  //         const payload = {
-  //             "client": loggedInUser._id,
-  //             "jobTitle": jobInput.current.defaultValue,
-  //             "buildAddress": addressInput.current.defaultValue,
-  //             "designDocs": data.locations
-  //         }
+    fetch("http://localhost:5000/jobs/upload", {
+        method: "POST",
+        body: uploadform,
+        credentials: 'include'
+    })
+    .then(data => data.json())
+    .then(data => {
+        //comes back as an array
+        const payload = {
+          "pictures": data.locations
+        }
 
-  //         (payload)
+        console.log(payload);
 
-  //         return fetch("http://localhost:5000/jobs/", {
-  //             body: JSON.stringify(payload),
-  //             method: "POST",
-  //             headers: {
-  //                 'Content-Type': "application/json"
-  //             },
-  //             credentials: 'include'
-  //         })
-  //     })
-  //     .then(data => data.json())
-  //     .then(job => {
-  //         (job)
-  //     })
-  //     .catch((error) => (error))
+        return fetch(`http://localhost:5000/jobs/${form.jobId}/${form.stageId}`, {
+            body: JSON.stringify(payload),
+            method: "PATCH",
+            headers: {
+                'Content-Type': "application/json"
+            },
+            credentials: 'include'
+        })
+    })
+    .then(data => data.json())
+    .then(job => {
+      console.log(job);
+    })
+    .catch((error) => (error))
   };
 
   let eventKey = ''
@@ -197,7 +193,6 @@ function JobsPage(props) {
       ) : (
         <></>
       )}
-
       {typeof jobs !== undefined ? (
         jobs.map((job, index) => (
           <Accordion defaultActiveKey="0">
@@ -213,7 +208,6 @@ function JobsPage(props) {
                     <p>Job Description: {job.description}</p>
                     <p>Job Client: {job.client}</p>
                     <p>Job Address: {job.buildAddress}</p>
-
                     <p>Design Docs:</p>
                     <ul>
                       {job.designDocs.map((doc) => (
@@ -222,13 +216,11 @@ function JobsPage(props) {
                         </li>
                       ))}
                     </ul>
-
                     {job.stages[0].status === "AwaitingApproval" ? (
                       <></>
                     ) : (
                       <p>Build Stages:</p>
                     )}
-
                     <ul>
                       {job.stages
                         .slice(0)
@@ -257,12 +249,65 @@ function JobsPage(props) {
                                 <Accordion.Collapse eventKey={eventKey}>
                                   <Card.Body>
                                     {
-                                      <li>
-                                        <p>Stage: {stage.name}</p>
-                                        <p>Status: {stage.status}</p>
-                                        <p>Funds Owed: {stage.owed}</p>
-                                        {loggedInUser.role === "Builder" &&
-                                        stage.status === "InProgress" ? (
+                                    <li>
+                                      <p>Stage: {stage.name}</p>
+                                      <p>Status: {stage.status}</p>
+                                      <p>Funds Owed: {stage.owed}</p>
+                                      {loggedInUser.role === "Builder" && stage.status === "InProgress" ? (
+                                        <Form 
+                                          jobId={job._id}
+                                          stageId={stage.index}
+                                          handleSubmit={handleComplete}
+                                          formFields={["Work Complete", "Stage Cost"]}
+                                          formTypes={["checkbox", "number"]}
+                                          multiple={[false, false]}
+                                          // required={[true, true]}
+                                          refers={[checkBoxInput, owedInput]}
+                                          defaultValue={[false, 0]}
+                                          title="Set Stage Cost"
+                                        />
+                                      ) : (
+                                        <></>
+                                      )}
+                                      {loggedInUser.role === "Client" && stage.status === "PaymentPending" ? (
+                                         <Button className="nav-link" onClick={(e => handlePayment(e, job._id, stage.index))}>Pay Stage Cost</Button>
+                                      ) : (
+                                        <></>
+                                      )}
+                                      <p>Funds Paid: {stage.paid}</p>
+                                      <p>
+                                        Stage Images:{" "}
+                                        {stage.pictures.map((picture) => (
+                                          <li>
+                                            <img src={picture.link}></img>
+                                          </li>
+                                        ))}
+                                      </p>
+                                      {loggedInUser.role === "Builder" && stage.status === "InProgress" ? (
+                                        <Form 
+                                          jobId={job._id}
+                                          stageId={stage.index}
+                                          handleSubmit={handleUpload}
+                                          formFields={["Images"]}
+                                          formTypes={["file"]}
+                                          multiple={[true]}
+                                          // required={[true, true]}
+                                          refers={[fileInput]}
+                                          defaultValue={[null]}
+                                          title="upload"
+                                        />
+                                      ) : (
+                                        <></>
+                                      )}
+                                      
+                                        Stage Comments:{" "}
+                                        {stage.comments.map((comment) => (
+                                          <li>
+                                            <p>{comment.name}</p>
+                                            <p>{comment.comment}</p>
+                                          </li>
+                                        ))}
+                                        {stage.status !== "Complete" ? (
                                           <Form
                                             jobId={job._id}
                                             stageId={stage.index}
@@ -303,8 +348,7 @@ function JobsPage(props) {
                                           Stage Images:{" "}
                                           {stage.pictures.map((picture) => (
                                             <li>
-                                              <p>{picture.link}</p>
-                                              <p>{picture.description}</p>
+                                              <img src={picture.link} />
                                             </li>
                                           ))}
                                         </p>
