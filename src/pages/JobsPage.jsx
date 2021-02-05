@@ -187,50 +187,138 @@ function JobsPage(props) {
                           stage.status === "Hidden" ? (
                             <></>
                           ) : (
-                            <li>
-                              <p>Stage: {stage.name}</p>
-                              <p>Status: {stage.status}</p>
-                              <p>Funds Owed: {stage.owed}</p>
-                              <p>Funds Paid: {stage.paid}</p>
-                              <p>
-                                Stage Images:{" "}
-                                {stage.pictures.map((picture) => (
-                                  <li>
-                                    <p>{picture.link}</p>
-                                    <p>{picture.description}</p>
-                                  </li>
-                                ))}
-                              </p>
-                              <p>
-                                Stage Comments:{" "}
-                                {stage.comments.map((comment) => (
-                                  <li>
-                                    <p>{comment.name}</p>
-                                    <p>{comment.comment}</p>
-                                  </li>
-                                ))}
-                                <Form
-                                  handleSubmit={(e => handleClick(e, job._id, stage.index))}
-                                  formFields={["Comment"]}
-                                  formTypes={["textarea"]}
-                                  multiple={[false]}
-                                  refers={[commentInput]}
-                                  defaultValue={[null]}
-                                  title="Comment!"
-                                />
-                              </p>
-                            </li>
+                            <Accordion defaultActiveKey="0">
+                              {stage.status != "Complete" ? (
+                                <Card>
+                                  <Card.Header>
+                                    <Accordion.Toggle
+                                      as={Button}
+                                      variant="link"
+                                      eventKey="0"
+                                    >
+                                      {stage.name} {stage.status}
+                                    </Accordion.Toggle>
+                                  </Card.Header>
+                                  <Accordion.Collapse eventKey="0">
+                                    <Card.Body>
+                                      <li>
+                                        <p>Stage: {stage.name}</p>
+                                        <p>Status: {stage.status}</p>
+                                        <p>Funds Owed: {stage.owed}</p>
+                                        <p>Funds Paid: {stage.paid}</p>
+                                        <p>
+                                          Stage Images:{" "}
+                                          {stage.pictures.map((picture) => (
+                                            <li>
+                                              <p>{picture.link}</p>
+                                              <p>{picture.description}</p>
+                                            </li>
+                                          ))}
+                                        </p>
+                                        <p>
+                                          Stage Comments:{" "}
+                                          {stage.comments.map((comment) => (
+                                            <li>
+                                              <p>{comment.name}</p>
+                                              <p>{comment.comment}</p>
+                                            </li>
+                                          ))}
+                                          <Form
+                                            handleSubmit={(e) =>
+                                              handleClick(
+                                                e,
+                                                job._id,
+                                                stage.index
+                                              )
+                                            }
+                                            formFields={["Comment"]}
+                                            formTypes={["textarea"]}
+                                            multiple={[false]}
+                                            refers={[commentInput]}
+                                            defaultValue={[null]}
+                                            title="Comment!"
+                                          />
+                                        </p>
+                                      </li>
+                                    </Card.Body>
+                                  </Accordion.Collapse>
+                                </Card>
+                              ) : (
+                                <Card>
+                                  <Card.Header>
+                                    <Accordion.Toggle
+                                      as={Button}
+                                      variant="link"
+                                      eventKey="1"
+                                    >
+                                      {stage.name} {stage.status}
+                                    </Accordion.Toggle>
+                                  </Card.Header>
+                                  <Accordion.Collapse eventKey="1">
+                                    <Card.Body>
+                                      <li>
+                                        <p>Stage: {stage.name}</p>
+                                        <p>Status: {stage.status}</p>
+                                        <p>Funds Owed: {stage.owed}</p>
+                                        <p>Funds Paid: {stage.paid}</p>
+                                        <p>
+                                          Stage Images:{" "}
+                                          {stage.pictures.map((picture) => (
+                                            <li>
+                                              <p>{picture.link}</p>
+                                              <p>{picture.description}</p>
+                                            </li>
+                                          ))}
+                                        </p>
+                                        <p>
+                                          Stage Comments:{" "}
+                                          {stage.comments.map((comment) => (
+                                            <li>
+                                              <p>{comment.name}</p>
+                                              <p>{comment.comment}</p>
+                                            </li>
+                                          ))}
+                                          <Form
+                                            handleSubmit={(e) =>
+                                              handleClick(
+                                                e,
+                                                job._id,
+                                                stage.index
+                                              )
+                                            }
+                                            formFields={["Comment"]}
+                                            formTypes={["textarea"]}
+                                            multiple={[false]}
+                                            refers={[commentInput]}
+                                            defaultValue={[null]}
+                                            title="Comment!"
+                                          />
+                                        </p>
+                                      </li>
+                                    </Card.Body>
+                                  </Accordion.Collapse>
+                                </Card>
+                              )}
+                            </Accordion>
                           )
                         )}
                     </ul>
                     {loggedInUser.role == "Builder" ? (
                       <>
                         <Button className="nav-link">
-                          <Link to={`/jobs/${job._id}`} style={{"color": "white"}} >
+                          <Link
+                            to={`/jobs/${job._id}`}
+                            style={{ color: "white" }}
+                          >
                             Edit Job
                           </Link>
                         </Button>
-                        <Button className="nav-link" handleClick={(e => handleApprove(e, job._id))}>Approve</Button>
+                        <Button
+                          className="nav-link"
+                          handleClick={(e) => handleApprove(e, job._id)}
+                        >
+                          Approve
+                        </Button>
                       </>
                     ) : (
                       <></>
