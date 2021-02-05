@@ -1,12 +1,20 @@
 import {useState, useEffect} from "react"
 
-export default function Form({handleSubmit, formFields, formTypes, multiple, refers, title, defaultValue}) {
+export default function Form({stageId, jobId, handleSubmit, formFields, formTypes, multiple, refers, title, defaultValue}) {
 
     useEffect(() => {
         let newFormData = {}
         formFields.forEach((field, index) => {
             newFormData[field] = defaultValue[index] == null ? "" : defaultValue[index]
         })
+
+        if(jobId){
+            newFormData["jobId"] = jobId
+        }
+        if(stageId || stageId === 0){
+            newFormData["stageId"] = stageId 
+        }
+
         setFormData(newFormData)
     }, [defaultValue])
 
@@ -21,8 +29,15 @@ export default function Form({handleSubmit, formFields, formTypes, multiple, ref
     let CustomInput = "";
 
     const handleChange = (e) => {
-        setFormData({...formData, [e.target.name]: e.target.value})
-        
+        let value = ''
+        if (e.target.name === "Work Complete"){
+            value = e.target.checked
+        }
+        else{
+            value = e.target.value
+        }
+
+        setFormData({...formData, [e.target.name]: value})
     }
 
     return (
@@ -38,7 +53,7 @@ export default function Form({handleSubmit, formFields, formTypes, multiple, ref
                         type={formTypes[index]} 
                         multiple={multiple[index]} 
                         ref={refers[index]}  
-                        onChange={handleChange} 
+                        onChange={handleChange}
                         value={formData[field]}
                     />
                 </div>
