@@ -45,20 +45,23 @@ function JobsPage(props) {
     // }; // use effect cleanup to set flag false, if unmounted
   }, [loggedInUser]);
 
-  // const jobInput = React.useRef();
+  const tickboxRef = React.useRef();
+  const owedRef = React.useRef();
   // const addressInput = React.useRef();
   // const fileInput = React.useRef();
 
-  // const handleClick = (event) => {
-  //     event.preventDefault();
-  //     handleUpload(fileInput.current.files);
-  // };
+  const handleClick = (event) => {
+      event.preventDefault();
+      handleUpload(fileInput.current.files);
+  };
 
   //idea here is to upload the files to the backend, wait for response from backend,
   // retrieve the locations from the backend after upload,
   // then upload the job object with the recently retrieved locations
 
-  // const handleUpload = (files) => {
+  const handleUpload = (files) => {
+        console.log(tickboxRef.current.defaultValue)
+        console.log(owedRef.current.defaultValue)
   //     let form = new FormData()
   //     for (let i = 0; i < fileInput.current.files.length; i++) {
   //         form.append(fileInput.current.files[i].name, fileInput.current.files[i])
@@ -96,7 +99,7 @@ function JobsPage(props) {
   //         (job)
   //     })
   //     .catch((error) => (error))
-  // };
+  };
 
 
   return (
@@ -149,9 +152,33 @@ function JobsPage(props) {
                             <p>Stage: {stage.name}</p>
                             <p>Status: {stage.status}</p>
                             <p>Funds Owed: {stage.owed}</p>
+
+                            <div>
+                            <h2>Register</h2>
+                            <Form handleSubmit={handleClick} 
+                              formFields={["Work Completed", "Funds Owed"]} 
+                              formTypes={["checkbox", "number"]}
+                              multiple={[false, false]} 
+                              refers={[dummyRef, dummyRef]}
+                              defaultValue={[false, null]}   
+                              title="Register!" />
+                            </div>
+
+                            {/* <div>
+                            <h2>Register</h2>
+                            <Form handleSubmit={} 
+                              formFields={["Comment"]} 
+                              formTypes={["textarea"]}
+                              multiple={[false]} 
+                              refers={[dummyRef]}
+                              defaultValue={[null]}   
+                              title="Comment!" />
+                            </div> */}
+
                             <p>Funds Paid: {stage.paid}</p>
                             <p>
                                 Stage Images:{" "}
+
                                 {stage.pictures.map((picture) => (
                                 <li>
                                     <p>{picture.link}</p>
@@ -167,6 +194,16 @@ function JobsPage(props) {
                                     <p>{comment.comment}</p>
                                 </li>
                                 ))}
+                                <div>
+                                  <h2>Register</h2>
+                                  <Form handleSubmit={handleClick}  
+                                    formFields={["Comment"]} 
+                                    formTypes={["textarea"]}
+                                    multiple={[false]} 
+                                    refers={[dummyRef]}
+                                    defaultValue={[null]}   
+                                    title="Comment!" />
+                                </div>
                             </p>
                             </li>
                         )
