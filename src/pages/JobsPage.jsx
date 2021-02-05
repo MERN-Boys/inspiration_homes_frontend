@@ -49,86 +49,88 @@ function JobsPage(props) {
   const owedInput = React.useRef();
 
   const handleComplete = (event, form) => {
-    event.preventDefault()
+    event.preventDefault();
     const stageCost = parseInt(form["Stage Cost"], 10);
 
-    if (form["Work Complete"] !== true 
-      || typeof stageCost !== "number"
-      || stageCost <= 0){
-      alert("Must ensure work is complete and stage cost is more than $0")
-      return
+    if (
+      form["Work Complete"] !== true ||
+      typeof stageCost !== "number" ||
+      stageCost <= 0
+    ) {
+      alert("Must ensure work is complete and stage cost is more than $0");
+      return;
     }
 
     const payload = {
-        "status"  : "PaymentPending",
-        "owed" : stageCost
-    }
+      status: "PaymentPending",
+      owed: stageCost,
+    };
 
     fetch(`http://localhost:5000/jobs/${form.jobId}/${form.stageId}`, {
-           method: "PATCH",
-           body: JSON.stringify(payload),
-           credentials: 'include',
-           headers: {
-            'Content-Type': "application/json"
-          }
-    })
+      method: "PATCH",
+      body: JSON.stringify(payload),
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   };
 
   const handleClick = (event, form) => {
     event.preventDefault();
     const payload = {
-      "comments": [{
-        "name"  : loggedInUser.name,
-        "comment" : form.Comment
-      }]
-    }
+      comments: [
+        {
+          name: loggedInUser.name,
+          comment: form.Comment,
+        },
+      ],
+    };
     fetch(`http://localhost:5000/jobs/${form.jobId}/${form.stageId}`, {
-           method: "PATCH",
-           body: JSON.stringify(payload),
-           credentials: 'include',
-           headers: {
-            'Content-Type': "application/json"
-          }
-    })
+      method: "PATCH",
+      body: JSON.stringify(payload),
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   };
 
   const handleApprove = (event, jobId) => {
     event.preventDefault();
-    console.log("approved")
-    console.log(jobId)
+    console.log("approved");
+    console.log(jobId);
     const payload = {
-      "status": "Complete"
-    }
-    console.log(payload)
+      status: "Complete",
+    };
+    console.log(payload);
     fetch(`http://localhost:5000/jobs/${jobId}/0`, {
       method: "PATCH",
       body: JSON.stringify(payload),
-      credentials: 'include',
+      credentials: "include",
       headers: {
-        'Content-Type': "application/json"
-      }
-    })
-
-  }
+        "Content-Type": "application/json",
+      },
+    });
+  };
 
   const handlePayment = (event, jobId, stageId) => {
     event.preventDefault();
-    console.log("payment")
-    console.log(jobId)
+    console.log("payment");
+    console.log(jobId);
     const payload = {
-      "owed": 0
-    }
-    console.log(payload)
+      owed: 0,
+    };
+    console.log(payload);
     fetch(`http://localhost:5000/jobs/${jobId}/${stageId}`, {
       method: "PATCH",
       body: JSON.stringify(payload),
-      credentials: 'include',
+      credentials: "include",
       headers: {
-        'Content-Type': "application/json"
-      }
-    })
-
-  }
+        "Content-Type": "application/json",
+      },
+    });
+  };
 
   // const jobInput = React.useRef();
   // const addressInput = React.useRef();
@@ -181,7 +183,7 @@ function JobsPage(props) {
     .catch((error) => (error))
   };
 
-  let eventKey = ''
+  let eventKey = "";
 
   return (
     <div className="page-body">
@@ -299,59 +301,6 @@ function JobsPage(props) {
                                       ) : (
                                         <></>
                                       )}
-                                      
-                                        Stage Comments:{" "}
-                                        {stage.comments.map((comment) => (
-                                          <li>
-                                            <p>{comment.name}</p>
-                                            <p>{comment.comment}</p>
-                                          </li>
-                                        ))}
-                                        {stage.status !== "Complete" ? (
-                                          <Form
-                                            jobId={job._id}
-                                            stageId={stage.index}
-                                            handleSubmit={handleComplete}
-                                            formFields={[
-                                              "Work Complete",
-                                              "Stage Cost",
-                                            ]}
-                                            formTypes={["checkbox", "number"]}
-                                            multiple={[false, false]}
-                                            // required={[true, true]}
-                                            refers={[checkBoxInput, owedInput]}
-                                            defaultValue={[false, 0]}
-                                            title="Set Stage Cost"
-                                          />
-                                        ) : (
-                                          <></>
-                                        )}
-                                        {loggedInUser.role === "Client" &&
-                                        stage.status === "PaymentPending" ? (
-                                          <Button
-                                            className="nav-link"
-                                            onClick={(e) =>
-                                              handlePayment(
-                                                e,
-                                                job._id,
-                                                stage.index
-                                              )
-                                            }
-                                          >
-                                            Pay Stage Cost
-                                          </Button>
-                                        ) : (
-                                          <></>
-                                        )}
-                                        <p>Funds Paid: {stage.paid}</p>
-                                        <p>
-                                          Stage Images:{" "}
-                                          {stage.pictures.map((picture) => (
-                                            <li>
-                                              <img src={picture.link} />
-                                            </li>
-                                          ))}
-                                        </p>
                                         <p>
                                           Stage Comments:{" "}
                                           {stage.comments.map((comment) => (
