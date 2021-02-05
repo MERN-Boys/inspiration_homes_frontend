@@ -26,23 +26,27 @@ export default function Footer(props) {
       </div>
       <div id="footerGreeting">
         {loggedInUser == false || loggedInUser == null ? (
-          <>  
-            <Button style={{"marginRight": "5px"}}>
-              <Link to="/users/login" className="nav-link" >Login</Link>
+          <>
+            <Button style={{ marginRight: "5px" }}>
+              <Link to="/users/login" className="nav-link" id="login">
+                Login
+              </Link>
             </Button>
-            <Button style={{"marginRight": "5px"}}>
-              <Link to="/users/register" className="nav-link" >SignUp</Link>
+            <Button style={{ marginRight: "5px" }}>
+              <Link to="/users/register" className="nav-link" id="signup">
+                SignUp
+              </Link>
             </Button>
           </>
         ) : (
           <>
-            <h6 style={{"padding": "5px"}}>Welcome {loggedInUser.name}</h6>
-            <Button onClick={handleLogout} style={{"marginRight": "5px"}}>Logout</Button>
+            <h6 style={{ padding: "5px" }}>Welcome {loggedInUser.name}</h6>
+            <Button onClick={handleLogout} style={{ marginRight: "5px" }}>
+              Logout
+            </Button>
           </>
         )}
       </div>
-
-
     </div>
   );
 }
