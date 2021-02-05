@@ -67,6 +67,21 @@ function JobsPage(props) {
   })
   };
 
+  const handleApprove = (event, jobId) => {
+    event.preventDefault();
+    console.log("approved")
+    console.log(jobId)
+    fetch(`http://localhost:5000/jobs/${jobId}/0`, {
+      method: "PATCH",
+      body: JSON.stringify({"status": "Complete"}),
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+  }
+
   // const jobInput = React.useRef();
   // const addressInput = React.useRef();
   // const fileInput = React.useRef();
@@ -209,11 +224,14 @@ function JobsPage(props) {
                         )}
                     </ul>
                     {loggedInUser.role == "Builder" ? (
-                      <Button>
-                        <Link to={`/jobs/${job._id}`} className="nav-link">
-                          Edit Job
-                        </Link>
-                      </Button>
+                      <>
+                        <Button className="nav-link">
+                          <Link to={`/jobs/${job._id}`} style={{"color": "white"}} >
+                            Edit Job
+                          </Link>
+                        </Button>
+                        <Button className="nav-link" handleClick={(e => handleApprove(e, job._id))}>Approve</Button>
+                      </>
                     ) : (
                       <></>
                     )}
