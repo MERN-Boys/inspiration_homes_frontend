@@ -224,7 +224,7 @@ function JobsPage(props) {
                     </ul>
 
                     {job.stages[0].status === "AwaitingApproval" ? (
-                            <></>
+                      <></>
                     ) : (
                       <p>Build Stages:</p>
                     )}
@@ -234,99 +234,132 @@ function JobsPage(props) {
                         .slice(0)
                         .reverse()
                         .map((stage) =>
-                          stage.status === "Hidden" || stage.status === "AwaitingApproval" ? (
+                          stage.status === "Hidden" ||
+                          stage.status === "AwaitingApproval" ? (
                             <></>
                           ) : (
                             <Accordion defaultActiveKey="0">
-                              <div hidden>{stage.status !== "Complete" ? eventKey = "0" : eventKey = "1"}</div>
+                              <div hidden>
+                                {stage.status !== "Complete"
+                                  ? (eventKey = "0")
+                                  : (eventKey = "1")}
+                              </div>
                               <Card>
                                 <Card.Header>
                                   <Accordion.Toggle
                                     as={Button}
                                     variant="link"
                                     eventKey={eventKey}
-                                    >
+                                  >
                                     {stage.name} {stage.status}
                                   </Accordion.Toggle>
                                 </Card.Header>
                                 <Accordion.Collapse eventKey={eventKey}>
                                   <Card.Body>
                                     {
-                                    <li>
-                                      <p>Stage: {stage.name}</p>
-                                      <p>Status: {stage.status}</p>
-                                      <p>Funds Owed: {stage.owed}</p>
-                                      {loggedInUser.role === "Builder" && stage.status === "InProgress" ? (
-                                        <Form 
-                                          jobId={job._id}
-                                          stageId={stage.index}
-                                          handleSubmit={handleComplete}
-                                          formFields={["Work Complete", "Stage Cost"]}
-                                          formTypes={["checkbox", "number"]}
-                                          multiple={[false, false]}
-                                          // required={[true, true]}
-                                          refers={[checkBoxInput, owedInput]}
-                                          defaultValue={[false, 0]}
-                                          title="Set Stage Cost"
-                                        />
-                                      ) : (
-                                        <></>
-                                      )}
-                                      {loggedInUser.role === "Client" && stage.status === "PaymentPending" ? (
-                                         <Button className="nav-link" onClick={(e => handlePayment(e, job._id, stage.index))}>Pay Stage Cost</Button>
-                                      ) : (
-                                        <></>
-                                      )}
-                                      <p>Funds Paid: {stage.paid}</p>
-                                      <p>
-                                        Stage Images:{" "}
-        
-                                        {stage.pictures.map((picture) => (
-                                          <li>
-                                            <p>{picture.link}</p>
-                                            <p>{picture.description}</p>
-                                          </li>
-                                        ))}
-                                      </p>
-                                      <p>
-                                        Stage Comments:{" "}
-                                        {stage.comments.map((comment) => (
-                                          <li>
-                                            <p>{comment.name}</p>
-                                            <p>{comment.comment}</p>
-                                          </li>
-                                        ))}
-                                        {stage.status !== "Complete" ? (
+                                      <li>
+                                        <p>Stage: {stage.name}</p>
+                                        <p>Status: {stage.status}</p>
+                                        <p>Funds Owed: {stage.owed}</p>
+                                        {loggedInUser.role === "Builder" &&
+                                        stage.status === "InProgress" ? (
                                           <Form
                                             jobId={job._id}
                                             stageId={stage.index}
-                                            handleSubmit={handleClick}
-                                            formFields={["Comment"]}
-                                            formTypes={["textarea"]}
-                                            multiple={[false]}
-                                            refers={[commentInput]}
-                                            defaultValue={[null]}
-                                            title="Comment!"
+                                            handleSubmit={handleComplete}
+                                            formFields={[
+                                              "Work Complete",
+                                              "Stage Cost",
+                                            ]}
+                                            formTypes={["checkbox", "number"]}
+                                            multiple={[false, false]}
+                                            // required={[true, true]}
+                                            refers={[checkBoxInput, owedInput]}
+                                            defaultValue={[false, 0]}
+                                            title="Set Stage Cost"
                                           />
-                                         ) : (
+                                        ) : (
                                           <></>
                                         )}
-                                      </p>
-                                    </li>
-                                  }
+                                        {loggedInUser.role === "Client" &&
+                                        stage.status === "PaymentPending" ? (
+                                          <Button
+                                            className="nav-link"
+                                            onClick={(e) =>
+                                              handlePayment(
+                                                e,
+                                                job._id,
+                                                stage.index
+                                              )
+                                            }
+                                          >
+                                            Pay Stage Cost
+                                          </Button>
+                                        ) : (
+                                          <></>
+                                        )}
+                                        <p>Funds Paid: {stage.paid}</p>
+                                        <p>
+                                          Stage Images:{" "}
+                                          {stage.pictures.map((picture) => (
+                                            <li>
+                                              <p>{picture.link}</p>
+                                              <p>{picture.description}</p>
+                                            </li>
+                                          ))}
+                                        </p>
+                                        <p>
+                                          Stage Comments:{" "}
+                                          {stage.comments.map((comment) => (
+                                            // <li>
+                                            //   <p>{comment.name}</p>
+                                            //   <p>{comment.comment}</p>
+                                            // </li>
+
+                                            <Card>
+                                              <Card.Header>
+                                                <Card.Title>
+                                                  {comment.name}
+                                                </Card.Title>
+                                              </Card.Header>
+                                              <Card.Body>
+                                                <Card.Text>
+                                                  {comment.comment}
+                                                </Card.Text>
+                                              </Card.Body>
+                                            </Card>
+                                          ))}
+                                          {stage.status !== "Complete" ? (
+                                            <Form
+                                              jobId={job._id}
+                                              stageId={stage.index}
+                                              handleSubmit={handleClick}
+                                              formFields={["Comment"]}
+                                              formTypes={["textarea"]}
+                                              multiple={[false]}
+                                              refers={[commentInput]}
+                                              defaultValue={[null]}
+                                              title="Comment!"
+                                            />
+                                          ) : (
+                                            <></>
+                                          )}
+                                        </p>
+                                      </li>
+                                    }
                                   </Card.Body>
                                 </Accordion.Collapse>
                               </Card>
-                              
                             </Accordion>
                           )
                         )}
                     </ul>
-                    {loggedInUser.role == "Builder" && job.stages[0].status === "AwaitingApproval" ? (
+                    {loggedInUser.role == "Builder" &&
+                    job.stages[0].status === "AwaitingApproval" ? (
                       <>
-                        <Button 
-                          className="nav-link" 
-                          onClick={(e => handleApprove(e, job._id))}
+                        <Button
+                          className="nav-link"
+                          onClick={(e) => handleApprove(e, job._id)}
                         >
                           Approve Job
                         </Button>
