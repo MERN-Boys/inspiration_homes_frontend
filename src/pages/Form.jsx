@@ -28,10 +28,14 @@ export default function Form({stageId, jobId, handleSubmit, formFields, formType
     const [formData, setFormData] = useState(generateFormFields)
     let CustomInput = "";
 
-    const handleChange = (e) => {
+    const handleChange = (e, index) => {
         let value = ''
         if (e.target.name === "Work Complete"){
             value = e.target.checked
+        }
+        else if (e.target.name === "Images"){
+            value = e.target.value
+            refers[index].current.files = e.target.files
         }
         else{
             value = e.target.value
@@ -53,7 +57,7 @@ export default function Form({stageId, jobId, handleSubmit, formFields, formType
                         type={formTypes[index]} 
                         multiple={multiple[index]} 
                         ref={refers[index]}  
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e, index)}
                         value={formData[field]}
                     />
                 </div>

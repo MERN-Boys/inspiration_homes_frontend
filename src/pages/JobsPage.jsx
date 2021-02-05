@@ -11,6 +11,8 @@ function JobsPage(props) {
   const setLoggedInUser = props.setLoggedInUser;
   const [jobs, setJobs] = useState([]);
 
+  const fileInput = React.useRef();
+
   useEffect(() => {
     fetch("http://localhost:5000/users/me", {
       credentials: "include",
@@ -24,7 +26,6 @@ function JobsPage(props) {
   }, []);
 
   useEffect(() => {
-    // let isMounted = true; // note this flag denote mount status
     // fetch(`https://inspo-homes-api.herokuapp.com/jobs`)
     fetch(`http://localhost:5000/jobs/get`, {
       body: JSON.stringify({ user: loggedInUser }),
@@ -34,14 +35,11 @@ function JobsPage(props) {
       },
       credentials: "include",
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setJobs(data);
-      });
-    // return () => {
-    //   isMounted = false;
-    // }; // use effect cleanup to set flag false, if unmounted
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      setJobs(data);
+    });
   }, [loggedInUser]);
 
   const commentInput = React.useRef();
@@ -62,8 +60,9 @@ function JobsPage(props) {
     }
 
     const payload = {
-      status: "PaymentPending",
-      owed: stageCost,
+      "user": loggedInUser,
+      "status": "PaymentPending",
+      "owed": stageCost,
     };
 
     fetch(`http://localhost:5000/jobs/${form.jobId}/${form.stageId}`, {
@@ -73,16 +72,23 @@ function JobsPage(props) {
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      setJobs(data);
+    })
+
   };
 
   const handleClick = (event, form) => {
     event.preventDefault();
     const payload = {
-      comments: [
+      "user": loggedInUser,
+      "comments": [
         {
-          name: loggedInUser.name,
-          comment: form.Comment,
+          "name": loggedInUser.name,
+          "comment": form.Comment,
         },
       ],
     };
@@ -93,7 +99,12 @@ function JobsPage(props) {
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      setJobs(data);
+    })
   };
 
   const handleApprove = (event, jobId) => {
@@ -101,7 +112,8 @@ function JobsPage(props) {
     console.log("approved");
     console.log(jobId);
     const payload = {
-      status: "Complete",
+      "user": loggedInUser,
+      "status": "Complete",
     };
     console.log(payload);
     fetch(`http://localhost:5000/jobs/${jobId}/0`, {
@@ -111,7 +123,12 @@ function JobsPage(props) {
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      setJobs(data);
+    })
   };
 
   const handlePayment = (event, jobId, stageId) => {
@@ -119,7 +136,8 @@ function JobsPage(props) {
     console.log("payment");
     console.log(jobId);
     const payload = {
-      owed: 0,
+      "user": loggedInUser,
+      "owed": 0,
     };
     console.log(payload);
     fetch(`http://localhost:5000/jobs/${jobId}/${stageId}`, {
@@ -129,58 +147,60 @@ function JobsPage(props) {
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      setJobs(data);
+    })
   };
 
-  // const jobInput = React.useRef();
-  // const addressInput = React.useRef();
-  // const fileInput = React.useRef();
-
-  // const handleClick = (event) => {
-  //     event.preventDefault();
-  //     handleUpload(fileInput.current.files);
-  // };
-
-  //idea here is to upload the files to the backend, wait for response from backend,
-  // retrieve the locations from the backend after upload,
-  // then upload the job object with the recently retrieved locations
-  const fileInput = React.useRef();
   const handleUpload = (event, form) => {
     event.preventDefault();
+    console.log(form.Images);
     console.log(fileInput.current.files);
+    // console.log(fileInput.current[form.stageId].files);
+    // console.log(form);
     let uploadform = new FormData()
     for (let i = 0; i < fileInput.current.files.length; i++) {
-        uploadform.append(fileInput.current.files[i].name, fileInput.current.files[i])
+        uploadform.append(
+          fileInput.current.files[i].name, 
+          fileInput.current.files[i]
+        )
     }
 
-    fetch("http://localhost:5000/jobs/upload", {
+    if(fileInput.current.files.length > 0){
+
+      fetch("http://localhost:5000/jobs/upload", {
         method: "POST",
         body: uploadform,
         credentials: 'include'
-    })
-    .then(data => data.json())
-    .then(data => {
+      })
+      .then(data => data.json())
+      .then(data => {
         //comes back as an array
         const payload = {
+          "user": loggedInUser,
           "pictures": data.locations
         }
-
+        
         console.log(payload);
-
+        
         return fetch(`http://localhost:5000/jobs/${form.jobId}/${form.stageId}`, {
-            body: JSON.stringify(payload),
-            method: "PATCH",
-            headers: {
-                'Content-Type': "application/json"
-            },
-            credentials: 'include'
+          body: JSON.stringify(payload),
+          method: "PATCH",
+          headers: {
+            'Content-Type': "application/json"
+          },
+          credentials: 'include'
         })
-    })
-    .then(data => data.json())
-    .then(job => {
-      console.log(job);
-    })
-    .catch((error) => (error))
+      })
+      .then(data => data.json())
+      .then(jobs => {
+        setJobs(jobs)
+      })
+      .catch((error) => (error))
+    }
   };
 
   let eventKey = "";
