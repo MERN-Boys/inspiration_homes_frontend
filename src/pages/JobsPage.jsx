@@ -300,13 +300,6 @@ function JobsPage(props) {
                                         <></>
                                       )}
                                       
-                                        Stage Comments:{" "}
-                                        {stage.comments.map((comment) => (
-                                          <li>
-                                            <p>{comment.name}</p>
-                                            <p>{comment.comment}</p>
-                                          </li>
-                                        ))}
                                         {stage.status !== "Complete" ? (
                                           <Form
                                             jobId={job._id}
