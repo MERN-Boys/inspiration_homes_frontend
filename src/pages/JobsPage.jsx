@@ -4,8 +4,7 @@ import Form from "./Form";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import {Link} from "react-router-dom"
-
+import { Link } from "react-router-dom";
 
 function JobsPage(props) {
   const loggedInUser = props.loggedInUser;
@@ -14,36 +13,59 @@ function JobsPage(props) {
 
   useEffect(() => {
     fetch("http://localhost:5000/users/me", {
-      credentials: 'include'
+      credentials: "include",
     })
-    .then(data => data.json())
-    .then(user => {
-      if (user) {
-        setLoggedInUser(user.user)
-      }
-    })
-  }, [])
+      .then((data) => data.json())
+      .then((user) => {
+        if (user) {
+          setLoggedInUser(user.user);
+        }
+      });
+  }, []);
 
   useEffect(() => {
     // let isMounted = true; // note this flag denote mount status
     // fetch(`https://inspo-homes-api.herokuapp.com/jobs`)
     fetch(`http://localhost:5000/jobs/get`, {
-      body: JSON.stringify({user: loggedInUser}),
+      body: JSON.stringify({ user: loggedInUser }),
       method: "POST",
       headers: {
-        'Content-Type': "application/json"
+        "Content-Type": "application/json",
       },
-      credentials: 'include'
+      credentials: "include",
     })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      setJobs(data)
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setJobs(data);
+      });
     // return () => {
     //   isMounted = false;
     // }; // use effect cleanup to set flag false, if unmounted
   }, [loggedInUser]);
+
+  const commentInput = React.useRef();
+
+  const handleClick = (event, jobId, stageId) => {
+    event.preventDefault();
+    const payload = {
+      "comments": [{
+                     "name"  : loggedInUser.name,
+                     "comment" : commentInput.current.defaultValue
+           }]
+    }
+    console.log(payload)
+    console.log(jobId)
+    console.log(stageId)
+    fetch(`http://localhost:5000/jobs/${jobId}/${stageId}`, {
+           method: "PATCH",
+           body: JSON.stringify(payload),
+           credentials: 'include',
+           headers: {
+            'Content-Type': "application/json"
+        }
+  })
+  };
 
   // const jobInput = React.useRef();
   // const addressInput = React.useRef();
@@ -98,7 +120,6 @@ function JobsPage(props) {
   //     .catch((error) => (error))
   // };
 
-
   return (
     <div className="page-body">
       {/* <Form handleSubmit={handleClick} 
@@ -110,78 +131,97 @@ function JobsPage(props) {
             />  */}
 
       <h1>Your Jobs</h1>
-      {jobs.length === 0 ? (<div id="emptyJobsMsg"><h1>Go to the contact page to start a job today!</h1></div>) : (<></>)}
+      {jobs.length === 0 ? (
+        <div id="emptyJobsMsg">
+          <h1>Go to the contact page to start a job today!</h1>
+        </div>
+      ) : (
+        <></>
+      )}
 
       {typeof jobs !== undefined ? (
-          jobs.map((job, index) => (
-            <Accordion defaultActiveKey="0" >
+        jobs.map((job, index) => (
+          <Accordion defaultActiveKey="0">
             <Card key={job.id}>
-            <Card.Header>
+              <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                {job.buildAddress}
+                  {job.buildAddress}
                 </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="1">
+              </Card.Header>
+              <Accordion.Collapse eventKey="1">
                 <Card.Body>
-                <>
+                  <>
                     <p>Job Description: {job.description}</p>
                     <p>Job Client: {job.client}</p>
                     <p>Job Address: {job.buildAddress}</p>
 
                     <p>Design Docs:</p>
                     <ul>
-                    {job.designDocs.map((doc) => (
+                      {job.designDocs.map((doc) => (
                         <li>
-                        <img src={doc.link}></img>
+                          <img src={doc.link}></img>
                         </li>
-                    ))}
+                      ))}
                     </ul>
                     <p>Build Stages:</p>
                     <ul>
-                    {job.stages
+                      {job.stages
                         .slice(0)
                         .reverse()
                         .map((stage) =>
-                        stage.status === "Hidden" ? (
+                          stage.status === "Hidden" ? (
                             <></>
-                        ) : (
+                          ) : (
                             <li>
-                            <p>Stage: {stage.name}</p>
-                            <p>Status: {stage.status}</p>
-                            <p>Funds Owed: {stage.owed}</p>
-                            <p>Funds Paid: {stage.paid}</p>
-                            <p>
+                              <p>Stage: {stage.name}</p>
+                              <p>Status: {stage.status}</p>
+                              <p>Funds Owed: {stage.owed}</p>
+                              <p>Funds Paid: {stage.paid}</p>
+                              <p>
                                 Stage Images:{" "}
                                 {stage.pictures.map((picture) => (
-                                <li>
+                                  <li>
                                     <p>{picture.link}</p>
                                     <p>{picture.description}</p>
-                                </li>
+                                  </li>
                                 ))}
-                            </p>
-                            <p>
+                              </p>
+                              <p>
                                 Stage Comments:{" "}
                                 {stage.comments.map((comment) => (
-                                <li>
+                                  <li>
                                     <p>{comment.name}</p>
                                     <p>{comment.comment}</p>
-                                </li>
+                                  </li>
                                 ))}
-                            </p>
+                                <Form
+                                  handleSubmit={(e => handleClick(e, job._id, stage.index))}
+                                  formFields={["Comment"]}
+                                  formTypes={["textarea"]}
+                                  multiple={[false]}
+                                  refers={[commentInput]}
+                                  defaultValue={[null]}
+                                  title="Comment!"
+                                />
+                              </p>
                             </li>
-                        )
+                          )
                         )}
                     </ul>
                     {loggedInUser.role == "Builder" ? (
-                      <Button> 
-                        <Link to={`/jobs/${job._id}`} className="nav-link">Edit Job</Link>
+                      <Button>
+                        <Link to={`/jobs/${job._id}`} className="nav-link">
+                          Edit Job
+                        </Link>
                       </Button>
-                    ) : (<></>)}
-                </>
+                    ) : (
+                      <></>
+                    )}
+                  </>
                 </Card.Body>
-            </Accordion.Collapse>
+              </Accordion.Collapse>
             </Card>
-            </Accordion>
+          </Accordion>
         ))
       ) : (
         <p>{"Loading List"}</p>

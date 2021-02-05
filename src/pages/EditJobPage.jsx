@@ -132,7 +132,7 @@ if (loggedInUser) {
       }}
     >
       <h1>Edit your Job!</h1>
-
+      
 
       <Form handleSubmit={handleClick} 
         formFields={["Build Address:","Description:", "Design Documents:"]} 
