@@ -119,7 +119,7 @@ if (loggedInUser) {
 
 
       <Form handleSubmit={handleClick} 
-        formFields={["Build Address:","Description:", "Design Documents:"]} 
+        formFields={["BuildAddress","Description", "DesignDocuments"]} 
         formTypes={["text", "textarea", "file"]} 
         multiple={[false, false, true]} 
         refers={[addressInput, descriptionInput, fileInput]} 
