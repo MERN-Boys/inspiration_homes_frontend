@@ -12,25 +12,36 @@ function SignUpPage(props) {
 
   const handleSignup = (e, form) => {
     e.preventDefault()
-    fetch("http://localhost:5000/users/register", {
-      body: JSON.stringify(form),
-      method: "POST",
-      headers: {
-        'Content-Type': "application/json"
-      },
-      credentials: 'include'
-    })
-    .then(data => data.json())
-    .then(user => {
-        if (user.user) {
-          setLoggedInUser(user.user)
-          props.history.push("/") 
-        }
-        else{
-          setFlashError("Invalid Email or Password")
-        }
-    })
-    .catch(() => setFlashError("401 Bad Request"))
+
+    if(form.name 
+      && form.email 
+      && form.password
+      && form.confirm === form.password){
+      fetch(`http://localhost:5000/users/${loggedInUser._id}`, {
+        body: JSON.stringify(form),
+        method: "PUT",
+        headers: {
+          'Content-Type': "application/json"
+        },
+        credentials: 'include'
+      })
+      .then(data => data.json())
+      .then(user => {
+          if (user.user) {
+            setLoggedInUser(user.user)
+            props.history.push("/") 
+          }
+          else{
+            setFlashError("Invalid Email or Password")
+          }
+      })
+      .catch((err) => console.log(err))
+      // .catch((err) => setFlashError(JSON.stringify(err)))
+    }
+    else{
+      setFlashError("All field are required")
+    }
+
     // Send Data
   }
 
@@ -43,20 +54,19 @@ function SignUpPage(props) {
     : <></>
     } 
     {!loggedInUser
-    || loggedInUser == false 
-    || loggedInUser.user == null  ? (
+    || loggedInUser == false ? (
+      <></>
+    ) : (
       <div>
-      <h2>Register</h2>
+      <h2>Edit Details</h2>
       <Form handleSubmit={handleSignup} 
         formFields={["name", "email", "password", "confirm"]} 
         formTypes={["text", "text", "password", "password"]}
         multiple={[false, false, false, false]} 
         refers={[dummyRef, dummyRef, dummyRef, dummyRef]}
         defaultValue={[null, null, null, null]}   
-        title="Register!" />
+        title="Confirm Changes!" />
       </div>
-    ) : (
-      <h2>You are logged in</h2>
     )}
     </>
   )

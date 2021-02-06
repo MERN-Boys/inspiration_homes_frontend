@@ -41,6 +41,11 @@ export default function Footer(props) {
         ) : (
           <>
             <h6 style={{ padding: "5px" }}>Welcome {loggedInUser.name}</h6>
+            <Button style={{ marginRight: "5px" }}>
+              <Link to={`/users/${loggedInUser._id}`} className="nav-link">
+                Edit Details
+              </Link>
+            </Button>
             <Button onClick={handleLogout} style={{ marginRight: "5px" }}>
               Logout
             </Button>
