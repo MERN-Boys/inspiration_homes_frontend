@@ -203,7 +203,9 @@ function JobsPage(props) {
     }
   };
 
-  let eventKey = "";
+  let eventKey = ""
+  let totalPaid = 0
+  let totalCost = 0
 
   return (
     <div className="page-body">
@@ -227,9 +229,17 @@ function JobsPage(props) {
               <Accordion.Collapse eventKey="1">
                 <Card.Body>
                   <>
+                    <p>Job is Complete?: {`${job.jobComplete}`}</p>
                     <p>Job Description: {job.description}</p>
                     <p>Job Client: {job.client}</p>
                     <p>Job Address: {job.buildAddress}</p>
+                    <p>Total Build Cost To Date: 
+                      {job.stages.map((stage, index) => {
+                        index === 0 ? totalPaid = 0 : totalPaid += stage.paid
+                      })}
+
+                      {` $${totalPaid}`}
+                    </p>
                     <p>Design Docs:</p>
                     <ul>
                       {job.designDocs.map((doc) => (
