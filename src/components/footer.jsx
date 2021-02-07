@@ -27,7 +27,7 @@ export default function Footer(props) {
       <div id="footerGreeting">
         {loggedInUser == false || loggedInUser == null ? (
           <>
-            <Button style={{ marginRight: "5px" }}>
+            <Button style={{ marginRight: "5px" }} onClick={() => console.log("login button clicked")}>
               <Link to="/users/login" className="nav-link" id="login">
                 Login
               </Link>
