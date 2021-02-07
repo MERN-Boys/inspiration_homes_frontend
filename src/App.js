@@ -64,6 +64,7 @@ function App() {
           />
           
           <Route exact path="/" render={() => <HomePage loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
+          <Route path = "/" render={() => <h1>404 page not found</h1> }/>
         </Switch>
         <Footer loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/>
       </BrowserRouter>
