@@ -3,9 +3,8 @@ import Footer from './components/footer'
 import './style.css'
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 import {useState, useEffect} from "react"
-// npm install react-router-dom 
+
 import HomePage from './pages/HomePage'
-import JobsPage from './pages/JobsPage'
 import EditUserPage from './pages/EditUserPage'
 import EditJobPage from './pages/EditJobPage'
 import GalleryPage from './pages/GalleryPage'
