@@ -205,7 +205,6 @@ function JobsPage(props) {
 
   let eventKey = ""
   let totalPaid = 0
-  let totalCost = 0
 
   return (
     <div className="page-body">
@@ -236,9 +235,9 @@ function JobsPage(props) {
                     <p>
                       Total Build Cost To Date:
                       {job.stages.map((stage, index) => {
-                        index === 0
+                        return (index === 0
                           ? (totalPaid = 0)
-                          : (totalPaid += stage.paid);
+                          : (totalPaid += stage.paid))
                       })}
                       {` $${totalPaid}`}
                     </p>
@@ -246,7 +245,7 @@ function JobsPage(props) {
                     <ul>
                       {job.designDocs.map((doc, index) => (
                         <li key={index}>
-                          <img src={doc.link}></img>
+                          <img src={doc.link} alt="design document"></img>
                         </li>
                       ))}
                     </ul>
@@ -329,7 +328,7 @@ function JobsPage(props) {
                                           Stage Images:{" "}
                                           {stage.pictures.map((picture, index) => (
                                             <li key={index}>
-                                              <img src={picture.link}></img>
+                                              <img src={picture.link} alt="stage" ></img>
                                             </li>
                                           ))}
                                         </div>
@@ -396,7 +395,7 @@ function JobsPage(props) {
                           )
                         )}
                     </ul>
-                    {loggedInUser.role == "Builder" &&
+                    {loggedInUser.role === "Builder" &&
                     job.stages[0].status === "AwaitingApproval" ? (
                       <>
                         <Button
@@ -409,7 +408,7 @@ function JobsPage(props) {
                     ) : (
                       <></>
                     )}
-                    {loggedInUser.role == "Client" ? (
+                    {loggedInUser.role === "Client" ? (
                       <Button className="nav-link">
                         <Link
                           to={`/jobs/${job._id}`}
