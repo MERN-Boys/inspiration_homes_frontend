@@ -26,6 +26,8 @@ function App() {
     })
     .then(data => data.json())
     .then(user => {
+      console.log("GETTING USER OBJ APPJS")
+      console.log(user)
       if (user) {
         setLoggedInUser(user.user)
       }

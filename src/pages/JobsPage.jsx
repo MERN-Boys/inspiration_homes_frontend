@@ -14,12 +14,15 @@ function JobsPage(props) {
   const fileInput = React.useRef();
 
   useEffect(() => {
-    fetch("https://inspo-homes-api.herokuapp.com/users/me", {
+    fetch("https://inspo-homes-api.herokuapp.com/users/me/", {
     // fetch("http://localhost:5000/users/me", {
+      method: "GET",
       credentials: "include",
     })
       .then((data) => data.json())
       .then((user) => {
+        console.log("GETTING USER OBJ JOBSPAGE")
+        console.log(user)
         if (user) {
           setLoggedInUser(user.user);
         }
@@ -27,7 +30,7 @@ function JobsPage(props) {
   }, []);
 
   useEffect(() => {
-    fetch(`https://inspo-homes-api.herokuapp.com/jobs/get`, {
+    fetch(`https://inspo-homes-api.herokuapp.com/jobs/get/`, {
     // fetch(`http://localhost:5000/jobs/get`, {
       body: JSON.stringify({ user: loggedInUser }),
       method: "POST",
