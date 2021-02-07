@@ -230,7 +230,7 @@ function JobsPage(props) {
                   <>
                     {/* <p>Job is Complete?: {`${job.jobComplete}`}</p> */}
                     <p>Job Description: {job.description}</p>
-                    <p>Job Client: {job.client}</p>
+                    <p>Job Client: {job.clientName}</p>
                     <p>Job Address: {job.buildAddress}</p>
                     <p>
                       Total Build Cost To Date:
