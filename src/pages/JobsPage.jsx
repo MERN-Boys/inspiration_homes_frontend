@@ -219,7 +219,7 @@ function JobsPage(props) {
       )}
       {typeof jobs !== undefined ? (
         jobs.map((job, index) => (
-          <Accordion defaultActiveKey="0" key={job.id}>
+          <Accordion defaultActiveKey="0" key={job._id}>
             <Card>
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="1">
@@ -262,7 +262,7 @@ function JobsPage(props) {
                         .map((stage, index) =>
                           stage.status === "Hidden" ||
                           stage.status === "AwaitingApproval" ? (
-                            <></>
+                            <React.Fragment key={index}></React.Fragment>
                           ) : (
                             <Accordion defaultActiveKey="0" key={index}>
                               <div hidden>
