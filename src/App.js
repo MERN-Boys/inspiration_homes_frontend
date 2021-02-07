@@ -19,8 +19,9 @@ function App() {
   // let history = useHistory()
 
   useEffect(() => {
-    fetch("https://inspo-homes-api.herokuapp.com/users/me", {
+    fetch("https://inspo-homes-api.herokuapp.com/users/me/", {
     // fetch("http://localhost:5000/users/me", {
+      method: "GET",
       credentials: 'include'
     })
     .then(data => data.json())

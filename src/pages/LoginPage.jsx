@@ -13,7 +13,7 @@ function LoginPage(props) {
 
   const handleLogin = (e, form) => {
     e.preventDefault()
-    fetch("https://inspo-homes-api.herokuapp.com/users/login", {
+    fetch("https://inspo-homes-api.herokuapp.com/users/login/", {
     // fetch("http://localhost:5000/users/login", {
       body: JSON.stringify(form),
       method: "POST",
