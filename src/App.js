@@ -20,8 +20,8 @@ function App() {
   // let history = useHistory()
 
   useEffect(() => {
-    // fetch("http://inspo-homes-api.herokuapp.com/users/me", {
-    fetch("http://localhost:5000/users/me", {
+    fetch("http://inspo-homes-api.herokuapp.com/users/me", {
+    // fetch("http://localhost:5000/users/me", {
       credentials: 'include'
     })
     .then(data => data.json())
@@ -37,7 +37,6 @@ function App() {
         <SiteNav />
 
         <Switch>
-          {/* <Route exact path="/jobs" render={() => <JobsPage/>} /> */}
           <Route exact path="/jobs/:id" render={(props) => <EditJobPage {...props} loggedInUser={loggedInUser}/>} />
           <Route exact path="/gallery" render={() => <GalleryPage />} />
           <Route exact path="/about" render={() => <AboutPage />} />
@@ -46,7 +45,6 @@ function App() {
           <Route
             exact path="/users/login" render={() => 
               <LoginPage 
-              // history={history}
               loggedInUser={loggedInUser} 
               setLoggedInUser={setLoggedInUser} 
               />} 
@@ -54,15 +52,16 @@ function App() {
 
           <Route 
             exact path="/users/register" render={() => 
-              <SignUpPage loggedInUser={loggedInUser} 
+              <SignUpPage 
+              loggedInUser={loggedInUser} 
               setLoggedInUser={setLoggedInUser} />} 
           />
 
           <Route 
             exact path="/users/:id" render={(props) => 
-            <EditUserPage {...props} 
-            loggedInUser={loggedInUser} 
-            setLoggedInUser={setLoggedInUser}/>} 
+              <EditUserPage {...props} 
+              loggedInUser={loggedInUser} 
+              setLoggedInUser={setLoggedInUser}/>} 
           />
           
           <Route exact path="/" render={() => <HomePage loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />

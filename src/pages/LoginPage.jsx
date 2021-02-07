@@ -2,18 +2,19 @@ import React from 'react'
 import {useState, useEffect} from "react"
 import {withRouter} from "react-router-dom"
 import Form from './Form'
+
 function LoginPage(props) {
   const loggedInUser = props.loggedInUser
   const setLoggedInUser = props.setLoggedInUser
-
+  console.log("login page frontend")
   const dummyRef = React.useRef()
 
   const [flashErr, setFlashError] = useState(false)
 
   const handleLogin = (e, form) => {
     e.preventDefault()
-    // fetch("http://inspo-homes-api.herokuapp.com/users/login", {
-    fetch("http://localhost:5000/users/login", {
+    fetch("http://inspo-homes-api.herokuapp.com/users/login", {
+    // fetch("http://localhost:5000/users/login", {
       body: JSON.stringify(form),
       method: "POST",
       headers: {

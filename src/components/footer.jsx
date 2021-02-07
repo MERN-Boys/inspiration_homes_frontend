@@ -7,8 +7,8 @@ export default function Footer(props) {
 
   const handleLogout = (e) => {
     e.preventDefault()
-    // fetch("http://inspo-homes-api.herokuapp.com/users/logout", {
-    fetch("http://localhost:5000/users/logout", {
+    fetch("http://inspo-homes-api.herokuapp.com/users/logout", {
+    // fetch("http://localhost:5000/users/logout", {
       body: null,
       method: "GET",
       headers: {
@@ -28,7 +28,7 @@ export default function Footer(props) {
       <div id="footerGreeting">
         {loggedInUser == false || loggedInUser == null ? (
           <>
-            <Button style={{ marginRight: "5px" }}>
+            <Button style={{ marginRight: "5px" }} onClick={() => console.log("login button clicked")}>
               <Link to="/users/login" className="nav-link" id="login">
                 Login
               </Link>

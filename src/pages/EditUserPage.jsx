@@ -17,8 +17,8 @@ function SignUpPage(props) {
       && form.email 
       && form.password
       && form.confirm === form.password){
-      // fetch(`http://inspo-homes-api.herokuapp.com/users/${loggedInUser._id}`, {
-      fetch(`http://localhost:5000/users/${loggedInUser._id}`, {
+      fetch(`http://inspo-homes-api.herokuapp.com/users/${loggedInUser._id}`, {
+      // fetch(`http://localhost:5000/users/${loggedInUser._id}`, {
         body: JSON.stringify(form),
         method: "PUT",
         headers: {

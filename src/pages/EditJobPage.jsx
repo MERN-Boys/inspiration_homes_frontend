@@ -13,8 +13,8 @@ function EditJobPage({loggedInUser, history, match}) {
 
 
   useEffect(() => {
-    // fetch(`http://inspo-homes-api.herokuapp.com/jobs/${match.params.id}`, {
-    fetch(`http://localhost:5000/jobs/${match.params.id}`, {
+    fetch(`http://inspo-homes-api.herokuapp.com/jobs/${match.params.id}`, {
+    // fetch(`http://localhost:5000/jobs/${match.params.id}`, {
       credentials: 'include'
     })
     .then(data => data.json())
@@ -50,8 +50,8 @@ function EditJobPage({loggedInUser, history, match}) {
 
     //if docs
     if (fileInput.current.files.length > 0){
-      // fetch("http://inspo-homes-api.herokuapp.com/jobs/upload", {
-      fetch("http://localhost:5000/jobs/upload", {
+      fetch("http://inspo-homes-api.herokuapp.com/jobs/upload", {
+      // fetch("http://localhost:5000/jobs/upload", {
         method: "POST",
         body: form,
         credentials: 'include'
@@ -68,8 +68,8 @@ function EditJobPage({loggedInUser, history, match}) {
 
           console.log(payload)
           
-          // return fetch(`http://inspo-homes-api.herokuapp.com/jobs/${match.params.id}`, {
-          return fetch(`http://localhost:5000/jobs/${match.params.id}`, {
+          return fetch(`http://inspo-homes-api.herokuapp.com/jobs/${match.params.id}`, {
+          // return fetch(`http://localhost:5000/jobs/${match.params.id}`, {
               body: JSON.stringify(payload),
               method: "PATCH",
               headers: {
@@ -94,8 +94,8 @@ function EditJobPage({loggedInUser, history, match}) {
         "designDocs": []
       }
 
-      // fetch(`http://inspo-homes-api.herokuapp.com/jobs/${match.params.id}`, {
-      fetch(`http://localhost:5000/jobs/${match.params.id}`, {
+      fetch(`http://inspo-homes-api.herokuapp.com/jobs/${match.params.id}`, {
+      // fetch(`http://localhost:5000/jobs/${match.params.id}`, {
             body: JSON.stringify(payload),
             method: "PATCH",
             headers: {

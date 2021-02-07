@@ -12,8 +12,8 @@ function SignUpPage(props) {
 
   const handleSignup = (e, form) => {
     e.preventDefault()
-    // fetch("http://inspo-homes-api.herokuapp.com/users/register", {
-    fetch("http://localhost:5000/users/register", {
+    fetch("http://inspo-homes-api.herokuapp.com/users/register", {
+    // fetch("http://localhost:5000/users/register", {
       body: JSON.stringify(form),
       method: "POST",
       headers: {

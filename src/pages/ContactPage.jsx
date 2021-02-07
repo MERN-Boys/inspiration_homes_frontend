@@ -40,7 +40,8 @@ function ContactPage({loggedInUser, history}) {
     console.log(Object.entries(form).length)
     //if docs
     if (fileInput.current.files.length > 0){
-      fetch("http://localhost:5000/jobs/upload", {
+      fetch("http://inspo-homes-api.herokuapp.com/jobs/upload", {
+      // fetch("http://localhost:5000/jobs/upload", {
         method: "POST",
         body: form,
         credentials: 'include'
@@ -58,7 +59,8 @@ function ContactPage({loggedInUser, history}) {
 
           console.log(payload)
           
-          return fetch("http://localhost:5000/jobs/", {
+          return fetch("http://inspo-homes-api.herokuapp.com/jobs/", {
+          // return fetch("http://localhost:5000/jobs/", {
               body: JSON.stringify(payload),
               method: "POST",
               headers: {
@@ -84,7 +86,8 @@ function ContactPage({loggedInUser, history}) {
         "designDocs": []
       }
 
-      fetch("http://localhost:5000/jobs/", {
+      fetch("http://inspo-homes-api.herokuapp.com/jobs/", {
+      // fetch("http://localhost:5000/jobs/", {
             body: JSON.stringify(payload),
             method: "POST",
             headers: {
