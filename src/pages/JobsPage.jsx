@@ -327,9 +327,9 @@ function JobsPage(props) {
                                         <div>
                                           Stage Images:{" "}
                                           {stage.pictures.map((picture, index) => (
-                                            <li key={index}>
+                                            <div key={index}>
                                               <img src={picture.link} alt="stage" ></img>
-                                            </li>
+                                            </div>
                                           ))}
                                         </div>
                                         {loggedInUser.role === "Builder" &&
