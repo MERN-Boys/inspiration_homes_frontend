@@ -41,5 +41,8 @@
   },
   "devDependencies": {
     "cypress": "^6.4.0"
+  },
+  "engines": {
+    "node": "v14.13.1"
   }
 }
