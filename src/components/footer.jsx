@@ -7,7 +7,7 @@ export default function Footer(props) {
 
   const handleLogout = (e) => {
     e.preventDefault()
-    fetch("http://inspo-homes-api.herokuapp.com/users/logout", {
+    fetch("https://inspo-homes-api.herokuapp.com/users/logout", {
     // fetch("http://localhost:5000/users/logout", {
       body: null,
       method: "GET",

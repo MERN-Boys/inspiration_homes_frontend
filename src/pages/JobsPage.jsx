@@ -14,7 +14,7 @@ function JobsPage(props) {
   const fileInput = React.useRef();
 
   useEffect(() => {
-    fetch("http://inspo-homes-api.herokuapp.com/users/me", {
+    fetch("https://inspo-homes-api.herokuapp.com/users/me", {
     // fetch("http://localhost:5000/users/me", {
       credentials: "include",
     })
@@ -66,7 +66,7 @@ function JobsPage(props) {
       "owed": stageCost,
     };
 
-    fetch(`http://inspo-homes-api.herokuapp.com/jobs/${form.jobId}/${form.stageId}`, {
+    fetch(`https://inspo-homes-api.herokuapp.com/jobs/${form.jobId}/${form.stageId}`, {
       // fetch(`http://localhost:5000/jobs/${form.jobId}/${form.stageId}`, {
       method: "PATCH",
       body: JSON.stringify(payload),
@@ -94,7 +94,7 @@ function JobsPage(props) {
         },
       ],
     };
-    fetch(`http://inspo-homes-api.herokuapp.com/jobs/${form.jobId}/${form.stageId}`, {
+    fetch(`https://inspo-homes-api.herokuapp.com/jobs/${form.jobId}/${form.stageId}`, {
     // fetch(`http://localhost:5000/jobs/${form.jobId}/${form.stageId}`, {
       method: "PATCH",
       body: JSON.stringify(payload),
@@ -119,7 +119,7 @@ function JobsPage(props) {
       "status": "Complete",
     };
     console.log(payload);
-    fetch(`http://inspo-homes-api.herokuapp.com/jobs/${jobId}/0`, {
+    fetch(`https://inspo-homes-api.herokuapp.com/jobs/${jobId}/0`, {
     // fetch(`http://localhost:5000/jobs/${jobId}/0`, {
       method: "PATCH",
       body: JSON.stringify(payload),
@@ -144,7 +144,7 @@ function JobsPage(props) {
       "owed": 0,
     };
     console.log(payload);
-    fetch(`http://inspo-homes-api.herokuapp.com/jobs/${jobId}/${stageId}`, {
+    fetch(`https://inspo-homes-api.herokuapp.com/jobs/${jobId}/${stageId}`, {
     // fetch(`http://localhost:5000/jobs/${jobId}/${stageId}`, {
       method: "PATCH",
       body: JSON.stringify(payload),
@@ -172,7 +172,7 @@ function JobsPage(props) {
 
     if(fileInput.current.files.length > 0){
 
-      fetch("http://inspo-homes-api.herokuapp.com/jobs/upload", {
+      fetch("https://inspo-homes-api.herokuapp.com/jobs/upload", {
       // fetch("http://localhost:5000/jobs/upload", {
         method: "POST",
         body: uploadform,
@@ -188,7 +188,7 @@ function JobsPage(props) {
         
         console.log(payload);
         
-        return fetch(`http://inspo-homes-api.herokuapp.com/jobs/${form.jobId}/${form.stageId}`, {
+        return fetch(`https://inspo-homes-api.herokuapp.com/jobs/${form.jobId}/${form.stageId}`, {
         // return fetch(`http://localhost:5000/jobs/${form.jobId}/${form.stageId}`, {
           body: JSON.stringify(payload),
           method: "PATCH",

@@ -19,7 +19,7 @@ function App() {
   // let history = useHistory()
 
   useEffect(() => {
-    fetch("http://inspo-homes-api.herokuapp.com/users/me", {
+    fetch("https://inspo-homes-api.herokuapp.com/users/me", {
     // fetch("http://localhost:5000/users/me", {
       credentials: 'include'
     })
