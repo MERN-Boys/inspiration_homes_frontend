@@ -1,5 +1,5 @@
-import Jumbotron from "react-bootstrap/jumbotron";
-import Container from "react-bootstrap/container";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Container from "react-bootstrap/Container";
 import JobsPage from "./JobsPage.jsx"
 import logo from "../images/logo.png"
 
