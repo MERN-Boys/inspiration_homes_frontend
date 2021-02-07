@@ -235,11 +235,10 @@ function JobsPage(props) {
                     <p>
                       Total Build Cost To Date:
                       {job.stages.map((stage, index) => {
-                        return (index === 0
-                          ? (totalPaid = 0)
-                          : (totalPaid += stage.paid))
+                        index === 0 ? totalPaid = 0 : totalPaid += stage.paid
+                        return (index === job.stages.length - 1 ? ` $${totalPaid}` : <React.Fragment key={index}></React.Fragment>)
                       })}
-                      {` $${totalPaid}`}
+                      {/* {` $${totalPaid}`} */}
                     </p>
                     <p>Design Docs:</p>
                     <ul>
