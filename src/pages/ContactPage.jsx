@@ -1,11 +1,11 @@
 import React from 'react'
-import Jumbotron from "react-bootstrap/jumbotron"
-import Button from "react-bootstrap/button"
-import {useState} from "react"
+import Jumbotron from "react-bootstrap/Jumbotron"
+import Button from "react-bootstrap/Button"
+import {useState, useEffect} from "react"
 import {withRouter} from "react-router-dom"
 import Form from './Form'
 
-function ContactPage({loggedInUser, history}) {
+function ContactPage({loggedInUser, setLoggedInUser, history, urlDomain}) {
 
   // const [formData, setFormData] = useState();
 
@@ -20,7 +20,9 @@ function ContactPage({loggedInUser, history}) {
   const addressInput = React.useRef();
   const fileInput = React.useRef();
 
-  
+  useEffect(() => {
+    console.log(loggedInUser); // using camelCase for variable name is recommended.
+  }, [loggedInUser]);
 
   const handleClick = (event) => {
       event.preventDefault();
@@ -40,7 +42,7 @@ function ContactPage({loggedInUser, history}) {
     console.log(Object.entries(form).length)
     //if docs
     if (fileInput.current.files.length > 0){
-      fetch("http://localhost:5000/jobs/upload", {
+      fetch(`${urlDomain}/jobs/upload`, {
         method: "POST",
         body: form,
         credentials: 'include'
@@ -58,7 +60,7 @@ function ContactPage({loggedInUser, history}) {
 
           console.log(payload)
           
-          return fetch("http://localhost:5000/jobs/", {
+          return fetch(`${urlDomain}/jobs`, {
               body: JSON.stringify(payload),
               method: "POST",
               headers: {
@@ -69,6 +71,9 @@ function ContactPage({loggedInUser, history}) {
       })
       .then(data => data.json())
       .then(job => {
+        if(job.user){
+          setLoggedInUser(job.user)
+        }
         console.log(job)
         history.push("/") 
       })
@@ -84,7 +89,7 @@ function ContactPage({loggedInUser, history}) {
         "designDocs": []
       }
 
-      fetch("http://localhost:5000/jobs/", {
+      fetch(`${urlDomain}/jobs/`, {
             body: JSON.stringify(payload),
             method: "POST",
             headers: {
@@ -94,7 +99,9 @@ function ContactPage({loggedInUser, history}) {
       })
       .then(data => data.json())
       .then(job => {
-        console.log(job)
+        if(job.user){
+          setLoggedInUser(job.user)
+        }
         history.push("/") 
       })
       .catch((error) => console.log(error))
