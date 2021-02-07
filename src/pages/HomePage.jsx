@@ -7,6 +7,7 @@ import logo from "../images/logo.png"
 function HomePage(props) {
   const loggedInUser = props.loggedInUser
   const setLoggedInUser = props.setLoggedInUser
+  console.log(loggedInUser)
   return (
     <>
       {loggedInUser === false || loggedInUser === null ? (

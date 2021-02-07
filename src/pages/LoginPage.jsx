@@ -13,8 +13,8 @@ function LoginPage(props) {
 
   const handleLogin = (e, form) => {
     e.preventDefault()
-    fetch("http://inspo-homes-api.herokuapp.com/users/login", {
-    // fetch("http://localhost:5000/users/login", {
+    // fetch("http://inspo-homes-api.herokuapp.com/users/login", {
+    fetch("http://localhost:5000/users/login", {
       body: JSON.stringify(form),
       method: "POST",
       headers: {
@@ -25,6 +25,7 @@ function LoginPage(props) {
     .then(data => data.json())
     .then(user => {
         if (user) {
+          console.log(user)
           setLoggedInUser(user.user)
           props.history.push("/") 
         }
