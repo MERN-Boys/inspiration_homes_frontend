@@ -43,7 +43,6 @@ function ContactPage({loggedInUser, setLoggedInUser, history, urlDomain}) {
     //if docs
     if (fileInput.current.files.length > 0){
       fetch(`${urlDomain}/jobs/upload`, {
-      // fetch("http://localhost:5000/jobs/upload", {
         method: "POST",
         body: form,
         credentials: 'include'
@@ -61,8 +60,7 @@ function ContactPage({loggedInUser, setLoggedInUser, history, urlDomain}) {
 
           console.log(payload)
           
-          return fetch(`${urlDomain}/jobs/`, {
-          // return fetch("http://localhost:5000/jobs/", {
+          return fetch(`${urlDomain}/jobs`, {
               body: JSON.stringify(payload),
               method: "POST",
               headers: {
