@@ -6,6 +6,8 @@ import Form from './Form'
 function LoginPage(props) {
   const loggedInUser = props.loggedInUser
   const setLoggedInUser = props.setLoggedInUser
+  const urlDomain = props.urlDomain
+
   console.log("login page frontend")
   const dummyRef = React.useRef()
 
@@ -13,8 +15,7 @@ function LoginPage(props) {
 
   const handleLogin = (e, form) => {
     e.preventDefault()
-    fetch("https://inspo-homes-api.herokuapp.com/users/login/", {
-    // fetch("http://localhost:5000/users/login", {
+    fetch(`${urlDomain}/users/login`, {
       body: JSON.stringify(form),
       method: "POST",
       headers: {

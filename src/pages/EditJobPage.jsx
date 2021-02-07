@@ -5,7 +5,7 @@ import {useState, useEffect} from "react"
 import {withRouter} from "react-router-dom"
 import Form from './Form'
 
-function EditJobPage({loggedInUser, history, match}) {
+function EditJobPage({loggedInUser, history, match, urlDomain}) {
   const [jobObj, setJobObj] = useState({
     buildAddress: "",
     description: ""
@@ -13,8 +13,7 @@ function EditJobPage({loggedInUser, history, match}) {
 
 
   useEffect(() => {
-    fetch(`https://inspo-homes-api.herokuapp.com/jobs/${match.params.id}`, {
-    // fetch(`http://localhost:5000/jobs/${match.params.id}`, {
+    fetch(`${urlDomain}/jobs/${match.params.id}`, {
       credentials: 'include'
     })
     .then(data => data.json())
@@ -50,8 +49,7 @@ function EditJobPage({loggedInUser, history, match}) {
 
     //if docs
     if (fileInput.current.files.length > 0){
-      fetch("https://inspo-homes-api.herokuapp.com/jobs/upload", {
-      // fetch("http://localhost:5000/jobs/upload", {
+      fetch(`${urlDomain}/jobs/upload`, {
         method: "POST",
         body: form,
         credentials: 'include'
@@ -68,8 +66,7 @@ function EditJobPage({loggedInUser, history, match}) {
 
           console.log(payload)
           
-          return fetch(`https://inspo-homes-api.herokuapp.com/jobs/${match.params.id}`, {
-          // return fetch(`http://localhost:5000/jobs/${match.params.id}`, {
+          return fetch(`${urlDomain}/jobs/${match.params.id}`, {
               body: JSON.stringify(payload),
               method: "PATCH",
               headers: {
@@ -94,8 +91,7 @@ function EditJobPage({loggedInUser, history, match}) {
         "designDocs": []
       }
 
-      fetch(`https://inspo-homes-api.herokuapp.com/jobs/${match.params.id}`, {
-      // fetch(`http://localhost:5000/jobs/${match.params.id}`, {
+      fetch(`${urlDomain}/jobs/${match.params.id}`, {
             body: JSON.stringify(payload),
             method: "PATCH",
             headers: {

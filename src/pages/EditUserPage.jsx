@@ -5,6 +5,7 @@ import Form from './Form'
 function SignUpPage(props) {
     const loggedInUser = props.loggedInUser
     const setLoggedInUser = props.setLoggedInUser
+    const urlDomain = props.urlDomain
 
     const dummyRef = React.useRef()
 
@@ -17,8 +18,7 @@ function SignUpPage(props) {
       && form.email 
       && form.password
       && form.confirm === form.password){
-      fetch(`https://inspo-homes-api.herokuapp.com/users/${loggedInUser._id}`, {
-      // fetch(`http://localhost:5000/users/${loggedInUser._id}`, {
+      fetch(`${urlDomain}/users/${loggedInUser._id}`, {
         body: JSON.stringify(form),
         method: "PUT",
         headers: {

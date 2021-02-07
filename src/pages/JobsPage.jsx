@@ -9,29 +9,29 @@ import { Link } from "react-router-dom";
 function JobsPage(props) {
   const loggedInUser = props.loggedInUser;
   const setLoggedInUser = props.setLoggedInUser;
+  const urlDomain = props.urlDomain;
   const [jobs, setJobs] = useState([]);
 
   const fileInput = React.useRef();
 
-  useEffect(() => {
-    fetch("https://inspo-homes-api.herokuapp.com/users/me/", {
-    // fetch("http://localhost:5000/users/me", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((data) => data.json())
-      .then((user) => {
-        console.log("GETTING USER OBJ JOBSPAGE")
-        console.log(user)
-        if (user) {
-          setLoggedInUser(user.user);
-        }
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`${urlDomain}/users/me/`, {
+  //   // fetch("http://localhost:5000/users/me", {
+  //     method: "GET",
+  //     credentials: "include",
+  //   })
+  //     .then((data) => data.json())
+  //     .then((user) => {
+  //       console.log("GETTING USER OBJ JOBSPAGE")
+  //       console.log(user)
+  //       if (user) {
+  //         setLoggedInUser(user.user);
+  //       }
+  //     });
+  // }, []);
 
   useEffect(() => {
-    fetch(`https://inspo-homes-api.herokuapp.com/jobs/get/`, {
-    // fetch(`http://localhost:5000/jobs/get`, {
+    fetch(`${urlDomain}/jobs/get`, {
       body: JSON.stringify({ user: loggedInUser }),
       method: "POST",
       headers: {
@@ -69,8 +69,7 @@ function JobsPage(props) {
       "owed": stageCost,
     };
 
-    fetch(`https://inspo-homes-api.herokuapp.com/jobs/${form.jobId}/${form.stageId}`, {
-      // fetch(`http://localhost:5000/jobs/${form.jobId}/${form.stageId}`, {
+    fetch(`${urlDomain}/jobs/${form.jobId}/${form.stageId}`, {
       method: "PATCH",
       body: JSON.stringify(payload),
       credentials: "include",
@@ -97,8 +96,7 @@ function JobsPage(props) {
         },
       ],
     };
-    fetch(`https://inspo-homes-api.herokuapp.com/jobs/${form.jobId}/${form.stageId}`, {
-    // fetch(`http://localhost:5000/jobs/${form.jobId}/${form.stageId}`, {
+    fetch(`${urlDomain}/jobs/${form.jobId}/${form.stageId}`, {
       method: "PATCH",
       body: JSON.stringify(payload),
       credentials: "include",
@@ -122,8 +120,7 @@ function JobsPage(props) {
       "status": "Complete",
     };
     console.log(payload);
-    fetch(`https://inspo-homes-api.herokuapp.com/jobs/${jobId}/0`, {
-    // fetch(`http://localhost:5000/jobs/${jobId}/0`, {
+    fetch(`${urlDomain}/jobs/${jobId}/0`, {
       method: "PATCH",
       body: JSON.stringify(payload),
       credentials: "include",
@@ -147,8 +144,7 @@ function JobsPage(props) {
       "owed": 0,
     };
     console.log(payload);
-    fetch(`https://inspo-homes-api.herokuapp.com/jobs/${jobId}/${stageId}`, {
-    // fetch(`http://localhost:5000/jobs/${jobId}/${stageId}`, {
+    fetch(`${urlDomain}/jobs/${jobId}/${stageId}`, {
       method: "PATCH",
       body: JSON.stringify(payload),
       credentials: "include",
@@ -175,8 +171,7 @@ function JobsPage(props) {
 
     if(fileInput.current.files.length > 0){
 
-      fetch("https://inspo-homes-api.herokuapp.com/jobs/upload", {
-      // fetch("http://localhost:5000/jobs/upload", {
+      fetch(`${urlDomain}/jobs/upload`, {
         method: "POST",
         body: uploadform,
         credentials: 'include'
@@ -191,8 +186,7 @@ function JobsPage(props) {
         
         console.log(payload);
         
-        return fetch(`https://inspo-homes-api.herokuapp.com/jobs/${form.jobId}/${form.stageId}`, {
-        // return fetch(`http://localhost:5000/jobs/${form.jobId}/${form.stageId}`, {
+        return fetch(`${urlDomain}/jobs/${form.jobId}/${form.stageId}`, {
           body: JSON.stringify(payload),
           method: "PATCH",
           headers: {

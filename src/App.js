@@ -15,12 +15,12 @@ import LoginPage from './pages/LoginPage'
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(false) 
 
-  // console.log(withRouter)
-  // let history = useHistory()
+  //change url from deployed to local here
+  const urlDomain = "https://inspo-homes-api.herokuapp.com"
+  // const urlDomain = "http://localhost:5000"
 
   useEffect(() => {
-    fetch("https://inspo-homes-api.herokuapp.com/users/me/", {
-    // fetch("http://localhost:5000/users/me", {
+    fetch(`${urlDomain}/users/me/`, {
       method: "GET",
       credentials: 'include'
     })
@@ -39,16 +39,17 @@ function App() {
         <SiteNav />
 
         <Switch>
-          <Route exact path="/jobs/:id" render={(props) => <EditJobPage {...props} loggedInUser={loggedInUser}/>} />
+          <Route exact path="/jobs/:id" render={(props) => <EditJobPage {...props} loggedInUser={loggedInUser} urlDomain={urlDomain}/>} />
           <Route exact path="/gallery" render={() => <GalleryPage />} />
           <Route exact path="/about" render={() => <AboutPage />} />
-          <Route exact path="/contact" render={() => <ContactPage loggedInUser={loggedInUser} />} />
+          <Route exact path="/contact" render={() => <ContactPage loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} urlDomain={urlDomain}/>} />
 
           <Route
             exact path="/users/login" render={() => 
               <LoginPage 
               loggedInUser={loggedInUser} 
               setLoggedInUser={setLoggedInUser} 
+              urlDomain={urlDomain}
               />} 
           />
 
@@ -56,20 +57,31 @@ function App() {
             exact path="/users/register" render={() => 
               <SignUpPage 
               loggedInUser={loggedInUser} 
-              setLoggedInUser={setLoggedInUser} />} 
+              setLoggedInUser={setLoggedInUser} 
+              urlDomain={urlDomain}
+              />} 
           />
 
           <Route 
             exact path="/users/:id" render={(props) => 
               <EditUserPage {...props} 
               loggedInUser={loggedInUser} 
-              setLoggedInUser={setLoggedInUser}/>} 
+              setLoggedInUser={setLoggedInUser}
+              urlDomain={urlDomain}
+              />} 
           />
           
-          <Route exact path="/" render={() => <HomePage loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
+          <Route exact path="/" render={() => 
+            <HomePage 
+            loggedInUser={loggedInUser} 
+            setLoggedInUser={setLoggedInUser} 
+            urlDomain={urlDomain} 
+            />} 
+          />
+
           <Route path = "/" render={() => <h1>404 page not found</h1> }/>
         </Switch>
-        <Footer loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/>
+        <Footer loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} urlDomain={urlDomain}/>
       </BrowserRouter>
   );
 }

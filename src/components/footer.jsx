@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom'
 export default function Footer(props) {
   const loggedInUser = props.loggedInUser
   const setLoggedInUser = props.setLoggedInUser
+  const urlDomain = props.urlDomain
 
   const handleLogout = (e) => {
     e.preventDefault()
-    fetch("https://inspo-homes-api.herokuapp.com/users/logout", {
+    fetch(`${urlDomain}/users/logout`, {
     // fetch("http://localhost:5000/users/logout", {
       body: null,
       method: "GET",

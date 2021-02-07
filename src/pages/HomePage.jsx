@@ -7,6 +7,7 @@ import logo from "../images/logo.png"
 function HomePage(props) {
   const loggedInUser = props.loggedInUser
   const setLoggedInUser = props.setLoggedInUser
+  const urlDomain = props.urlDomain;
   console.log(loggedInUser)
   return (
     <>
@@ -35,6 +36,7 @@ function HomePage(props) {
         <JobsPage
           loggedInUser={loggedInUser}
           setLoggedInUser={setLoggedInUser}
+          urlDomain={urlDomain}
         />
       )}
     </>
