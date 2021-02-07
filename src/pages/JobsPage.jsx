@@ -229,7 +229,7 @@ function JobsPage(props) {
               <Accordion.Collapse eventKey="1">
                 <Card.Body>
                   <>
-                    <p>Job is Complete?: {`${job.jobComplete}`}</p>
+                    {/* <p>Job is Complete?: {`${job.jobComplete}`}</p> */}
                     <p>Job Description: {job.description}</p>
                     <p>Job Client: {job.client}</p>
                     <p>Job Address: {job.buildAddress}</p>
@@ -307,14 +307,14 @@ function JobsPage(props) {
                                         <></>
                                       )}
                                       <p>Funds Paid: {stage.paid}</p>
-                                      <p>
+                                      <div>
                                         Stage Images:{" "}
                                         {stage.pictures.map((picture) => (
                                           <li>
                                             <img src={picture.link}></img>
                                           </li>
                                         ))}
-                                      </p>
+                                      </div>
                                       {loggedInUser.role === "Builder" && stage.status === "InProgress" ? (
                                         <Form 
                                           jobId={job._id}
@@ -331,7 +331,7 @@ function JobsPage(props) {
                                       ) : (
                                         <></>
                                       )}
-                                        <p>
+                                        <div>
                                           Stage Comments:{" "}
                                           {stage.comments.map((comment) => (
                                             // <li>
@@ -367,7 +367,7 @@ function JobsPage(props) {
                                           ) : (
                                             <></>
                                           )}
-                                        </p>
+                                        </div>
                                       </li>
                                     }
                                   </Card.Body>
