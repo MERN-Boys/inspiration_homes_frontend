@@ -1,4 +1,4 @@
-import Jumbotron from 'react-bootstrap/jumbotron';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 
 function AboutPage() {
   return (
