@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom'
 export default function Footer(props) {
   const loggedInUser = props.loggedInUser
   const setLoggedInUser = props.setLoggedInUser
+  const urlDomain = props.urlDomain
 
-  const handleLogout = (e, form) => {
+  const handleLogout = (e) => {
     e.preventDefault()
-    fetch("http://localhost:5000/users/logout", {
+    fetch(`${urlDomain}/users/logout`, {
+    // fetch("http://localhost:5000/users/logout", {
       body: null,
       method: "GET",
       headers: {

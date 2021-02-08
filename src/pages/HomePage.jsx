@@ -1,5 +1,5 @@
-import Jumbotron from "react-bootstrap/jumbotron";
-import Container from "react-bootstrap/container";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Container from "react-bootstrap/Container";
 import JobsPage from "./JobsPage.jsx"
 import logo from "../images/logo.png"
 
@@ -7,6 +7,8 @@ import logo from "../images/logo.png"
 function HomePage(props) {
   const loggedInUser = props.loggedInUser
   const setLoggedInUser = props.setLoggedInUser
+  const urlDomain = props.urlDomain;
+  console.log(loggedInUser)
   return (
     <>
       {loggedInUser === false || loggedInUser === null ? (
@@ -34,6 +36,7 @@ function HomePage(props) {
         <JobsPage
           loggedInUser={loggedInUser}
           setLoggedInUser={setLoggedInUser}
+          urlDomain={urlDomain}
         />
       )}
     </>

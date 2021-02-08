@@ -1,4 +1,6 @@
 import {useState, useEffect} from "react"
+import React from 'react'
+
 
 export default function Form({stageId, jobId, handleSubmit, formFields, formTypes, multiple, refers, title, defaultValue}) {
 
@@ -30,12 +32,14 @@ export default function Form({stageId, jobId, handleSubmit, formFields, formType
 
     const handleChange = (e, index) => {
         let value = ''
+        e = e || window.event;
+
         if (e.target.name === "Work Complete"){
             value = e.target.checked
         }
         else if (e.target.name === "Images"){
-            value = e.target.value
-            refers[index].current.files = e.target.files
+          value = e.target.value
+          // refers[index].current.files = e.target.files
         }
         else{
             value = e.target.value
@@ -45,25 +49,30 @@ export default function Form({stageId, jobId, handleSubmit, formFields, formType
     }
 
     return (
-    <form onSubmit={(event) => handleSubmit(event, formData)}>
+      <form onSubmit={(event) => handleSubmit(event, formData)}>
         {formFields.map((field, index) => (
-            <>
-                <div hidden>{CustomInput = formTypes[index] == "textarea" ? "textarea" : "input"}</div>
-                <div key={index}>
-                    <label htmlFor={field}>{field}</label>
-                    
-                    <CustomInput 
-                        name={field} 
-                        type={formTypes[index]} 
-                        multiple={multiple[index]} 
-                        ref={refers[index]}  
-                        onChange={(e) => handleChange(e, index)}
-                        value={formData[field]}
-                    />
-                </div>
-            </>
+          <React.Fragment key={index}>
+            <div hidden>
+              {
+                (CustomInput =
+                  formTypes[index] == "textarea" ? "textarea" : "input")
+              }
+            </div>
+            <div key={index}>
+              <label htmlFor={field}>{field}</label>
+
+              <CustomInput
+                name={field}
+                type={formTypes[index]}
+                multiple={multiple[index]}
+                ref={refers[index]}
+                onChange={(event) => handleChange(event, index)}
+                value={formData[field]}
+              />
+            </div>
+          </React.Fragment>
         ))}
         <button>{title}</button>
-    </form>
-    )
+      </form>
+    );
 }

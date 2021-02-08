@@ -1,11 +1,11 @@
 import React from 'react'
-import Jumbotron from "react-bootstrap/jumbotron"
-import Button from "react-bootstrap/button"
+import Jumbotron from "react-bootstrap/Jumbotron"
+import Button from "react-bootstrap/Button"
 import {useState, useEffect} from "react"
 import {withRouter} from "react-router-dom"
 import Form from './Form'
 
-function EditJobPage({loggedInUser, history, match}) {
+function EditJobPage({loggedInUser, history, match, urlDomain}) {
   const [jobObj, setJobObj] = useState({
     buildAddress: "",
     description: ""
@@ -13,7 +13,7 @@ function EditJobPage({loggedInUser, history, match}) {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/jobs/${match.params.id}`, {
+    fetch(`${urlDomain}/jobs/${match.params.id}`, {
       credentials: 'include'
     })
     .then(data => data.json())
@@ -25,13 +25,6 @@ function EditJobPage({loggedInUser, history, match}) {
     })
     .catch(error => console.log(error))
   }, [])
-
-  // const handleChange = (e) => {
-  //   console.log(e.target.name);
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
-
-  // const handleSubmit = (e) => {};
 
   const descriptionInput = React.useRef();
   const addressInput = React.useRef();
@@ -53,12 +46,10 @@ function EditJobPage({loggedInUser, history, match}) {
     for (let i = 0; i < fileInput.current.files.length; i++) {
         form.append(fileInput.current.files[i].name, fileInput.current.files[i])
     }
-    console.log(loggedInUser)
-    // console.log(Object.entries(form).length)
 
     //if docs
     if (fileInput.current.files.length > 0){
-      fetch("http://localhost:5000/jobs/upload", {
+      fetch(`${urlDomain}/jobs/upload`, {
         method: "POST",
         body: form,
         credentials: 'include'
@@ -75,7 +66,7 @@ function EditJobPage({loggedInUser, history, match}) {
 
           console.log(payload)
           
-          return fetch(`http://localhost:5000/jobs/${match.params.id}`, {
+          return fetch(`${urlDomain}/jobs/${match.params.id}`, {
               body: JSON.stringify(payload),
               method: "PATCH",
               headers: {
@@ -100,7 +91,7 @@ function EditJobPage({loggedInUser, history, match}) {
         "designDocs": []
       }
 
-      fetch(`http://localhost:5000/jobs/${match.params.id}`, {
+      fetch(`${urlDomain}/jobs/${match.params.id}`, {
             body: JSON.stringify(payload),
             method: "PATCH",
             headers: {

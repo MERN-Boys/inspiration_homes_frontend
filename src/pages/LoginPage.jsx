@@ -6,6 +6,8 @@ import Form from './Form'
 function LoginPage(props) {
   const loggedInUser = props.loggedInUser
   const setLoggedInUser = props.setLoggedInUser
+  const urlDomain = props.urlDomain
+
   console.log("login page frontend")
   const dummyRef = React.useRef()
 
@@ -13,7 +15,7 @@ function LoginPage(props) {
 
   const handleLogin = (e, form) => {
     e.preventDefault()
-    fetch("http://localhost:5000/users/login", {
+    fetch(`${urlDomain}/users/login`, {
       body: JSON.stringify(form),
       method: "POST",
       headers: {
@@ -24,6 +26,7 @@ function LoginPage(props) {
     .then(data => data.json())
     .then(user => {
         if (user) {
+          console.log(user)
           setLoggedInUser(user.user)
           props.history.push("/") 
         }

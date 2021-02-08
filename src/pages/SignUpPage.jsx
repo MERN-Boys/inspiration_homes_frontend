@@ -5,6 +5,7 @@ import Form from './Form'
 function SignUpPage(props) {
     const loggedInUser = props.loggedInUser
     const setLoggedInUser = props.setLoggedInUser
+    const urlDomain = props.urlDomain
 
     const dummyRef = React.useRef()
 
@@ -12,7 +13,7 @@ function SignUpPage(props) {
 
   const handleSignup = (e, form) => {
     e.preventDefault()
-    fetch("http://localhost:5000/users/register", {
+    fetch(`${urlDomain}/users/register`, {
       body: JSON.stringify(form),
       method: "POST",
       headers: {
