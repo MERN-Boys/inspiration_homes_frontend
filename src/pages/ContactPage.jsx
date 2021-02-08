@@ -113,13 +113,15 @@ if (loggedInUser) {
   return (
     <Jumbotron
       fluid
+      className="homePageContainer"
       style={{
-        "textAlign": "center",
-        "marginBottom": "0",
-        "display": "flex",
-        "flexDirection": "column",
-        "justifyContent": "center",
-        "alignItems": "center",
+        backgroundColor: "transparent",
+        textAlign: "center",
+        marginBottom: "0",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       <h1>Contact us with your idea and take your project to the next stage</h1>
@@ -174,13 +176,15 @@ else {
   return (
   <Jumbotron
       fluid
+      className="homePageContainer"
       style={{
-        "textAlign": "center",
-        "marginBottom": "0",
-        "display": "flex",
-        "flexDirection": "column",
-        "justifyContent": "center",
-        "alignItems": "center",
+        backgroundColor: "transparent",
+        textAlign: "center",
+        marginBottom: "0",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       <h1>Contact Inspiration Homes!</h1>

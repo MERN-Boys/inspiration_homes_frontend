@@ -6,9 +6,11 @@ function AboutPage() {
       <Jumbotron
         id="AboutContainer"
         // style={{ padding: "1%", height: "86vh", "margin-bottom": "0" }}
+        // className="homePageContainer"
         style={{
           textAlign: "center",
           marginBottom: "0",
+          backgroundColor: "transparent",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
