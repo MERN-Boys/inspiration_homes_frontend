@@ -4,33 +4,28 @@ describe("login", () => {
   const name = "Eric Chan";
   const email = "hello@cypress.io";
   const password = "password";
-  const jobtitle = "Job titlleee6eeeee"
+  const jobtitle = "Job titllffgg5dejgjjkcjjjcbeeefff6eeeee"
 
   //   beforeEach(() => {
   //     cy.visit("http://localhost:3000");
   //   });
 
-  it("Log In", () => {
+  it("create job", () => {
     cy.visit("https://inspiration-homes.herokuapp.com/");
     cy.contains("Login").click();
     cy.url().should("include", "login");
     cy.get("input[name=email]").type(email);
-
     cy.get("input[name=password]").type(password);
-
-    
-
     cy.contains("Log In!").click();
     cy.wait(1500);
-
     cy.contains("Contact").click();
     cy.url().should("include", "contact");
     cy.get("textarea[name=Description]").type("Big Description");
     cy.get("input[name=BuildAddress]").type(jobtitle);
-    cy.get("input[name=DesignDocuments]").click().attachFile("logo.png");
+    cy.get("input[name=DesignDocuments]").click().attachFile("matt_and_his_dog.png");
     cy.contains("Create Job!").click();
-    cy.wait(2000);
-    cy.wait(2000)
-    cy.contains(jobtitle);
+    cy.wait(10000);
+    cy.contains(jobtitle).click();
+    cy.get('[alt="design document"]').should('be.visible');   
   });
 });

@@ -25,6 +25,7 @@ describe("login", () => {
     cy.get("textarea[name=Description]").type("Big Description")
     cy.get("input[name=BuildAddress]").type("Job Title")
     cy.contains("Create Job!").click()
+    cy.wait(10000)
     cy.contains("Job Title");
     
   });
