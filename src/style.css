@@ -59,10 +59,11 @@
 #AboutImageContainer {
     width: 50%;
 }
-#AboutContentContainer {
+#AboutTextContainer {
     text-align: center;
     width: 50%;
     margin: 0;
+    margin-left: 50px;
 }
 
 
@@ -88,7 +89,7 @@ h6 {
 
 
 /* login page */
-#loginDiv {
+.loginDiv {
     display: flex;
     justify-content: center;
     align-items: center;

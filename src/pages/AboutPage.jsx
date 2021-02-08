@@ -30,7 +30,7 @@ function AboutPage() {
               href=""
             />
           </div>
-          <div id="AboutContentContainer" className="page-body">
+          <div id="AboutTextContainer" className="page-body">
             <h1 className="display-4">Inspiration Homes</h1>
             <p className="lead">
               <strong>OUR COMMITMENT</strong> For us here At Inspiration Homes,

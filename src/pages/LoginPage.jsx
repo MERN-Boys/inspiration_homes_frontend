@@ -47,7 +47,7 @@ function LoginPage(props) {
     {!loggedInUser
     || loggedInUser == false 
     || loggedInUser.user == null ? (
-      <div id="loginDiv">
+      <div className="loginDiv">
         <div>
           <h2>Login</h2>
         </div>
