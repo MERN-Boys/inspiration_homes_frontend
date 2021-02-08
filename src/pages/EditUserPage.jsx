@@ -58,15 +58,17 @@ function SignUpPage(props) {
     || loggedInUser == false ? (
       <></>
     ) : (
-      <div>
-      <h2>Edit Details</h2>
-      <Form handleSubmit={handleSignup} 
-        formFields={["name", "email", "password", "confirm"]} 
-        formTypes={["text", "text", "password", "password"]}
-        multiple={[false, false, false, false]} 
-        refers={[dummyRef, dummyRef, dummyRef, dummyRef]}
-        defaultValue={[null, null, null, null]}   
-        title="Confirm Changes!" />
+      <div className="page-body loginDiv">
+          <h2>Edit Details</h2>
+        <div>
+        <Form handleSubmit={handleSignup} 
+          formFields={["name", "email", "password", "confirm"]} 
+          formTypes={["text", "text", "password", "password"]}
+          multiple={[false, false, false, false]} 
+          refers={[dummyRef, dummyRef, dummyRef, dummyRef]}
+          defaultValue={[null, null, null, null]}   
+          title="Confirm Changes!" />
+        </div>
       </div>
     )}
     </>
