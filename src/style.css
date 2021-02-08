@@ -59,10 +59,11 @@
 #AboutImageContainer {
     width: 50%;
 }
-#AboutContentContainer {
+#AboutTextContainer {
     text-align: center;
     width: 50%;
     margin: 0;
+    margin-left: 50px;
 }
 
 
