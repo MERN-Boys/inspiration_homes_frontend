@@ -24,7 +24,7 @@ function HomePage(props) {
         >
           <Container style={{ width: "100%", margin: "0", padding: "0" }}>
             <img
-              style={{ minHeight: "40vh", width: "70%", maxHeight: "60vh" }}
+              style={{ minHeight: "40vh", width: "70%", maxHeight: "60vh" , border: "5px solid #343a40", borderRadius: "10px", opacity: "80%"}}
               alt="placeholder"
               src={logo}
               href=""
