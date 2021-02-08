@@ -66,7 +66,7 @@ function SignUpPage(props) {
           formTypes={["text", "text", "password", "password"]}
           multiple={[false, false, false, false]} 
           refers={[dummyRef, dummyRef, dummyRef, dummyRef]}
-          defaultValue={[null, null, null, null]}   
+          defaultValue={[loggedInUser.name, loggedInUser.email, null, null]}   
           title="Confirm Changes!" />
         </div>
       </div>
