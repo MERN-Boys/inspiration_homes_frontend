@@ -7,15 +7,6 @@ import Form from './Form'
 
 function ContactPage({loggedInUser, setLoggedInUser, history, urlDomain}) {
 
-  // const [formData, setFormData] = useState();
-
-  // const handleChange = (e) => {
-  //   console.log(e.target.name);
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
-
-  // const handleSubmit = (e) => {};
-
   const descriptionInput = React.useRef();
   const addressInput = React.useRef();
   const fileInput = React.useRef();
@@ -135,40 +126,6 @@ if (loggedInUser) {
         defaultValue={[null, null, null]} 
         title="Create Job!" 
       />
-      
-      {/* <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-        onSubmit={(event) => handleSubmit(event, formData)}
-      >
-        <section>
-          <div>
-            <label htmlFor="jobTitle">Job Title</label>
-          </div>
-          <div>
-            <input name="jobTitle" onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor="jobAddress">Job Address</label>
-          </div>
-          <div>
-            <input name="jobAddress" onChange={handleChange} />
-          </div>
-        </section>
-        <section>
-          <div>
-            <label>Job Description:</label>
-          </div>
-          <div>
-            <textarea onChange={handleChange} />
-          </div>
-        </section>
-      </form> */}
     </Jumbotron>
   );
 }
