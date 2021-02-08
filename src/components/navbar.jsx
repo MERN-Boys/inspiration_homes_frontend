@@ -7,7 +7,7 @@ function SiteNav() {
   return (
     <>
       <Navbar bg="dark" expand="lg" style={{"minHeight": "55px"}} className="page-header" >
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" style={{"zIndex": "999", "filter": "invert(100%)"}}/>
         <Navbar.Collapse id="basic-navbar-nav" style={{"zIndex": "999"}}>
           <Nav id="dropDownNavBox" className="mr-auto" style={{ "justifyContent": "spaceAround"}}>
             <Link to="/" className="nav-link" >Home</Link>

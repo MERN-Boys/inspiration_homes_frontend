@@ -23,10 +23,11 @@ export default function Footer(props) {
 
   return (
     <div id="footerContainer" className="page-footer">
-      <div id="footerLogo">
+      <div id="footerLogo"  style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+        <img src={"/blue-house-hi3.png"} style={{height: "40px", marginLeft: "5px", marginRight: "10px"}}></img>
         <h6>Inspiration homes</h6>
       </div>
-      <div id="footerGreeting">
+      <div id="footerGreeting" style={{ margin: "5px"}}>
         {loggedInUser == false || loggedInUser == null ? (
           <>
             <Button
@@ -45,13 +46,13 @@ export default function Footer(props) {
           </>
         ) : (
           <>
-            <h6 style={{ padding: "5px" }}>Welcome {loggedInUser.name}</h6>
-            <Button style={{ marginRight: "5px" }}>
+            <h6 style={{ marginRight: "10px", padding: "5px" }}>Welcome {loggedInUser.name}</h6>
+            <Button className="text-nowrap" style={{ marginRight: "5px"}}>
               <Link to={`/users/${loggedInUser._id}`} className="nav-link">
                 Edit Details
               </Link>
             </Button>
-            <Button onClick={handleLogout} style={{ marginRight: "5px" }}>
+            <Button onClick={handleLogout} style={{ marginRight: "5px"}}>
               <Link to={""} className="nav-link">
                 Logout
               </Link>
