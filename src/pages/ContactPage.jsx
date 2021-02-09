@@ -11,9 +11,9 @@ function ContactPage({loggedInUser, setLoggedInUser, history, urlDomain}) {
   const addressInput = React.useRef();
   const fileInput = React.useRef();
 
-  useEffect(() => {
-    console.log(loggedInUser); // using camelCase for variable name is recommended.
-  }, [loggedInUser]);
+  // useEffect(() => {
+  //   console.log(loggedInUser); // using camelCase for variable name is recommended.
+  // }, [loggedInUser]);
 
   const handleClick = (event) => {
       event.preventDefault();
@@ -29,8 +29,8 @@ function ContactPage({loggedInUser, setLoggedInUser, history, urlDomain}) {
     for (let i = 0; i < fileInput.current.files.length; i++) {
         form.append(fileInput.current.files[i].name, fileInput.current.files[i])
     }
-    console.log(loggedInUser)
-    console.log(Object.entries(form).length)
+    // console.log(loggedInUser)
+    // console.log(Object.entries(form).length)
     //if docs
     if (fileInput.current.files.length > 0){
       fetch(`${urlDomain}/jobs/upload`, {
@@ -40,7 +40,7 @@ function ContactPage({loggedInUser, setLoggedInUser, history, urlDomain}) {
       })
       .then(data => data.json())
       .then(data => {
-          console.log(data.locations)
+          // console.log(data.locations)
           //comes back as an array
           const payload = {
               "client": loggedInUser._id,
@@ -49,7 +49,7 @@ function ContactPage({loggedInUser, setLoggedInUser, history, urlDomain}) {
               "designDocs": data.locations
           }
 
-          console.log(payload)
+          // console.log(payload)
           
           return fetch(`${urlDomain}/jobs`, {
               body: JSON.stringify(payload),
@@ -65,10 +65,14 @@ function ContactPage({loggedInUser, setLoggedInUser, history, urlDomain}) {
         if(job.user){
           setLoggedInUser(job.user)
         }
-        console.log(job)
+        // console.log(job)
         history.push("/") 
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        
+        // console.log(error)
+
+      })
     }
     
     //if no docs

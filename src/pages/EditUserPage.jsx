@@ -36,7 +36,10 @@ function SignUpPage(props) {
             setFlashError("Invalid Email or Password")
           }
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+          // console.log(err)
+        } 
+      )
       // .catch((err) => setFlashError(JSON.stringify(err)))
     }
     else{

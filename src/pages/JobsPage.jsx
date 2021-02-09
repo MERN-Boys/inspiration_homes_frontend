@@ -41,7 +41,7 @@ function JobsPage(props) {
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       setJobs(data);
     });
   }, [loggedInUser]);
@@ -79,7 +79,7 @@ function JobsPage(props) {
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       setJobs(data);
     })
 
@@ -106,20 +106,20 @@ function JobsPage(props) {
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       setJobs(data);
     })
   };
 
   const handleApprove = (event, jobId) => {
     event.preventDefault();
-    console.log("approved");
-    console.log(jobId);
+    // console.log("approved");
+    // console.log(jobId);
     const payload = {
       "user": loggedInUser,
       "status": "Complete",
     };
-    console.log(payload);
+    // console.log(payload);
     fetch(`${urlDomain}/jobs/${jobId}/0`, {
       method: "PATCH",
       body: JSON.stringify(payload),
@@ -130,20 +130,20 @@ function JobsPage(props) {
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       setJobs(data);
     })
   };
 
   const handlePayment = (event, jobId, stageId) => {
     event.preventDefault();
-    console.log("payment");
-    console.log(jobId);
+    // console.log("payment");
+    // console.log(jobId);
     const payload = {
       "user": loggedInUser,
       "owed": 0,
     };
-    console.log(payload);
+    // console.log(payload);
     fetch(`${urlDomain}/jobs/${jobId}/${stageId}`, {
       method: "PATCH",
       body: JSON.stringify(payload),
@@ -154,7 +154,7 @@ function JobsPage(props) {
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       setJobs(data);
     })
   };
@@ -184,7 +184,7 @@ function JobsPage(props) {
           "pictures": data.locations
         }
         
-        console.log(payload);
+        // console.log(payload);
         
         return fetch(`${urlDomain}/jobs/${form.jobId}/${form.stageId}`, {
           body: JSON.stringify(payload),
