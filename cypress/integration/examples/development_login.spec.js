@@ -13,9 +13,7 @@ describe("login", () => {
     cy.contains("Login").click();
     cy.url().should("include", "login");
     cy.get("input[name=email]").type(email);
-    
     cy.get("input[name=password]").type(password);
-    
     cy.contains("Log In!").click();
   });
 });
