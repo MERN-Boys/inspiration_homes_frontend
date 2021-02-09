@@ -8,7 +8,7 @@ function LoginPage(props) {
   const setLoggedInUser = props.setLoggedInUser
   const urlDomain = props.urlDomain
 
-  console.log("login page frontend")
+  // console.log("login page frontend")
   const dummyRef = React.useRef()
 
   const [flashErr, setFlashError] = useState(false)
@@ -26,7 +26,7 @@ function LoginPage(props) {
     .then(data => data.json())
     .then(user => {
         if (user) {
-          console.log(user)
+          // console.log(user)
           setLoggedInUser(user.user)
           props.history.push("/") 
         }

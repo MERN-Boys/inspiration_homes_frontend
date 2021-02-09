@@ -8,7 +8,9 @@ function HomePage(props) {
   const loggedInUser = props.loggedInUser
   const setLoggedInUser = props.setLoggedInUser
   const urlDomain = props.urlDomain;
-  console.log(loggedInUser)
+
+  // console.log(loggedInUser)
+  
   return (
     <>
       {loggedInUser === false || loggedInUser === null ? (

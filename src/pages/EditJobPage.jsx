@@ -19,11 +19,14 @@ function EditJobPage({loggedInUser, history, match, urlDomain}) {
     .then(data => data.json())
     .then(job => {
       if (job) {
-        console.log(job)
+        // console.log(job)
         setJobObj(job)
       }
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      // console.log(error)
+      }
+    )
   }, [])
 
   const descriptionInput = React.useRef();
@@ -56,7 +59,7 @@ function EditJobPage({loggedInUser, history, match, urlDomain}) {
       })
       .then(data => data.json())
       .then(data => {
-          console.log(data.locations)
+          // console.log(data.locations)
           //comes back as an array
           const payload = {
             "description": descriptionInput.current.defaultValue,
@@ -64,7 +67,7 @@ function EditJobPage({loggedInUser, history, match, urlDomain}) {
             "designDocs": data.locations
           }
 
-          console.log(payload)
+          // console.log(payload)
           
           return fetch(`${urlDomain}/jobs/${match.params.id}`, {
               body: JSON.stringify(payload),
@@ -77,10 +80,13 @@ function EditJobPage({loggedInUser, history, match, urlDomain}) {
       })
       .then(data => data.json())
       .then(job => {
-        console.log(job)
+        // console.log(job)
         history.push("/") 
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+          // console.log(error)
+        }
+      )
     }
     
     //if no docs
@@ -101,10 +107,13 @@ function EditJobPage({loggedInUser, history, match, urlDomain}) {
       })
       .then(data => data.json())
       .then(job => {
-        console.log(job)
+        // console.log(job)
         history.push("/") 
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        // console.log(error)
+      }
+      )
     }
   }
   

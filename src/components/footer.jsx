@@ -38,7 +38,7 @@ export default function Footer(props) {
           <>
             <Button
               style={{ marginRight: "3px", padding: "3px"}}
-              onClick={() => console.log("login button clicked")}
+              // onClick={() => console.log("login button clicked")}
             >
               <Link to="/users/login" className="nav-link" id="login">
                 Login
