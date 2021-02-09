@@ -1,13 +1,24 @@
 ///<reference types='cypress'/>
 
-describe("login", () => {
-  const name = "Eric Chan";
-  const email = "hello@cypress.io";
+const {
+  uniqueNamesGenerator,
+  adjectives,
+  colors,
+  animals,
+} = require("unique-names-generator");
+
+const shortName = uniqueNamesGenerator({
+  dictionaries: [adjectives, animals, colors], // colors can be omitted here as not used
+  length: 1,
+});
+
+
+
+
+describe("create a job", () => {
+  const email = "client@google.com";
   const password = "password";
-  const jobtitle = "Job tffgg5dejgjjkcjjjcbe";
-//   beforeEach(() => {
-//     cy.visit("http://localhost:3000");
-//   });
+  const jobtitle = shortName;
 
 
   
@@ -19,7 +30,7 @@ describe("login", () => {
    cy.get("input[name=email]").type(email);
    cy.get("input[name=password]").type(password);
    cy.contains("Log In!").click();
-   cy.wait(1500);
+   cy.wait(5000);
    cy.contains("Contact").click();
    cy.url().should("include", "contact");
    cy.get("textarea[name=Description]").type("Big Description");

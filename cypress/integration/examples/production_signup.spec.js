@@ -1,8 +1,20 @@
 ///<reference types='cypress'/>
 
-describe("login", () => {
-  const name = "Eric Chan";
-  const email = "hello@cypress.io";
+const {
+  uniqueNamesGenerator,
+  adjectives,
+  colors,
+  animals,
+} = require("unique-names-generator");
+
+const shortName = uniqueNamesGenerator({
+  dictionaries: [adjectives, animals, colors], // colors can be omitted here as not used
+  length: 1,
+});
+
+describe("sign up", () => {
+  const name = shortName;
+  const email = `${shortName}@google.com`;
   const password = "password";
 
   beforeEach(() => {

@@ -9,6 +9,6 @@ describe("login", () => {
   });
 
   it("has a title", () => {
-    cy.contains("NEW HOMES | RENOVATIONS | DECKS | BATHROOMS");
+    cy.get('[alt="placeholder"]').should("be.visible");
   });
 });

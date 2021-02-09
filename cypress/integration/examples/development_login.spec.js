@@ -1,8 +1,7 @@
 ///<reference types='cypress'/>
 
 describe("login", () => {
-  const name = "Eric Chan";
-  const email = "hello@cypress.io";
+  const email = "builder@google.com";
   const password = "password";
 
   beforeEach(() => {
