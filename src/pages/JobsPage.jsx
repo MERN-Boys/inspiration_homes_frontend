@@ -204,20 +204,31 @@ function JobsPage(props) {
   };
 
   let eventKey = ""
+  // let jobEventKey = ""
   let totalPaid = 0
+  let completedBool = false
 
   return (
     <div className="page-body homePageContainer" style={{maxWidth: "100vw"}}>
-      <h1>Your Jobs</h1>
+      {/* <h1 style={{padding: "10px"}}>Your Jobs</h1> */}
       {jobs.length === 0 ? (
         <div id="emptyJobsMsg">
           <h1>Go to the contact page to start a job today!</h1>
         </div>
       ) : (
-        <></>
+        <h1 style={{padding: "10px"}}>Your Jobs</h1>
       )}
       {typeof jobs !== undefined ? (
-        jobs.map((job, index) => (
+        jobs.sort((a, b) => (a.jobComplete > b.jobComplete) ? 1 : -1).map((job, index) => (
+          <>
+          {completedBool === false && job.jobComplete === true ? (
+            <>
+              <h2 style={{padding: "10px"}}>Completed Jobs</h2>
+              <div hidden>{completedBool = true}</div>
+            </>
+          )
+            : 
+            <></>}
           <Accordion defaultActiveKey="0" key={job._id}>
             <Card>
               <Card.Header>
@@ -264,7 +275,7 @@ function JobsPage(props) {
                           ) : (
                             <Accordion defaultActiveKey="0" key={index}>
                               <div hidden>
-                                {stage.status !== "Complete"
+                                {stage.status !== "Complete" && job.jobComplete !== true
                                   ? (eventKey = "0")
                                   : (eventKey = "1")}
                               </div>
@@ -286,7 +297,7 @@ function JobsPage(props) {
                                         <p>Status: {stage.status}</p>
                                         <p>Funds Owed: {stage.owed}</p>
                                         {loggedInUser.role === "Builder" &&
-                                        stage.status === "InProgress" ? (
+                                        stage.status === "InProgress" && job.jobComplete !== true ? (
                                           <Form
                                             jobId={job._id}
                                             stageId={stage.index}
@@ -306,7 +317,7 @@ function JobsPage(props) {
                                           <></>
                                         )}
                                         {loggedInUser.role === "Client" &&
-                                        stage.status === "PaymentPending" ? (
+                                        stage.status === "PaymentPending" && job.jobComplete !== true ? (
                                           <Button
                                             className="nav-link"
                                             onClick={(e) =>
@@ -332,7 +343,7 @@ function JobsPage(props) {
                                           ))}
                                         </div>
                                         {loggedInUser.role === "Builder" &&
-                                        stage.status === "InProgress" ? (
+                                        stage.status === "InProgress" && job.jobComplete !== true ? (
                                           <Form
                                             jobId={job._id}
                                             stageId={stage.index}
@@ -369,7 +380,7 @@ function JobsPage(props) {
                                               </Card.Body>
                                             </Card>
                                           ))}
-                                          {stage.status !== "Complete" ? (
+                                          {stage.status !== "Complete" && job.jobComplete !== true ? (
                                             <Form
                                               jobId={job._id}
                                               stageId={stage.index}
@@ -395,7 +406,7 @@ function JobsPage(props) {
                         )}
                     </ul>
                     {loggedInUser.role === "Builder" &&
-                    job.stages[0].status === "AwaitingApproval" ? (
+                    job.stages[0].status === "AwaitingApproval" && job.jobComplete !== true ? (
                       <>
                         <Button
                           className="nav-link"
@@ -407,7 +418,7 @@ function JobsPage(props) {
                     ) : (
                       <></>
                     )}
-                    {loggedInUser.role === "Client" ? (
+                    {loggedInUser.role === "Client" && job.jobComplete !== true ? (
                       <Button className="nav-link">
                         <Link
                           to={`/jobs/${job._id}`}
@@ -424,6 +435,7 @@ function JobsPage(props) {
               </Accordion.Collapse>
             </Card>
           </Accordion>
+          </>
         ))
       ) : (
         <p>{"Loading List"}</p>
