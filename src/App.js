@@ -16,8 +16,8 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState(false) 
 
   //change url from deployed to local here
-  // const urlDomain = "https://inspo-homes-api.herokuapp.com"
-  const urlDomain = "http://localhost:5000"
+  const urlDomain = "https://inspo-homes-api.herokuapp.com"
+  // const urlDomain = "http://localhost:5000"
 
   useEffect(() => {
     fetch(`${urlDomain}/users/me/`, {

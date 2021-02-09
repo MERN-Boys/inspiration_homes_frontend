@@ -115,17 +115,19 @@ if (loggedInUser) {
         alignItems: "center",
       }}
     >
+      <div className="page-body loginDiv" style={{height: "100%"}}>
       <h1>Contact us with your idea and take your project to the next stage</h1>
-
-
-      <Form handleSubmit={handleClick} 
-        formFields={["BuildAddress","Description", "DesignDocuments"]} 
-        formTypes={["text", "textarea", "file"]} 
-        multiple={[false, false, true]} 
-        refers={[addressInput, descriptionInput, fileInput]} 
-        defaultValue={[null, null, null]} 
-        title="Create Job!" 
-      />
+        <div style={{justifyContent: "flex-start", display: "flex", textAlign: "left"}}>
+        <Form handleSubmit={handleClick} 
+          formFields={["BuildAddress","Description", "DesignDocuments"]} 
+          formTypes={["text", "textarea", "file"]} 
+          multiple={[false, false, true]} 
+          refers={[addressInput, descriptionInput, fileInput]} 
+          defaultValue={[null, null, null]} 
+          title="Create Job!" 
+          />
+        </div>
+      </div>
     </Jumbotron>
   );
 }

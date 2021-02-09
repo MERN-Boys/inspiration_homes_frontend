@@ -58,7 +58,7 @@ function SignUpPage(props) {
     || loggedInUser == false ? (
       <></>
     ) : (
-      <div className="page-body loginDiv">
+      <div className="page-body loginDiv homePageContainer">
           <h2>Edit Details</h2>
         <div>
         <Form handleSubmit={handleSignup} 

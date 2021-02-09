@@ -207,7 +207,7 @@ function JobsPage(props) {
   let totalPaid = 0
 
   return (
-    <div className="page-body">
+    <div className="page-body homePageContainer" style={{maxWidth: "100vw"}}>
       <h1>Your Jobs</h1>
       {jobs.length === 0 ? (
         <div id="emptyJobsMsg">
@@ -244,7 +244,7 @@ function JobsPage(props) {
                     <ul>
                       {job.designDocs.map((doc, index) => (
                         <li key={index}>
-                          <img src={doc.link} alt="design document"></img>
+                          <img style={{height: "150px"}} src={doc.link} alt="design document"></img>
                         </li>
                       ))}
                     </ul>
