@@ -6,7 +6,7 @@ function AboutPage() {
       <Jumbotron
         id="AboutContainer"
         // style={{ padding: "1%", height: "86vh", "margin-bottom": "0" }}
-        // className="homePageContainer"
+        className=""
         style={{
           textAlign: "center",
           marginBottom: "0",
@@ -14,6 +14,7 @@ function AboutPage() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          height: "100%"
         }}
       >
         <div
@@ -21,11 +22,12 @@ function AboutPage() {
           style={{
             display: "flex",
             justifyContent: "space-around",
-            // alignItems: "center",
+            height: "100%",
+            alignItems: "center",
             margin: "0",
           }}
         >
-          <div id="AboutImageContainer">
+          <div id="AboutImageContainer" style={{height: "100%"}}>
             <img
               className
               style={{ objectFit: "cover", width: "100%", height: "100%" }}
@@ -35,7 +37,12 @@ function AboutPage() {
             />
           </div>
           <div id="AboutTextContainer" className="page-body" 
-            style={{ margin: "0px", minWidth: "280px", maxWidth: "100vw", padding: "5px"}}>
+            style={{ height: "100%", margin: "0px", minWidth: "280px", maxWidth: "100vw",
+              paddingTop: "0px",
+              paddingBottom: "0px",
+              paddingLeft: "10px",
+              paddingRight: "5px"
+            }}>
             <h1 className="display-4">Inspiration Homes</h1>
             <p className="lead">
               <strong>OUR COMMITMENT</strong> For us here At Inspiration Homes,

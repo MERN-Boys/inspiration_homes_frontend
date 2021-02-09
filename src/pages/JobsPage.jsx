@@ -207,7 +207,7 @@ function JobsPage(props) {
   let totalPaid = 0
 
   return (
-    <div className="page-body" style={{maxWidth: "100vw"}}>
+    <div className="page-body homePageContainer" style={{maxWidth: "100vw"}}>
       <h1>Your Jobs</h1>
       {jobs.length === 0 ? (
         <div id="emptyJobsMsg">

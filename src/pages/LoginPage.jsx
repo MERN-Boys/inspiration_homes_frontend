@@ -36,7 +36,7 @@ function LoginPage(props) {
   }
 
   return (
-    <div>
+    <div className="loginDiv homePageContainer">
     {flashErr != false ? 
     <div>
       <h2>{flashErr}</h2>
@@ -48,9 +48,7 @@ function LoginPage(props) {
     || loggedInUser == false 
     || loggedInUser.user == null ? (
       <div className="loginDiv">
-        <div>
           <h2>Login</h2>
-        </div>
         <Form handleSubmit={handleLogin} 
           multiple={[false, false]} 
           refers={[dummyRef, dummyRef]}  

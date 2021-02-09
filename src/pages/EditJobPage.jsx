@@ -111,63 +111,19 @@ function EditJobPage({loggedInUser, history, match, urlDomain}) {
 if (loggedInUser) {
 
   return (
-    <Jumbotron
-      fluid
-      style={{
-        "textAlign": "center",
-        "marginBottom": "0",
-        "display": "flex",
-        "flexDirection": "column",
-        "justifyContent": "center",
-        "alignItems": "center",
-      }}
-    >
-      <h1>Edit your Job!</h1>
-      
-
-      <Form handleSubmit={handleClick} 
-        formFields={["Build Address:","Description:", "Design Documents:"]} 
-        formTypes={["text", "textarea", "file"]} 
-        multiple={[false, false, true]} 
-        refers={[addressInput, descriptionInput, fileInput]}  
-        defaultValue={[jobObj.buildAddress, jobObj.description, null]}
-        title="Edit Job!" 
-      />
-      
-      {/* <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-        onSubmit={(event) => handleSubmit(event, formData)}
-      >
-        <section>
-          <div>
-            <label htmlFor="jobTitle">Job Title</label>
-          </div>
-          <div>
-            <input name="jobTitle" onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor="jobAddress">Job Address</label>
-          </div>
-          <div>
-            <input name="jobAddress" onChange={handleChange} />
-          </div>
-        </section>
-        <section>
-          <div>
-            <label>Job Description:</label>
-          </div>
-          <div>
-            <textarea onChange={handleChange} />
-          </div>
-        </section>
-      </form> */}
-    </Jumbotron>
+    <div className="loginDiv homePageContainer">
+      <div className="loginDiv">
+        <h1>Edit your Job!</h1>
+        <Form handleSubmit={handleClick} 
+          formFields={["Build Address:","Description:", "Design Documents:"]} 
+          formTypes={["text", "textarea", "file"]} 
+          multiple={[false, false, true]} 
+          refers={[addressInput, descriptionInput, fileInput]}  
+          defaultValue={[jobObj.buildAddress, jobObj.description, null]}
+          title="Edit Job!" 
+        />
+      </div>
+    </div>
   );
 }
 else {
