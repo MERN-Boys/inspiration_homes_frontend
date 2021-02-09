@@ -5,7 +5,7 @@ function GalleryPage() {
     <Carousel className="homePageContainer" style={{ display: "flex", alignItems: "center", backgroundColor: "transparent"}}>
       <Carousel.Item style={{ minHeight: "60%", overflow: "hidden" }}>
         <img
-          style={{maxHeight: "85.25vh"}}
+          style={{maxHeight: "80.25vh"}}
           className="d-block w-100"
           src="https://scallyprojects.com.au/wp-content/uploads/2017/12/img-6-1.jpg"
           alt="First slide"

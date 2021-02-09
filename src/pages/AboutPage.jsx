@@ -27,14 +27,15 @@ function AboutPage() {
         >
           <div id="AboutImageContainer">
             <img
-              style={{ objectFit: "cover", width: "500px", height: "100%" }}
+              className
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
               alt="placeholder"
               src="https://major.com.au/wp-content/uploads/2019/01/Young-Builders-On-Worksite-Concept.jpg"
               href=""
             />
           </div>
           <div id="AboutTextContainer" className="page-body" 
-            style={{ margin: "0px", minWidth: "350px"}}>
+            style={{ margin: "0px", minWidth: "280px", maxWidth: "100vw", padding: "5px"}}>
             <h1 className="display-4">Inspiration Homes</h1>
             <p className="lead">
               <strong>OUR COMMITMENT</strong> For us here At Inspiration Homes,

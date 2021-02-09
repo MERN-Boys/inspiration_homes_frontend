@@ -109,7 +109,6 @@ h6 {
 .homePageContainer::after {
     content: "";
     background: url(./images/background.jpg) no-repeat center center fixed;
-    /* background-repeat: no-repeat; */
     background-size: 100vw 100vh; 
     opacity: 0.5;
     top: 0;
@@ -132,7 +131,7 @@ h6 {
         /* height: 100%; */
     }
     #AboutImageContainer {
-        width: 100%;
+        width: 35vw;
         height: 50%;
     }
     #AboutContentContainer {
